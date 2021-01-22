@@ -9,7 +9,6 @@ class SausageDog extends Animal {
   update() {
     if (state === "game"){
     super.update();
-
     if (this.found) {
       this.angle += this.rotationSpeed;
       }
@@ -23,5 +22,9 @@ class SausageDog extends Animal {
       mouseY < this.y + this.image.height / 2) {
       this.found = true;
     }
+    else {
+      lives = lives - 1
+    }
   }
+
 }

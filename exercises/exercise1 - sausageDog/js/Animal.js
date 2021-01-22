@@ -17,7 +17,7 @@ constructor(x, y, image)  {
    imageMode(CENTER);
    translate(this.x, this.y);
    rotate(this.angle);
-   image(this.image, 0, 0)
+   image(this.image, 0, 0);
    pop();
  }
 }
