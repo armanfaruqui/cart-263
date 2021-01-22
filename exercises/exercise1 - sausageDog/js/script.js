@@ -8,6 +8,9 @@ let animals = [];
 
 let sausageDogImage;
 let sausageDog;
+let titleScreen;
+
+let state = "title" // State variable
 
 function preload() {
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++){
@@ -15,9 +18,8 @@ function preload() {
     animalImages.push(animalImage);
   }
   sausageDogImage = loadImage(`assets/images/sausage-dog.png`)
+  titleScreen = loadImage(`assets/images/titleScreen.png`)
 }
-
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -39,13 +41,32 @@ function draw() {
 
   background(34, 68, 32)
 
-  for (let i = 0; i < animals.length; i++){
-    animals[i].update();
-  }
+  displayTitleScreen();
+
+  displayAnimals();
 
   sausageDog.update();
 }
 
 function mousePressed(){
   sausageDog.mousePressed()
+  if (state === "title"){
+    state = "game"
+  }
+}
+
+function displayAnimals(){
+  if (state === "game"){
+  for (let i = 0; i < animals.length; i++){
+    animals[i].update();
+    }
+  }
+}
+
+function displayTitleScreen(){
+  if (state === "title"){
+    push();
+    image(titleScreen, 0, 0, width, height);
+    pop();
+  }
 }

@@ -7,10 +7,12 @@ class SausageDog extends Animal {
   }
 
   update() {
+    if (state === "game"){
     super.update();
 
     if (this.found) {
       this.angle += this.rotationSpeed;
+      }
     }
   }
 
