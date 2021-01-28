@@ -42,7 +42,6 @@ const JOKES =
       "I was very lonely so I bought some shares. It’s nice to have a bit of company.",
       "Why doesn’t the Sun go to college? – Because it has a million degrees.",
       "roses are dead. violets are dead. I am a bad gardener.",
-
     ];
 
   const ACCENTS = [
@@ -52,7 +51,6 @@ const JOKES =
     "US English Female",
     "Spanish Female",
     "French Female",
-    "French Male",
     "Italian Female",
     "Russian Female",
     "Hindi Male",
@@ -63,6 +61,13 @@ const JOKES =
 let currentJoke = ``;
 let currentAccent = ``;
 let currentAnswer = ``;
+let tingSound;
+let correct = false;
+let points = 0;
+
+function preload(){
+  tingSound = loadSound("assets/sounds/ting.wav")
+}
 
 function setup() {
 createCanvas(windowWidth, windowHeight);
@@ -85,6 +90,8 @@ background(0)
 
 displayAnswer()
 displayTips()
+pointsCounter()
+
 }
 
 function mousePressed(){
@@ -92,7 +99,10 @@ function mousePressed(){
   currentAccent = random(ACCENTS)
   console.log(currentAccent);
   responsiveVoice.speak(currentJoke, currentAccent, {rate:0.8});
-
+  if (correct === true){
+    tingSound.play()
+    points = points + 1
+  }
 }
 
 function guessAccent(accent){
@@ -100,13 +110,17 @@ function guessAccent(accent){
 }
 
 function displayAnswer(){
+  push()
   if (currentAnswer.toLowerCase() === currentAccent.toLowerCase()) {
     fill (0, 255, 0)
+    correct = true;
   }
   else {
     fill(255, 0, 0)
+    correct = false;
   }
   text(currentAnswer, width/2, height/2);
+  pop()
 }
 
 function displayTips(){
@@ -120,5 +134,13 @@ function displayTips(){
   text(" Instead of 'British' say 'UK English'", 50, 130)
   text(" Instead of 'American' say 'US English'", 50, 160)
   text(" Instead of 'Indian' say 'Hindi'", 50, 190)
+  pop()
+}
+
+function pointsCounter(){
+  push()
+  textAlign(LEFT)
+  fill(0, 0, 255)
+  text(`${points} points`, 50, 500);
   pop()
 }
