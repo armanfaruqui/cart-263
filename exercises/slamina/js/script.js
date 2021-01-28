@@ -1,14 +1,8 @@
-/**************************************************
-Template p5 project
-Pippin Barr
-
-Here is a description of this template p5 project.
-**************************************************/
 "use strict"
 
 const JOKES =
     [
-      "I invented a new word: Plagiarism!",
+      "I invented a new word.  Plagiarism!",
       "Did you hear about the mathematician who ia s afraid of negative numbers? He will  stop at nothing to avoid them.",
       "Why do we tell actors to break a leg? Because every play has a cast.",
       "Did you hear about the claustrophobic astronaut? He just needed a little space",
@@ -57,8 +51,8 @@ const JOKES =
     "US English Male",
     "US English Female",
     "Spanish Female",
-    "French Male",
     "French Female",
+    "French Male",
     "Italian Female",
     "Russian Female",
     "Hindi Male",
@@ -85,19 +79,12 @@ if (annyang){
   }
 }
 
-// draw()
-//
-// Description of draw() goes here.
+
 function draw() {
 background(0)
 
-if (currentAnswer === currentAccent) {
-  fill (0, 255, 0)
-}
-else {
-  fill(255, 0, 0)
-}
-text(currentAnswer, width/2, height/2);
+displayAnswer()
+displayTips()
 }
 
 function mousePressed(){
@@ -105,8 +92,33 @@ function mousePressed(){
   currentAccent = random(ACCENTS)
   console.log(currentAccent);
   responsiveVoice.speak(currentJoke, currentAccent, {rate:0.8});
+
 }
 
 function guessAccent(accent){
   currentAnswer = accent
+}
+
+function displayAnswer(){
+  if (currentAnswer.toLowerCase() === currentAccent.toLowerCase()) {
+    fill (0, 255, 0)
+  }
+  else {
+    fill(255, 0, 0)
+  }
+  text(currentAnswer, width/2, height/2);
+}
+
+function displayTips(){
+  push()
+  fill(255)
+  textAlign(LEFT)
+  textSize(30)
+  text("INSTRUCTIONS", 50, 50)
+  textSize(24)
+  text("Say 'They are a' followed by your guess of their nationality and sex", 50, 100)
+  text(" Instead of 'British' say 'UK English'", 50, 130)
+  text(" Instead of 'American' say 'US English'", 50, 160)
+  text(" Instead of 'Indian' say 'Hindi'", 50, 190)
+  pop()
 }
