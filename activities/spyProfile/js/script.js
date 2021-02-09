@@ -4,12 +4,15 @@ let spyProfile = {
   name: `**REDACTED**`,
   alias: `**REDACTED**`,
   secretWeapon: `**REDACTED**`,
-  password: `**REDACTED**`
+  password: `**REDACTED**`,
+  mission: `**REDACTED`
 };
 
 let instrumentData = undefined;
 let objectData = undefined;
 let tarotData = undefined;
+let countryData = undefined;
+let taskData = undefined;
 
 //Position variables for reset buttons
 let resetButtons = {
@@ -23,6 +26,8 @@ function preload() {
   tarotData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/divination/tarot_interpretations.json`)
   instrumentData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json`)
   objectData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/objects/objects.json`)
+  countryData = loadJSON(`https://raw.githubusercontent.com/dariusk/corpora/master/data/geography/countries.json`)
+  taskData = loadJSON(`assets/data/tasks.json`)
 }
 
 /**
@@ -39,6 +44,7 @@ function setup() {
       spyProfile.alias = data.alias
       spyProfile.secretWeapon = data.secretWeapon
       spyProfile.password = data.password
+      spyProfile.mission = data.mission
     } else if (password === `reset`) { //Allows the user to create a new account
       generateSpyProfile()
     }
@@ -54,6 +60,9 @@ function generateSpyProfile() {
   spyProfile.secretWeapon = random(objectData.objects);
   let card = random(tarotData.tarot_interpretations);
   spyProfile.password = random(card.keywords);
+  let country = random(countryData.countries);
+  let task = random(taskData.tasks);
+  spyProfile.mission = `${task} in ${country}`;
 
   localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
 }
@@ -68,7 +77,8 @@ function draw() {
   Name: ${spyProfile.name}
   Alias: ${spyProfile.alias}
   Secret Weapon: ${spyProfile.secretWeapon}
-  Password: ${spyProfile.password}`;
+  Password: ${spyProfile.password}
+  Assigned Mission: ${spyProfile.mission}`
 
   // console.log(`X${mouseX}`)
   // console.log(`Y${mouseY}`)
