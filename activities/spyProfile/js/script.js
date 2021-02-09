@@ -14,9 +14,11 @@ let tarotData = undefined;
 let countryData = undefined;
 let taskData = undefined;
 
+let spyProfileGenerated = false //Boolean which checks if user information was generated
+
 //Position variables for reset buttons
 let resetButtons = {
-  x: 580,
+  x: 100,
   y1: 164,
   y2: 164 + 30,
   y3: 164 + 60,
@@ -45,6 +47,7 @@ function setup() {
       spyProfile.secretWeapon = data.secretWeapon
       spyProfile.password = data.password
       spyProfile.mission = data.mission
+      spyProfileGenerated = true;
     } else if (password === `reset`) { //Allows the user to create a new account
       generateSpyProfile()
     }
@@ -64,6 +67,7 @@ function generateSpyProfile() {
   let task = random(taskData.tasks);
   spyProfile.mission = `${task} in ${country}`;
 
+  spyProfileGenerated = true
   localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
 }
 
@@ -80,8 +84,8 @@ function draw() {
   Password: ${spyProfile.password}
   Assigned Mission: ${spyProfile.mission}`
 
-  // console.log(`X${mouseX}`)
-  // console.log(`Y${mouseY}`)
+  console.log(`X${mouseX}`)
+  console.log(`Y${mouseY}`)
 
   displayResetButtons()
 
@@ -94,22 +98,30 @@ function draw() {
 }
 
 function mousePressed() {
-  if (mouseX > resetButtons.x - 8 && mouseX < resetButtons.x + 18 && mouseY > resetButtons.y1 - 3 && mouseY < resetButtons.y1 + 13) {
-    let instrument = random(instrumentData.instruments);
-    spyProfile.alias = `The ${instrument}`;
-    localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
+  // Automatically resets a certain value
+  if (spyProfileGenerated === true) {
+    if (mouseX > resetButtons.x - 8 && mouseX < resetButtons.x + 18 && mouseY > resetButtons.y1 - 3 && mouseY < resetButtons.y1 + 13) {
+      let instrument = random(instrumentData.instruments);
+      spyProfile.alias = `The ${instrument}`;
+      localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
+    }
+    if (mouseX > resetButtons.x - 8 && mouseX < resetButtons.x + 18 && mouseY > resetButtons.y2 - 3 && mouseY < resetButtons.y2 + 13) {
+      spyProfile.secretWeapon = random(objectData.objects);
+      localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
+    }
+    if (mouseX > resetButtons.x - 8 && mouseX < resetButtons.x + 18 && mouseY > resetButtons.y3 - 3 && mouseY < resetButtons.y3 + 13) {
+      let card = random(tarotData.tarot_interpretations);
+      spyProfile.password = random(card.keywords);
+      localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
+    }
   }
-  if (mouseX > resetButtons.x - 8 && mouseX < resetButtons.x + 18 && mouseY > resetButtons.y2 - 3 && mouseY < resetButtons.y2 + 13) {
-    spyProfile.secretWeapon = random(objectData.objects);
-    localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
-  }
-  if (mouseX > resetButtons.x - 8 && mouseX < resetButtons.x + 18 && mouseY > resetButtons.y3 - 3 && mouseY < resetButtons.y3 + 13) {
-    let card = random(tarotData.tarot_interpretations);
-    spyProfile.password = random(card.keywords);
+
+  // Allows user to enter custom alias
+  if (spyProfileGenerated === true && mouseX > 226 && mouseX < 375 && mouseY > 158 && mouseY < 183) {
+    spyProfile.alias = prompt(`Enter a custom alias`)
     localStorage.setItem(`spy-profile-data`, JSON.stringify(spyProfile));
   }
 }
-
 // displays reset buttons
 function displayResetButtons() {
   push()
