@@ -27,7 +27,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
-  background(255, 255, 0)
+  background(0)
 
 
   displayIntro()
@@ -54,6 +54,9 @@ function displayIntro() {
       }
       if (camera.position.x > 480) {
         camera.position.x = camera.position.x - 2.3
+      }
+      else {
+        state = "bedroom"
       }
       if (camera.position.y > 320) {
         camera.position.y = camera.position.y - 1
