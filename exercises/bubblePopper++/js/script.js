@@ -1,28 +1,36 @@
 "use strict";
 
-
 let video = undefined;
 // Handpose model
 let handpose = undefined;
 // Current set of predictions
 let predictions = [];
 
+let state = "game" // State variable
+
 // Teeth assets
 let tooth = undefined
 let happyTooth;
 let sadTooth;
 let resetTooth;
+let mouthBG;
 
 let decayedToothCounter = 0 // Counts number of teeth you decayed
 let toothDecayed = false;
 
 let lollipop = undefined;
 
+let scream
+let winScreen
+
 function preload() {
   lollipop = loadImage(`assets/images/lollipop.jpg.png`)
   happyTooth = loadImage(`assets/images/happyTooth.png`)
   resetTooth = loadImage(`assets/images/happyTooth.png`)
   sadTooth = loadImage(`assets/images/sadTooth.png`)
+  mouthBG = loadImage(`assets/images/mouthBG.jpg`)
+  scream = loadSound(`assets/sounds/scream.mp3`)
+  winScreen = loadImage(`assets/images/winScreen.jpg`)
 }
 
 
@@ -57,6 +65,8 @@ function setup() {
 
 function draw() {
   background(0);
+  
+  image(mouthBG, 0, 0)
 
   if (predictions.length > 0) {
     let hand = predictions[0];
@@ -114,4 +124,16 @@ function draw() {
   noStroke()
   image(happyTooth, tooth.x, tooth.y, 60, 60)
   pop()
+
+  checkForWin()
+}
+
+function checkForWin(){
+  if (decayedToothCounter > 1){
+    state = "win"
+    image(winScreen, 0, 0)
+    if (!scream.isPlaying()){
+    scream.loop()
+    }
+  }
 }
