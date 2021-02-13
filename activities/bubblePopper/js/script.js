@@ -12,8 +12,6 @@ let bubble = undefined
 function preload() {
 
 }
-
-
 /**
 Description of setup
 */

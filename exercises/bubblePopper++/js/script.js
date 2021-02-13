@@ -7,16 +7,21 @@ let handpose = undefined;
 // Current set of predictions
 let predictions = [];
 
-let bubble = undefined
+let tooth = undefined
+let happyTooth;
+let sadTooth;
+let resetTooth;
+
+let lollipop = undefined;
 
 function preload() {
-
+lollipop = loadImage(`assets/images/lollipop.jpg.png`)
+happyTooth = loadImage(`assets/images/happyTooth.png`)
+resetTooth = loadImage(`assets/images/happyTooth.png`)
+sadTooth = loadImage(`assets/images/sadTooth.png`)
 }
 
 
-/**
-Description of setup
-*/
 function setup() {
 createCanvas(640, 480);
 
@@ -33,10 +38,9 @@ handpose.on(`predict`, function(results){
   predictions = results;
 });
 
-bubble = {
+tooth = {
   x: random(width),
   y: height,
-  size: 100,
   vx: 0,
   vy: -2
 }
@@ -56,40 +60,37 @@ function draw() {
     let baseX = base[0]
     let baseY = base[1]
 
-    push() // Pin body
+    push() // Brush body
     noFill()
-    stroke(255, 255, 255);
-    strokeWeight(2)
+    stroke(122, 91, 50);
+    strokeWeight(8)
     line(baseX, baseY, tipX, tipY)
     pop()
 
-    push() // Pin head
-    noStroke()
-    fill(255, 0, 0)
-    ellipse(baseX, baseY, 20)
+    push() // Brush head
+    imageMode(CENTER)
+    image(lollipop, baseX, baseY, 50, 50)
     pop()
 
     //Check ball popping
-    let d = dist(tipX, tipY, bubble.x, bubble.y)
-    if (d < bubble.size/2){
-      bubble.x = random(width)
-      bubble.y = height
+    let d = dist(baseX, baseY, tooth.x, tooth.y)
+    if (d < 50){
+      happyTooth = sadTooth
     }
   }
 
+  tooth.x += tooth.vx
+  tooth.y += tooth.vy
 
-
-  bubble.x += bubble.vx
-  bubble.y += bubble.vy
-
-  if (bubble.y < 0){
-    bubble.x = random(width)
-    bubble.y = height
+  if (tooth.y < 0){
+    tooth.x = random(width)
+    tooth.y = height
+    happyTooth = resetTooth
   }
 
   push()
   fill(0, 100, 200)
   noStroke()
-  ellipse(bubble.x, bubble.y, bubble.size)
+  image(happyTooth, tooth.x, tooth.y, 60, 60)
   pop()
 }
