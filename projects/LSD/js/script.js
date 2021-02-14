@@ -6,7 +6,6 @@ let startSimulation = false; // Boolean to trigger the start of the simulation
 
 // Asset variables
 let youtubeScreen;
-
 let livingRoom;
 
 
@@ -14,21 +13,23 @@ function preload() {
   youtubeScreen = loadImage(`assets/images/youtube1.png`);
 
   manOnCouch = loadAnimation(
-    `assets/images/home/man1`,
-    `assets/images/home/man5`
+    `assets/images/home/man1.png`,
+    `assets/images/home/man10.png`
   );
   table = loadAnimation(
-    `assets/images/home/table1`,
-    `assets/images/home/table5`
+    `assets/images/home/table1.png`,
+    `assets/images/home/table5.png`
   );
   clock = loadAnimation(
-    `assets/images/home/clock1`,
-    `assets/images/home/clock5`
+    `assets/images/home/clock1.png`,
+    `assets/images/home/clock5.png`
   );
   wallWindow = loadAnimation(
-    `assets/images/home/window1`,
-    `assets/images/home/window5`
+    `assets/images/home/window1.png`,
+    `assets/images/home/window5.png`
   );
+  closeUp = loadAnimation(`assets/images/home/closeUp1.png`, `assets/images/home/closeUp10.png`)
+  crackle = loadSound(`assets/sounds/crackle.mp3`)
 }
 
 /**
@@ -37,7 +38,7 @@ Description of setup
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  livingRoom = new LivingRoom(manOnCouch, table, clock, wallWindow);
+  livingRoom = new LivingRoom(manOnCouch, table, clock, wallWindow, closeUp);
 }
 
 /**
@@ -45,11 +46,12 @@ Description of draw()
 */
 function draw() {
   background(0);
-
+  console.log(scene)
   displayIntro();
-  if (scene === "livingRoom"){
-    livingRoom.display()
-  }
+
+  livingRoom.display()
+  livingRoom.switchScene()
+  
 
 }
 
@@ -80,6 +82,7 @@ function displayIntro() {
         camera.position.x = camera.position.x - 2.3; // Camera panning
       } else {
         scene = "livingRoom"; // Switches scene once the zooming and panning is finished
+        camera.zoom = 1
       }
       if (camera.position.y > 320) {
         // Camera tilting

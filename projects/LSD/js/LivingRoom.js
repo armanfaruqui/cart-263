@@ -4,18 +4,34 @@ let table;
 let clock;
 let wallWindow;
 let man;
+let closeUp;
+let crackle; // Sound for scene
 
 class LivingRoom {
-  constructor(manOnCouch, table, clock, wallWindow) {
-    if (scene === "livingRoom") {
-      man.sprite = createSprite(500, 500); // Initializes a sprite
-      man.sprite.addAnimation("manOnCouch", manOnCouch); // Adds the preloaded animation(s)
-      man.sprite.depth = 1; // Depth determines the order in which sprites are displayed. Sprites with higher depths are drawn on top of sprites with lower depths
-      man.sprite.changeAnimation("manOnCouch"); // Decides which animation should be displayed since sprites can hold multiple
-    }
+  constructor(manOnCouch, table, clock, wallWindow, closeUp) {
+
   }
 
   display() {
-    drawSprites()
+    if (scene === "livingRoom") {
+      animation(clock, 900, 70) // Clock
+      animation(table, -80, 600) // Table next to couch
+      animation(wallWindow, 100, 70) // Window with moon
+      animation(manOnCouch, 600, 480, 100, 100) // Man lying on couch + couch
+    }
+
+    if (scene === "closeUp"){
+      animation(closeUp, 550, 330)
+    }
+
+    if (!crackle.isPlaying() && scene === "livingRoom" || !crackle.isPlaying() && scene === "closeUp") {
+      crackle.loop() // Background sound for the scene
+    }
+  }
+
+  switchScene(){
+    if (scene === "livingRoom" && mouseX > 1132 && mouseY > 338 && mouseX < 1239 && mouseY < 435){
+      scene = "closeUp"
+    }
   }
 }
