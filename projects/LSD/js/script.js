@@ -7,11 +7,10 @@ let startSimulation = false; // Boolean to trigger the start of the simulation
 // Asset variables
 let youtubeScreen;
 let livingRoom;
+let song;
 
-// The song is split into various sections
 function preload() {
-  // Song sections
-  lrConfig.songSection1 = loadSound(`assets/sounds/songSection1.mp3`)
+  song = loadSound(`assets/sounds/songLSD.mp3`)
 
   youtubeScreen = loadImage(`assets/images/youtube1.png`);
 lrConfig.manOnCouch = loadAnimation(
@@ -61,7 +60,7 @@ function draw() {
   livingRoom.display()
   livingRoom.switchScene()
   livingRoom.moveAcidTab()
-  livingRoom.switchScene2()
+  livingRoom.startTrip()
   livingRoom.changeFurniture()
 
   // console.log(`x${mouseX}`); //25 913
@@ -113,9 +112,9 @@ function displayIntro() {
 }
 
 // Plays a section of a song when called
-function playSongSection(songSection, milliseconds){
-  if(!songSection.isPlaying()){
-    songSection.play()
+function playSong(millisecondsToPause){
+  if(!song.isPlaying()){
+    song.play()
   }
-  setTimeout(function () {songSection.stop()}, milliseconds) // Since this function is called within draw, this stops it from looping
+  setTimeout(function () {song.stop()}, millisecondsToPause) // Since this function is called within draw, this stops it from looping
 }

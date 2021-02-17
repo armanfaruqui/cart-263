@@ -9,7 +9,6 @@ man: undefined,
 closeUp: undefined,
 lsdTab: undefined,
 crackle: undefined,
-songSection1: undefined,
 clockReal: undefined,
 wallWindowReal: undefined,
 tableReal: undefined,
@@ -98,6 +97,9 @@ class LivingRoom {
     ) {
       scene = "closeUp";
     }
+    if (scene === "livingRoom" && tab.onTongue === true){
+      setTimeout(function(){camera.position.y = camera.position.y - 1.8}, 18000)
+    }
   }
   // Attatches the LSD Tab to the user's mouse when hovered over, and drops it on the man's tongue when its hovered over.
   moveAcidTab() {
@@ -129,7 +131,7 @@ class LivingRoom {
     }
   }
 
-  switchScene2() {
+  startTrip() {
     // Tab gets stuck on the man's tongue when it comes into contact with it
     if (scene === "livingRoom" || scene === "closeUp"){
       if (
@@ -141,7 +143,7 @@ class LivingRoom {
         lrConfig.crackle.stop()
         tab.onTongue = true;
         tab.move = false; // Stops the tab from moving
-        playSongSection(lrConfig.songSection1, 30000) // Plays the first section of the song
+        playSong(32000) // Plays the first section of the song
         setTimeout(function(){scene = "livingRoom"}, 7000); // Switches scene from 'close up' back to 'living room'
       }
     }
