@@ -10,7 +10,10 @@ closeUp: undefined,
 lsdTab: undefined,
 crackle: undefined,
 songSection1: undefined,
-clockReal: undefined
+clockReal: undefined,
+wallWindowReal: undefined,
+tableReal: undefined,
+icecream: undefined
 }
 
 //Object containing variables for the LSD Tab
@@ -29,6 +32,8 @@ let tab = {
 };
 
 let showRealClock = false
+let showRealWindow = false
+let showRealTable = false
 
 class LivingRoom {
   constructor(lrConfig) {}
@@ -48,8 +53,20 @@ class LivingRoom {
         else {
           image(lrConfig.clockReal, 980, 65, 205, 158)
         }
-        animation(lrConfig.table, 114, 670); // Table next to couch
-        animation(lrConfig.wallWindow, 470, 175); // Window with moon
+        if (showRealTable === false){
+          animation(lrConfig.table, 114, 670); // Table next to couch
+        }
+        else {
+          image(lrConfig.tableReal, -70, 570, 340, 230);
+          image(lrConfig.icecream, -10, 550, 200, 140);
+        }
+        if (showRealWindow === false){
+          animation(lrConfig.wallWindow, 470, 175); // Window with moon
+        }
+        else {
+          imageMode(CENTER)
+          image(lrConfig.wallWindowReal, 470, 175, 290, 290)
+        }
         imageMode(CENTER)
         image(lrConfig.manOnCouchStill, 800, 570)  // Man lying on couch + couch
       }
@@ -133,6 +150,8 @@ class LivingRoom {
   changeFurniture(){
     if (tab.onTongue === true){
       setTimeout(function(){showRealClock = true}, 16500)
+      setTimeout(function(){showRealTable = true}, 17000)
+      setTimeout(function(){showRealWindow = true}, 17800)
     }
   }
 

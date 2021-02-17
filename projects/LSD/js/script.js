@@ -35,6 +35,9 @@ lrConfig.table = loadAnimation(
   lrConfig.lsdTab = loadImage(`assets/images/home/lsdTab.png`)
   lrConfig.crackle = loadSound(`assets/sounds/crackle.mp3`)
   lrConfig.clockReal = loadImage(`assets/images/home/clockReal.gif`)
+  lrConfig.wallWindowReal = loadImage(`assets/images/home/wallWindowReal.gif`)
+  lrConfig.tableReal = loadImage(`assets/images/home/tableReal.png`)
+  lrConfig.icecream = loadImage(`assets/images/home/icecream.gif`)
 
 }
 
