@@ -1,3 +1,5 @@
+let livingRoom;
+
 // Object containing asset variables for the scene. lr short for living room*
 let lrConfig = {
 manOnCouch: undefined,
@@ -98,7 +100,7 @@ class LivingRoom {
       scene = "closeUp";
     }
     if (scene === "livingRoom" && tab.onTongue === true){
-      setTimeout(function(){camera.position.y = camera.position.y - 1.8}, 18000)
+      setTimeout(function(){camera.position.y = camera.position.y - 1.8}, 15000)
     }
   }
   // Attatches the LSD Tab to the user's mouse when hovered over, and drops it on the man's tongue when its hovered over.

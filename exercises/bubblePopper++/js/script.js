@@ -65,7 +65,7 @@ function setup() {
 
 function draw() {
   background(0);
-  
+
   image(mouthBG, 0, 0)
 
   if (predictions.length > 0) {
@@ -129,9 +129,9 @@ function draw() {
 }
 
 function checkForWin(){
-  if (decayedToothCounter > 1){
+  if (decayedToothCounter > 7){
     state = "win"
-    image(winScreen, 0, 0)
+    image(winScreen, 0, 0, width, height)
     if (!scream.isPlaying()){
     scream.loop()
     }

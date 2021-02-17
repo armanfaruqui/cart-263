@@ -1,12 +1,11 @@
 "use strict";
 
-let scene = "intro"; // State variable
+let scene = "scene2"; // State variable
 
 let startSimulation = false; // Boolean to trigger the start of the simulation
 
 // Asset variables
 let youtubeScreen;
-let livingRoom;
 let song;
 
 function preload() {
@@ -38,6 +37,7 @@ lrConfig.table = loadAnimation(
   lrConfig.tableReal = loadImage(`assets/images/home/tableReal.png`)
   lrConfig.icecream = loadImage(`assets/images/home/icecream.gif`)
 
+  s2Config.zip = loadImage(`assets/images/scene2/zip.png`)
 }
 
 /**
@@ -47,6 +47,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   livingRoom = new LivingRoom(lrConfig);
+  scene2 = new Scene2(s2Config);
 }
 
 /**
@@ -62,6 +63,9 @@ function draw() {
   livingRoom.moveAcidTab()
   livingRoom.startTrip()
   livingRoom.changeFurniture()
+
+  // scene2.display()
+    scene2.zipperTeeth()
 
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
