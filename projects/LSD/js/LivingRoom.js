@@ -19,8 +19,8 @@ icecream: undefined
 
 //Object containing variables for the LSD Tab
 let tab = {
-  x: 250,
-  y: 640,
+  x: 240,
+  y: 660,
   vx: 0,
   vy: 0,
   ax: 0,
@@ -77,7 +77,7 @@ class LivingRoom {
       animation(lrConfig.closeUp, 730, 390); // Animation of man's face and hand
       push();
       imageMode(CENTER);
-      image(lrConfig.lsdTab, tab.x, tab.y, 110, 100); // Image of LSD tab
+      image(lrConfig.lsdTab, tab.x, tab.y, 71.5, 65); // Image of LSD tab
       pop();
     }
 
@@ -88,7 +88,7 @@ class LivingRoom {
       lrConfig.crackle.loop(); // Background sound for the scene
     }
   }
-  // Switches scene from the living room to a close up of the man's face when the user hovers over his face
+  // Switches the scene
   switchScene() {
     if (
       scene === "livingRoom" &&
@@ -97,10 +97,13 @@ class LivingRoom {
       mouseX < 1239 &&
       mouseY < 435
     ) {
-      scene = "closeUp";
+      scene = "closeUp"; // Switches scene from the living room to a close up of the man's face when the user hovers over his face
     }
     if (scene === "livingRoom" && tab.onTongue === true){
-      setTimeout(function(){camera.position.y = camera.position.y - 1.8}, 15000)
+      setTimeout(function(){camera.position.y = camera.position.y - 1.8}, 14000)
+      if (camera.position.y < -350){
+        scene = "scene2" // Switches scene from the living room to a close up of the man's face when the user hovers over his face
+      }
     }
   }
   // Attatches the LSD Tab to the user's mouse when hovered over, and drops it on the man's tongue when its hovered over.
@@ -140,9 +143,9 @@ class LivingRoom {
         tab.x > 630 &&
         tab.x < 700 &&
         tab.y > 520 &&
-        tab.y < 550
+        tab.y < 550 // tongue dimensions
       ) {
-        lrConfig.crackle.stop()
+        lrConfig.crackle.stop() // Crackling sound stops
         tab.onTongue = true;
         tab.move = false; // Stops the tab from moving
         playSong(32000) // Plays the first section of the song
@@ -151,6 +154,7 @@ class LivingRoom {
     }
   }
 
+  // Changes boolean variables which effect which affect which images/GIFs should be displayed in this object's display function
   changeFurniture(){
     if (tab.onTongue === true){
       setTimeout(function(){showRealClock = true}, 16500)

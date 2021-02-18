@@ -1,6 +1,6 @@
 "use strict";
 
-let scene = "scene2"; // State variable
+let scene = "intro"; // State variable
 
 let startSimulation = false; // Boolean to trigger the start of the simulation
 
@@ -64,8 +64,9 @@ function draw() {
   livingRoom.startTrip()
   livingRoom.changeFurniture()
 
-  // scene2.display()
-    scene2.zipperTeeth()
+  scene2.zipperTeeth()
+  scene2.displayZip()
+  scene2.openZip()
 
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
@@ -89,7 +90,7 @@ function mousePressed() {
   console.log(`x${mouseX}`); //25 913
   // console.log(`tab${tab.x}`); //25 913
   console.log(`y${mouseY}`); //78 574
-
+  scene2.grabZip()
 }
 // Displays the youtube screen. Zooms into the video when true is assigned to start simulation
 function displayIntro() {
