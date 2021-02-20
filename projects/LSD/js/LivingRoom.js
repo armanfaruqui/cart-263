@@ -17,6 +17,15 @@ tableReal: undefined,
 icecream: undefined
 }
 
+// Y position of images/gifs stored for the simulateCameraTilt() function
+let yPos = {
+  clock: 65,
+  window: 175,
+  table: 570,
+  icecream: 550,
+  manOnCouch: 570
+}
+
 //Object containing variables for the LSD Tab
 let tab = {
   x: 240,
@@ -36,6 +45,9 @@ let showRealClock = false
 let showRealWindow = false
 let showRealTable = false
 
+let startTilt = false
+let speed = 1.5
+
 class LivingRoom {
   constructor(lrConfig) {}
 
@@ -52,24 +64,24 @@ class LivingRoom {
           animation(lrConfig.clock, 1080, 140); // Clock
         }
         else {
-          image(lrConfig.clockReal, 980, 65, 205, 158)
+          image(lrConfig.clockReal, 980, yPos.clock, 205, 158)
         }
         if (showRealTable === false){
           animation(lrConfig.table, 114, 670); // Table next to couch
         }
         else {
-          image(lrConfig.tableReal, -70, 570, 340, 230);
-          image(lrConfig.icecream, -10, 550, 200, 140);
+          image(lrConfig.tableReal, -70, yPos.table, 340, 230);
+          image(lrConfig.icecream, -10, yPos.icecream, 200, 140);
         }
         if (showRealWindow === false){
           animation(lrConfig.wallWindow, 470, 175); // Window with moon
         }
         else {
           imageMode(CENTER)
-          image(lrConfig.wallWindowReal, 470, 175, 290, 290)
+          image(lrConfig.wallWindowReal, 470, yPos.window, 290, 290)
         }
         imageMode(CENTER)
-        image(lrConfig.manOnCouchStill, 800, 570)  // Man lying on couch + couch
+        image(lrConfig.manOnCouchStill, 800, yPos.manOnCouch)  // Man lying on couch + couch
       }
   }
 
@@ -81,10 +93,7 @@ class LivingRoom {
       pop();
     }
 
-    if (
-      (!lrConfig.crackle.isPlaying() && scene === "livingRoom") ||
-      (!lrConfig.crackle.isPlaying() && scene === "closeUp")
-    ) {
+    if (!lrConfig.crackle.isPlaying() && scene === "livingRoom" && scene !== "scene2") {
       lrConfig.crackle.loop(); // Background sound for the scene
     }
   }
@@ -100,10 +109,11 @@ class LivingRoom {
       scene = "closeUp"; // Switches scene from the living room to a close up of the man's face when the user hovers over his face
     }
     if (scene === "livingRoom" && tab.onTongue === true){
-      setTimeout(function(){camera.position.y = camera.position.y - 1.8}, 14000)
-      if (camera.position.y < -350){
-        scene = "scene2" // Switches scene from the living room to a close up of the man's face when the user hovers over his face
-      }
+      setTimeout(function(){startTilt = true}, 14000) // Switches a boolean variable to allow simulateCameraTilt() to run
+    }
+    if (yPos.window > 950){
+      scene = "scene2"
+      lrConfig.crackle.stop()
     }
   }
   // Attatches the LSD Tab to the user's mouse when hovered over, and drops it on the man's tongue when its hovered over.
@@ -148,7 +158,9 @@ class LivingRoom {
         lrConfig.crackle.stop() // Crackling sound stops
         tab.onTongue = true;
         tab.move = false; // Stops the tab from moving
-        playSong(32000) // Plays the first section of the song
+        if (songPlaying !== 2){ //
+          playSong(60000) // Plays the first section of the song
+        }
         setTimeout(function(){scene = "livingRoom"}, 7000); // Switches scene from 'close up' back to 'living room'
       }
     }
@@ -160,6 +172,17 @@ class LivingRoom {
       setTimeout(function(){showRealClock = true}, 16500)
       setTimeout(function(){showRealTable = true}, 17000)
       setTimeout(function(){showRealWindow = true}, 17800)
+    }
+  }
+  // Simulates the effect of the camera tilting upwards
+  // I was originally using the p5.play camera function to create this effect, but it ended up causing immense stutter
+  simulateCameraTilt(){
+    if (scene === "livingRoom" && startTilt === true){
+      yPos.clock += speed
+      yPos.table += speed
+      yPos.manOnCouch += speed
+      yPos.icecream += speed
+      yPos.window += speed
     }
   }
 

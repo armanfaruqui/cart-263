@@ -7,6 +7,7 @@ let startSimulation = false; // Boolean to trigger the start of the simulation
 // Asset variables
 let youtubeScreen;
 let song;
+let songPlaying = 0
 
 function preload() {
   song = loadSound(`assets/sounds/songLSD.mp3`)
@@ -63,14 +64,16 @@ function draw() {
   livingRoom.moveAcidTab()
   livingRoom.startTrip()
   livingRoom.changeFurniture()
+  livingRoom.simulateCameraTilt()
 
-  scene2.zipperTeeth()
-  scene2.displayZip()
-  scene2.openZip()
-
+  if (scene === "scene2"){
+    scene2.zipperTeeth()
+    scene2.displayZip()
+    scene2.openZip()
+  }
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
-  // console.log(`x${camera.position.x}`); //25 913
+  console.log(`y${scene}`); //25 913
   // console.log(`y${camera.position.y}`); //78 574
 
 }
@@ -120,6 +123,10 @@ function displayIntro() {
 function playSong(millisecondsToPause){
   if(!song.isPlaying()){
     song.play()
+    songPlaying = 1
   }
-  setTimeout(function () {song.stop()}, millisecondsToPause) // Since this function is called within draw, this stops it from looping
+  if (songPlaying === 1){
+    setTimeout(function () {song.stop()}, millisecondsToPause) // Since this function is called within draw, this stops it from looping
+    songPlaying = 2
+  }
 }
