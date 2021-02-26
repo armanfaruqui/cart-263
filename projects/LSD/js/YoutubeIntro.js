@@ -1,4 +1,5 @@
 let youtubeIntro // Object variable
+let youtubeScreen // Asset variable
 
 class YoutubeIntro {
   constructor(youtubeScreen){

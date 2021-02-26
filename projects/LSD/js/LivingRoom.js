@@ -92,7 +92,7 @@ class LivingRoom {
     if (
       !lrConfig.crackle.isPlaying() &&
       scene === "livingRoom" &&
-      scene !== "scene2"
+      scene !== "zipper"
     ) {
       lrConfig.crackle.loop(); // Background sound for the scene
     }
@@ -113,9 +113,9 @@ class LivingRoom {
         startTilt = true;
       }, 14000); // Switches a boolean variable to allow simulateCameraTilt() to run
     }
-    if (yPos.window > 950) {
-      scene = "scene2";
-      lrConfig.crackle.stop();
+    if (yPos.window > 950 && scene === "livingRoom") { // Switches scene when all the objects are off the screen
+      scene = "zipper";
+      lrConfig.crackle.stop()
     }
   }
   // Attatches the LSD Tab to the user's mouse when hovered over, and drops it on the man's tongue when its hovered over.

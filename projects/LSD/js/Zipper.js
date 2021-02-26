@@ -1,8 +1,5 @@
-let scene2;
-
-let s2Config = {
-  zip: undefined,
-};
+let zipper; // Object variable
+let zipImage // Asset variable
 
 let zip = {
   y: 80,
@@ -14,11 +11,11 @@ let zip = {
   clicked: false,
 };
 
-class Scene2 {
-  constructor(s2Config) {}
+class Zipper {
+  constructor(zipImage) {}
 
   displayZip() {
-    if (scene === "scene2") {
+    if (scene === "zipper") {
       camera.position.y = 401; // Resets the camera's y position
 
       push();
@@ -40,8 +37,16 @@ class Scene2 {
       endShape();
       // Displays the zipper
       imageMode(CENTER);
-      image(s2Config.zip, width / 2, zip.y);
+      image(zipImage, width / 2, zip.y);
       pop();
+
+      let d = dist(mouseX, mouseY, width / 2, zip.y);
+      if (d < 50){
+        cursor('grab');
+      }
+      else {
+        cursor(ARROW)
+      }
     }
   }
   // Dsiplays the alternating 'teeth' of the zipper
@@ -49,12 +54,11 @@ class Scene2 {
     push();
     fill(107, 0, 0);
     rectMode(CENTER);
-    if (scene === "scene2") {
+    if (scene === "zipper") {
       for (let i = zip.teethY; i < height; i += zip.teethY) {
         // Prints 2 rows of rectangles going down the middle of the screen
         if (zip.clicked === true && mouseY > i) {
           // The if statement prevents the teeth which have been opened by the zip from being displayed
-          console.log("cheese");
         } else {
           rect(zip.x1, i, zip.width, zip.height);
           rect(zip.x2, i + zip.height, zip.width, zip.height);
@@ -65,18 +69,18 @@ class Scene2 {
   }
   // Makes the zip movable when clicked near
   grabZip() {
-    if (scene === "scene2") {
+    if (scene === "zipper") {
       let d = dist(mouseX, mouseY, width / 2, zip.y);
-      if (d < 30) {
+      if (d < 50) {
         zip.clicked = true;
       }
     }
   }
   // Allows the user to 'open' the zip by dragging the mouse down
   openZip() {
-    if (zip.clicked === true && scene === "scene2") {
+    if (zip.clicked === true && scene === "zipper") {
       zip.y = mouseY;
-      if (mouseY > height - 100) {
+      if (zip.y > height - 150) {
         scene = "matrixSetup"; // Switches scenes when the zip has been opened enough
       }
     }
