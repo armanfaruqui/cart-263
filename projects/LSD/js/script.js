@@ -1,6 +1,6 @@
 "use strict";
 
-let scene = "flower"; // State variable
+let scene = "flowerSetup"; // State variable
 let startSimulation = false; // Boolean to trigger the start of the simulation
 
 // Asset variables
@@ -42,16 +42,16 @@ function preload() {
   zipImage = loadImage(`assets/images/zipper/zip.png`);
   matrixData = loadJSON(`assets/data/matrix.json`);
 
-  petal.up = loadImage(`assets/images/flower/petal0.png`);
-  petal.upRight = loadImage(`assets/images/flower/petal45.png`);
-  petal.right = loadImage(`assets/images/flower/petal90.png`);
-  petal.downRight = loadImage(`assets/images/flower/petal135.png`);
-  petal.down = loadImage(`assets/images/flower/petal180.png`);
-  petal.downLeft = loadImage(`assets/images/flower/petal225.png`);
-  petal.left = loadImage(`assets/images/flower/petal270.png`);
-  petal.upLeft = loadImage(`assets/images/flower/petal315.png`);
-  petal.pistil = loadImage(`assets/images/flower/pistil.png`);
-  petal.stem = loadImage(`assets/images/flower/stem.png`)
+  flower.petal0 = loadImage(`assets/images/flower/petal0.png`);
+  flower.petal1 = loadImage(`assets/images/flower/petal45.png`);
+  flower.petal2 = loadImage(`assets/images/flower/petal90.png`);
+  flower.petal3 = loadImage(`assets/images/flower/petal135.png`);
+  flower.petal4 = loadImage(`assets/images/flower/petal180.png`);
+  flower.petal5 = loadImage(`assets/images/flower/petal225.png`);
+  flower.petal6 = loadImage(`assets/images/flower/petal270.png`);
+  flower.petal7 = loadImage(`assets/images/flower/petal315.png`);
+  flower.pistil = loadImage(`assets/images/flower/pistil.png`);
+  flower.stem = loadImage(`assets/images/flower/stem.png`)
 }
 
 /**
@@ -64,7 +64,7 @@ function setup() {
   livingRoom = new LivingRoom(lrConfig);
   zipper = new Zipper(zipImage);
   matrix = new Matrix(matrixData);
-  flower = new Flower(petal)
+  flowerScene = new Flower(flower)
 }
 
 /**
@@ -89,7 +89,11 @@ function draw() {
   matrix.setup()
   matrix.movingWords()
 
-  flower.displayFlower()
+  flowerScene.setupPetals()
+  flowerScene.displayFlower()
+  flowerScene.checkDistanceFromPetal()
+  flowerScene.changeCursor()
+  flowerScene.descendingPetals()
 
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
@@ -103,6 +107,10 @@ function mousePressed() {
 
   console.log(`x ${mouseX}`)
   console.log(`y ${mouseY}`)
+}
+
+function mouseReleased(){
+  flowerScene.pickPetals()
 }
 
 // Plays a section of a song when called
