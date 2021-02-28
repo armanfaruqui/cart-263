@@ -52,6 +52,10 @@ function preload() {
   flower.petal7 = loadImage(`assets/images/flower/petal315.png`);
   flower.pistil = loadImage(`assets/images/flower/pistil.png`);
   flower.stem = loadImage(`assets/images/flower/stem.png`)
+  loveAsset.rose = loadImage(`assets/images/flower/rose.png`)
+  loveAsset.teddy = loadImage(`assets/images/flower/teddy.png`)
+  loveAsset.packet = loadImage(`assets/images/flower/packet.png`)
+  loveAsset.tissue = loadImage(`assets/images/flower/tissue.png`)
 }
 
 /**
@@ -64,7 +68,7 @@ function setup() {
   livingRoom = new LivingRoom(lrConfig);
   zipper = new Zipper(zipImage);
   matrix = new Matrix(matrixData);
-  flowerScene = new Flower(flower)
+  flowerScene = new Flower(flower, loveAsset)
 }
 
 /**
@@ -94,6 +98,8 @@ function draw() {
   flowerScene.checkDistanceFromPetal()
   flowerScene.changeCursor()
   flowerScene.descendingPetals()
+  flowerScene.flowerState()
+  flowerScene.sceneDecoration()
 
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
