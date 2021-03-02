@@ -9,14 +9,16 @@ let flower = { // Holds all the asset variables related to the flower
   petal6: undefined,
   petal7: undefined,
   pistil: undefined,
+  pistilSad: undefined,
   stem: undefined,
 };
 
 let petals = []; // Array used to store the various petal's properties
-const petalDist = 50; // Distance between mouse and petal for the interaction to take place
+const petalDist = 45; // Distance between mouse and petal for the interaction to take place
 let petalCounter = 0 // Keeps count of the number of petals picked
 
-let flowerState =  "null"
+let flowerState =  "null" // State variale which decides how the scene should be decorated in sceneDecoration()
+let sadPistil = false // Boolean used to decide which image of the pistil should be displayed
 
 const heart = [];
 let a = 0; // Angle which deicdes what percent of the heart should be renderred
@@ -25,9 +27,11 @@ let loveAsset = { // Holds all the asset variables used to decorate the scene
   packet: undefined,
   teddy: undefined,
   tissue: undefined,
-  bottle: undefined
+  bottle: undefined,
+  knife: undefined,
+  brokenHeart: undefined
 }
-let position = {
+let position = { // Holds position variables which are called in sceneDecoration()
   x1: 1239,
   y1: 600,
   x2: 100,
@@ -36,13 +40,15 @@ let position = {
   y3: 400,
   x4: 1250,
   y4: 400,
-  speed: 13
+  speed: 13, // For the moving elements in sceneDecoration()
+  deg: 12 // For the spinning elements in sceneDecoration()
 };
 
-let deg = 12
+let startZoom = false; // Boolean which is switched to true when the camera needs to start zooming in switchScene()
 
 class Flower {
   constructor(flower, loveAsset) {}
+
   // Creates an object for each petal when called
   initializePetal(x, y) {
     let petal = {
@@ -81,9 +87,13 @@ class Flower {
       image(flower.petal5, petals[5].x, petals[5].y);
       image(flower.petal6, petals[6].x, petals[6].y);
       image(flower.petal7, petals[7].x, petals[7].y);
-      image(flower.pistil, width / 2, height / 2); // The pistil/center of flower
+      if (sadPistil === false){
+        image(flower.pistil, width / 2, height / 2); // The pistil/center of flower
+      }
+      else if (sadPistil === true) {
+        image(flower.pistilSad, width / 2, height / 2); // The pistil/center of flower
+      }
       pop();
-      console.log(width)
     }
   }
   // For loop to check the distance between the mouse and each petal
@@ -133,7 +143,7 @@ class Flower {
     if (scene === "flower") {
       for (let i = 0; i < petals.length; i++) {
         if (petals[i].falling === true && petals[i].y < height + 100) { // Petals stop falling just outside canvas to ease the processors work load
-          petals[i].y += 3;
+          petals[i].y += 3; // Makes the petals fall
         }
       }
     }
@@ -164,34 +174,53 @@ class Flower {
         scale(-1, 1);
         image(loveAsset.rose, position.x2, position.y2)
         image(loveAsset.teddy, -1150, 700)
+        position.x1 -= position.speed
+        position.x2 -= position.speed // Moves the roses
         pop()
         // Packets
         push()
         translate(position.x3, position.y3)
-        rotate (radians (deg));
+        rotate (radians (position.deg));
         imageMode(CENTER)
         image(loveAsset.packet, 0, 0)
         pop()
         push()
         translate(position.x4, position.y4)
-        rotate (radians (deg));
+        rotate (radians (position.deg));
         imageMode(CENTER)
         image(loveAsset.packet, 0, 0)
-        pop()
-        position.x1 -= position.speed
-        position.x2 -= position.speed
-        deg += 3
-        // image(loveAsset.position, positionx1, positiony1)
+        position.deg += 3 // Spins the packets
         pop()
       }
       else if (flowerState === "loveMeNot"){
         push()
         imageMode(CENTER)
+        // Hearts
+        image(loveAsset.brokenHeart, 180, 140)
+        image(loveAsset.brokenHeart, 1200, 140)
+        // Bottles
+        image(loveAsset.bottle, 200, 640)
+        image(loveAsset.bottle, 1150, 640)
+        // Tissues
         image(loveAsset.tissue, position.x1, position.y1)
         scale(-1, 1);
         image(loveAsset.tissue, position.x2, position.y2)
         position.x1 -= position.speed
-        position.x2 -= position.speed
+        position.x2 -= position.speed // Moves the tissues
+        pop()
+        // Knives
+        push()
+        translate(position.x3, position.y3)
+        rotate (radians (position.deg));
+        imageMode(CENTER)
+        image(loveAsset.knife, 0, 0)
+        pop()
+        push()
+        translate(position.x4, position.y4)
+        rotate (radians (position.deg));
+        imageMode(CENTER)
+        image(loveAsset.knife, 0, 0)
+        position.deg += 3 // Spins the knives
         pop()
       }
     }
@@ -215,8 +244,23 @@ class Flower {
     const y = -r*(13 * cos(a) - 5*cos(2*a) - 2*cos(3*a)- cos(4*a)); // Forumla for drawing the curves of the heart's shape
     heart.push(createVector(x, y));
 
-    a += 0.1;
+    a += 0.1; // Increments percentage of the heart to be displayed when first called
     pop()
+  }
+
+  switchScene(){
+    if (scene === "flower" && petalCounter > 7){
+      sadPistil = true;
+      console.log(camera.zoom)
+      setTimeout(function(){startZoom = true}, 2000)
+      if (startZoom === true){
+        camera.zoom += 0.3
+      }
+      if (camera.zoom > 40){
+        camera.zoom = 1
+        scene = "matrixSetup"
+      }
+    }
   }
 
 }

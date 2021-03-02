@@ -40,7 +40,6 @@ function preload() {
   lrConfig.icecream = loadImage(`assets/images/home/icecream.gif`);
 
   zipImage = loadImage(`assets/images/zipper/zip.png`);
-  matrixData = loadJSON(`assets/data/matrix.json`);
 
   flower.petal0 = loadImage(`assets/images/flower/petal0.png`);
   flower.petal1 = loadImage(`assets/images/flower/petal45.png`);
@@ -51,11 +50,18 @@ function preload() {
   flower.petal6 = loadImage(`assets/images/flower/petal270.png`);
   flower.petal7 = loadImage(`assets/images/flower/petal315.png`);
   flower.pistil = loadImage(`assets/images/flower/pistil.png`);
+  flower.pistilSad = loadImage(`assets/images/flower/pistilSad.png`);
   flower.stem = loadImage(`assets/images/flower/stem.png`)
   loveAsset.rose = loadImage(`assets/images/flower/rose.png`)
   loveAsset.teddy = loadImage(`assets/images/flower/teddy.png`)
   loveAsset.packet = loadImage(`assets/images/flower/packet.png`)
   loveAsset.tissue = loadImage(`assets/images/flower/tissue.png`)
+  loveAsset.bottle = loadImage(`assets/images/flower/bottle.png`)
+  loveAsset.knife = loadImage(`assets/images/flower/knife.png`)
+  loveAsset.brokenHeart = loadImage(`assets/images/flower/brokenHeart.png`)
+
+  matrixData = loadJSON(`assets/data/matrix.json`);
+  buildings = loadImage('assets/images/buildings.gif')
 }
 
 /**
@@ -67,8 +73,8 @@ function setup() {
   youtubeIntro = new YoutubeIntro(youtubeScreen)
   livingRoom = new LivingRoom(lrConfig);
   zipper = new Zipper(zipImage);
-  matrix = new Matrix(matrixData);
   flowerScene = new Flower(flower, loveAsset)
+  matrix = new Matrix(matrixData, buildings);
 }
 
 /**
@@ -90,9 +96,6 @@ function draw() {
   zipper.displayZip();
   zipper.openZip();
 
-  matrix.setup()
-  matrix.movingWords()
-
   flowerScene.setupPetals()
   flowerScene.displayFlower()
   flowerScene.checkDistanceFromPetal()
@@ -100,7 +103,11 @@ function draw() {
   flowerScene.descendingPetals()
   flowerScene.flowerState()
   flowerScene.sceneDecoration()
+  flowerScene.switchScene()
 
+  matrix.setup()
+  matrix.displayBuildings()
+  matrix.movingWords()
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
   console.log(`Scene is ${scene}`); //25 913

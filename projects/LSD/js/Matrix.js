@@ -3,10 +3,13 @@ let matrixData; // JSON File
 
 let escapingWords = []; // Array with words with autmoated movement away from the mouse
 let followingWords = []; // Array with words with autmoated movement towards the mouse
-let noOfWords = 5; // Variable representing how many indexes I want in each array
+let noOfWords = 3; // Variable representing how many indexes I want in each array
+
+let buildings; // asset variable
+let showBuildings = false // Boolean which is assigned true when the buildings should be displayed
 
 class Matrix {
-  constructor(matrixData) {}
+  constructor(matrixData, buildings) {}
 
   setup() {
     // Mocked setup function. Runs loop then switches scene to prevent it from running again
@@ -14,7 +17,7 @@ class Matrix {
       for (let i = 0; i < noOfWords; i++) {
         // Initializes array with the word objects
         escapingWords[i] = this.initializeWords(
-          random(0, width),
+          random(0, width ),
           random(0, height)
         ); // Random x and y value provided to each index
         followingWords[i] = this.initializeWords(
@@ -95,6 +98,18 @@ class Matrix {
     textSize(32);
     text(word.string, word.x, word.y);
     pop();
+  }
+
+  displayBuildings(){
+    if (scene === "matrix"){
+      setTimeout(function(){showBuildings = true}, 5000)
+      if (showBuildings === true){
+        push()
+        imageMode(CENTER)
+        image(buildings, width/2, height/2)
+        pop()
+      }
+    }
   }
 
   // Calls all the methods necassary to initialize, display, and move all the words

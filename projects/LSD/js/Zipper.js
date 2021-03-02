@@ -81,7 +81,7 @@ class Zipper {
     if (zip.clicked === true && scene === "zipper") {
       zip.y = mouseY;
       if (zip.y > height - 150) {
-        scene = "matrixSetup"; // Switches scenes when the zip has been opened enough
+        scene = "flowerSetup"; // Switches scenes when the zip has been opened enough
       }
     }
   }
