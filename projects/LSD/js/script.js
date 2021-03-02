@@ -1,6 +1,6 @@
 "use strict";
 
-let scene = "flowerSetup"; // State variable
+let scene = "juggleSetup"; // State variable
 let startSimulation = false; // Boolean to trigger the start of the simulation
 
 // Asset variables
@@ -62,6 +62,19 @@ function preload() {
 
   matrixData = loadJSON(`assets/data/matrix.json`);
   buildings = loadImage('assets/images/buildings.gif')
+
+  brain.sect1 = loadImage(`assets/images/brain/sect1.png`)
+  brain.sect2 = loadImage(`assets/images/brain/sect2.png`)
+  brain.sect3 = loadImage(`assets/images/brain/sect3.png`)
+  brain.sect4 = loadImage(`assets/images/brain/sect4.png`)
+  brain.sect5 = loadImage(`assets/images/brain/sect5.png`)
+  brain.sect6 = loadImage(`assets/images/brain/sect6.png`)
+  icon.health = loadImage(`assets/images/brain/health.png`)
+  icon.wealth = loadImage(`assets/images/brain/money.png`)
+  icon.dreams = loadImage(`assets/images/brain/dream.png`)
+  icon.peace = loadImage(`assets/images/brain/peace.png`)
+  icon.social = loadImage(`assets/images/brain/social.png`)
+  icon.home = loadImage(`assets/images/brain/home.png`)
 }
 
 /**
@@ -75,6 +88,7 @@ function setup() {
   zipper = new Zipper(zipImage);
   flowerScene = new Flower(flower, loveAsset)
   matrix = new Matrix(matrixData, buildings);
+  juggle = new Juggle(brain, icon)
 }
 
 /**
@@ -108,9 +122,15 @@ function draw() {
   matrix.setup()
   matrix.displayBuildings()
   matrix.movingWords()
+
+  juggle.setupBalls()
+  juggle.displayBrain()
+  juggle.displayPaddle()
+  juggle.responsibilites()
+  juggle.displayIcons()
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
-  console.log(`Scene is ${scene}`); //25 913
+  // console.log(`Scene is ${scene}`); //25 913
   // console.log(`y${camera.position.y}`); //78 574
 }
 
@@ -118,8 +138,7 @@ function mousePressed() {
   youtubeIntro.startSimulation()
   zipper.grabZip();
 
-  console.log(`x ${mouseX}`)
-  console.log(`y ${mouseY}`)
+  console.log(balls)
 }
 
 function mouseReleased(){

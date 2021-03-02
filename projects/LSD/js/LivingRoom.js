@@ -162,7 +162,7 @@ class LivingRoom {
         tab.move = false; // Stops the tab from moving
         if (songPlaying !== 2) {
           //
-          playSong(60000); // Plays the first section of the song
+          playSong(96500); // Plays the first section of the song
         }
         setTimeout(function () {
           scene = "livingRoom";
