@@ -1,3 +1,5 @@
+// This scene draws a zip going down the middle of the screen. When the user clicks on the zipper, it gets attatched to their mouse. The user is then able to drag down to 'open' the zip. Once they have dragged down the zip enough, the scene switches to flower.
+
 let zipper; // Object variable
 let zipImage // Asset variable
 

@@ -1,3 +1,5 @@
+// This scene displays a flower. Through a change of cursor, the user is indicated to click on each petal which makes them fall. This simulates the activity where someone picks off each petal of a daisy alternating between saying that someone 'loves them' or 'loves them not'. In that nature, the scene is decorated differently depending on whether they're on 'love me' or 'love me not'. Once all have been picked, the camera zooms into the flower before the scene is changed to matrix.
+
 let flowerScene; // object variable
 let flower = { // Holds all the asset variables related to the flower
   petal0: undefined,

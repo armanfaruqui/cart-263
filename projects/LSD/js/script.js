@@ -1,7 +1,6 @@
 "use strict";
 
-let scene = "starfieldSetup"; // State variable
-let startSimulation = false; // Boolean to trigger the start of the simulation
+let scene = "intro"; // State variable
 
 // Asset variables
 let song;
@@ -11,33 +10,33 @@ function preload() {
   song = loadSound(`assets/sounds/songLSD.mp3`);
 
   youtubeScreen = loadImage(`assets/images/youtube1.png`);
-  lrConfig.manOnCouch = loadAnimation(
+  lrAssets.manOnCouch = loadAnimation(
     `assets/images/home/man1.png`,
     `assets/images/home/man10.png`
   );
-  lrConfig.table = loadAnimation(
+  lrAssets.table = loadAnimation(
     `assets/images/home/table1.png`,
     `assets/images/home/table5.png`
   );
-  lrConfig.clock = loadAnimation(
+  lrAssets.clock = loadAnimation(
     `assets/images/home/clock1.png`,
     `assets/images/home/clock5.png`
   );
-  lrConfig.wallWindow = loadAnimation(
+  lrAssets.wallWindow = loadAnimation(
     `assets/images/home/window1.png`,
     `assets/images/home/window5.png`
   );
-  lrConfig.manOnCouchStill = loadImage(`assets/images/home/man1.png`);
-  lrConfig.closeUp = loadAnimation(
+  lrAssets.manOnCouchStill = loadImage(`assets/images/home/man1.png`);
+  lrAssets.closeUp = loadAnimation(
     `assets/images/home/closeUp1.png`,
     `assets/images/home/closeUp10.png`
   );
-  lrConfig.lsdTab = loadImage(`assets/images/home/lsdTab.png`);
-  lrConfig.crackle = loadSound(`assets/sounds/crackle.mp3`);
-  lrConfig.clockReal = loadImage(`assets/images/home/clockReal.gif`);
-  lrConfig.wallWindowReal = loadImage(`assets/images/home/wallWindowReal.gif`);
-  lrConfig.tableReal = loadImage(`assets/images/home/tableReal.png`);
-  lrConfig.icecream = loadImage(`assets/images/home/icecream.gif`);
+  lrAssets.lsdTab = loadImage(`assets/images/home/lsdTab.png`);
+  lrAssets.crackle = loadSound(`assets/sounds/crackle.mp3`);
+  lrAssets.clockReal = loadImage(`assets/images/home/clockReal.gif`);
+  lrAssets.wallWindowReal = loadImage(`assets/images/home/wallWindowReal.gif`);
+  lrAssets.tableReal = loadImage(`assets/images/home/tableReal.png`);
+  lrAssets.icecream = loadImage(`assets/images/home/icecream.gif`);
 
   zipImage = loadImage(`assets/images/zipper/zip.png`);
 
@@ -86,7 +85,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   youtubeIntro = new YoutubeIntro(youtubeScreen)
-  livingRoom = new LivingRoom(lrConfig);
+  livingRoom = new LivingRoom(lrAssets);
   zipper = new Zipper(zipImage);
   flowerScene = new Flower(flower, loveAsset)
   matrix = new Matrix(matrixData, buildings);
@@ -125,12 +124,14 @@ function draw() {
   matrix.setup()
   matrix.displayBuildings()
   matrix.movingWords()
+  matrix.switchScene()
 
   juggle.setupBalls()
   juggle.displayBrain()
   juggle.displayPaddle()
   juggle.responsibilites()
   juggle.displayIcons()
+  juggle.displayHammer()
 
   starfield.setup()
   starfield.displayStarfield()
@@ -143,6 +144,7 @@ function draw() {
 function mousePressed() {
   youtubeIntro.startSimulation()
   zipper.grabZip();
+  juggle.smashBrain()
 
   console.log(balls)
 }

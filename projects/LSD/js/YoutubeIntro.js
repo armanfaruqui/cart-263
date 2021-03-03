@@ -1,5 +1,8 @@
+// Displays a screenshot which imitates the youtube page showing ASAP Rocky's song 'L$D'. When the user tries to 'play' the video it zooms into the video
+
 let youtubeIntro // Object variable
 let youtubeScreen // Asset variable
+let startSimulation = false; // Boolean to trigger the start of the simulation
 
 class YoutubeIntro {
   constructor(youtubeScreen){

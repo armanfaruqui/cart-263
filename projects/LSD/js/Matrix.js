@@ -1,3 +1,5 @@
+// In this scene, there are various string floating about with irregularly alternating words. Some of these words are attacted to the mouse, whilst others seem to try and avoid it. After a short duration, an animation of buildings play in the background, before the scene is switched to juggle.
+
 let matrix; // Object name
 let matrixData; // JSON File
 
@@ -124,6 +126,12 @@ class Matrix {
         this.displayWords(followingWords[i]);
         this.preventWordClumping(followingWords[i]);
       }
+    }
+  }
+
+  switchScene(){
+    if (scene === "matrix" && switchToJuggle === true){
+      scene = "juggleSetup"
     }
   }
 }

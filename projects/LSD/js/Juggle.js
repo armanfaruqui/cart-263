@@ -1,3 +1,5 @@
+// Various ellipses with icons on them fall from the top of the screen. A rectangular paddle is attatched to the user's mouse which bounce these ellipes when they fall onto it. Ellipses which the user misses are reset. A counter keeps track of how many the user has missed. As the user misses more ellipses over time, sections of an image portraying the neural connections in the brain section by section is revealed. The user's paddle is replaced with a hammer and the ellipses dissapear. Through the cursor changing from an arrow to a hand, the user is indicated to cick on the brain to 'smash it'. A shatter sound effect plays, the song continues and the scene is switched to the starfield.
+
 let juggle; // Object variable
 
 // Object which holds the properties of the paddle
@@ -43,18 +45,18 @@ class Juggle {
   constructor(brain, icon) {}
   // Displays the paddle
   displayPaddle() {
-    if (scene === "juggle") {
+    if (scene === "juggle" && displayHammer === false) {
       push();
       fill(25, 42, 245);
       noStroke();
       rectMode(CENTER);
       paddle.x = mouseX;
       paddle.y = mouseY; // Attatched to mouse
-      rect(paddle.x, paddle.y, paddle.width, paddle.height);
+      rect(paddle.x, paddle.y, paddle.width, paddle.height); // Draws the rectangle
       pop();
     }
   }
-  // Simulated setup function which calls the createBall() function and stores it in the indexes of the balls array
+  // Mock setup function which calls the createBall() function and stores it in the indexes of the balls array
   setupBalls() {
     if (scene === "juggleSetup") {
       for (let i = 0; i < noOfBalls; i++) {
@@ -120,7 +122,7 @@ class Juggle {
   }
   // Calls all the relevant functions to display, move, interact, and reset each ball
   responsibilites() {
-    if (scene === "juggle") {
+    if (scene === "juggle" && displayHammer === false) {
       for (let i = 0; i < noOfBalls; i++) {
         this.gravity(balls[i]);
         this.move(balls[i]);
@@ -132,7 +134,7 @@ class Juggle {
   }
   // Displays icons on the balls
   displayIcons() {
-    if (scene === "juggle") {
+    if (scene === "juggle" && displayHammer === false) {
       push();
       imageMode(CENTER);
       image(icon.wealth, balls[0].x, balls[0].y);
@@ -149,8 +151,8 @@ class Juggle {
     if (scene === "juggle") {
       push();
       imageMode(CORNER);
+      // Repeated if statements used to display sections of the brain over time depending on how many balls the user missed
       if (droppedCount >= 3) {
-        // Repeated if statements used to display sections of the brain over time depending on how many balls the user missed
         image(brain.sect1, brain.topLeftX, brain.topLeftY);
       }
       if (droppedCount >= 6) {
@@ -189,30 +191,32 @@ class Juggle {
       if (droppedCount >= 18) {
         setTimeout(function () {
           displayHammer = true;
-        }, 2000);
+        }, 2000); // Displays the hammer 2 seconds after the full brain has been displayed
         if (displayHammer === true) {
-          image(brain.hammer, mouseX, mouseY);
-          cursor('grab') // Switches cursor from arrow to hand
+          push();
+          imageMode(CENTER);
+          image(brain.hammer, mouseX, mouseY); // Displays the hammer
+          cursor("grab"); // Switches cursor from arrow to hand
+          pop();
         }
       }
     }
   }
-
-  smashBrain(){
+  // Called in mouse clicked to trigger the start of the next scene
+  smashBrain() {
     if (
-      scene === "juggle" && displayHammer === true &&
+      scene === "juggle" &&
+      displayHammer === true &&
       mouseX > brain.topLeftX &&
       mouseY > brain.topLeftY &&
       mouseX < brain.topLeftX + brain.sectWidth * 3 &&
-      mouseY < brain.topLeftY + brain.sectHeight * 2
+      mouseY < brain.topLeftY + brain.sectHeight * 2 // Checks if mouse is hovering the brain
     ) {
-      if (!brain.smash.isPlaying()){
-        brain.smash.play()
-        setTimeout(function(){brain.smash.stop()}, 2000)
-      }
-
+      brain.shatter.play(); // Plays the shatter sound effect
+      setTimeout(function () {
+        song.play();
+      }, 1000); // Continues playing the song after a second
+      scene = "starfieldSetup"; // Switches the scene
     }
   }
-
-
 }
