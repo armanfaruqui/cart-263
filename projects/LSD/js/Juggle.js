@@ -19,6 +19,13 @@ let brain = {
   sect4: undefined,
   sect5: undefined,
   sect6: undefined,
+  hammer: undefined, // Hammer used to shatter the brain at the end
+  shatter: undefined, // Sound file played when brain is shattered with hammer
+  // Position variables and properties for the brain
+  topLeftX: 330,
+  topLeftY: 50,
+  sectWidth: 241,
+  sectHeight: 359,
 };
 // Asset variables for the icons displayed on the balls
 let icon = {
@@ -29,6 +36,8 @@ let icon = {
   peace: undefined,
   dreams: undefined,
 };
+
+let displayHammer = false; // Boolean which checks whether the hammer should be displayed or not
 
 class Juggle {
   constructor(brain, icon) {}
@@ -139,31 +148,71 @@ class Juggle {
   displayBrain() {
     if (scene === "juggle") {
       push();
-      // Position variables for the brain
-      let topLeftX = 330;
-      let topLeftY = 50;
-      let sectWidth = 241;
-      let sectHeight = 359;
       imageMode(CORNER);
-      if (droppedCount >= 3) { // Repeated if statements used to display sections of the brain over time depending on how many balls the user missed
-        image(brain.sect1, topLeftX, topLeftY);
+      if (droppedCount >= 3) {
+        // Repeated if statements used to display sections of the brain over time depending on how many balls the user missed
+        image(brain.sect1, brain.topLeftX, brain.topLeftY);
       }
       if (droppedCount >= 6) {
-        image(brain.sect2, topLeftX + sectWidth, topLeftY);
+        image(brain.sect2, brain.topLeftX + brain.sectWidth, brain.topLeftY);
       }
       if (droppedCount >= 9) {
-        image(brain.sect3, topLeftX + sectWidth * 2, topLeftY);
+        image(
+          brain.sect3,
+          brain.topLeftX + brain.sectWidth * 2,
+          brain.topLeftY
+        );
       }
       if (droppedCount >= 12) {
-        image(brain.sect4, topLeftX, topLeftY + sectHeight);
+        image(brain.sect4, brain.topLeftX, brain.topLeftY + brain.sectHeight);
       }
       if (droppedCount >= 15) {
-        image(brain.sect5, topLeftX + sectWidth, topLeftY + sectHeight);
+        image(
+          brain.sect5,
+          brain.topLeftX + brain.sectWidth,
+          brain.topLeftY + brain.sectHeight
+        );
       }
       if (droppedCount >= 18) {
-        image(brain.sect6, topLeftX + sectWidth * 2, topLeftY + sectHeight);
+        image(
+          brain.sect6,
+          brain.topLeftX + brain.sectWidth * 2,
+          brain.topLeftY + brain.sectHeight
+        );
       }
       pop();
     }
   }
+  // Displays a hammer on the mouse 2 seconds after the full brain is revealed
+  displayHammer() {
+    if (scene === "juggle") {
+      if (droppedCount >= 18) {
+        setTimeout(function () {
+          displayHammer = true;
+        }, 2000);
+        if (displayHammer === true) {
+          image(brain.hammer, mouseX, mouseY);
+          cursor('grab') // Switches cursor from arrow to hand
+        }
+      }
+    }
+  }
+
+  smashBrain(){
+    if (
+      scene === "juggle" && displayHammer === true &&
+      mouseX > brain.topLeftX &&
+      mouseY > brain.topLeftY &&
+      mouseX < brain.topLeftX + brain.sectWidth * 3 &&
+      mouseY < brain.topLeftY + brain.sectHeight * 2
+    ) {
+      if (!brain.smash.isPlaying()){
+        brain.smash.play()
+        setTimeout(function(){brain.smash.stop()}, 2000)
+      }
+
+    }
+  }
+
+
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-let scene = "juggleSetup"; // State variable
+let scene = "starfieldSetup"; // State variable
 let startSimulation = false; // Boolean to trigger the start of the simulation
 
 // Asset variables
@@ -69,6 +69,8 @@ function preload() {
   brain.sect4 = loadImage(`assets/images/brain/sect4.png`)
   brain.sect5 = loadImage(`assets/images/brain/sect5.png`)
   brain.sect6 = loadImage(`assets/images/brain/sect6.png`)
+  brain.hammer = loadImage(`assets/images/brain/hammer.png`)
+  brain.shatter = loadSound(`assets/sounds/shatter.mp3`)
   icon.health = loadImage(`assets/images/brain/health.png`)
   icon.wealth = loadImage(`assets/images/brain/money.png`)
   icon.dreams = loadImage(`assets/images/brain/dream.png`)
@@ -89,6 +91,7 @@ function setup() {
   flowerScene = new Flower(flower, loveAsset)
   matrix = new Matrix(matrixData, buildings);
   juggle = new Juggle(brain, icon)
+  starfield = new Starfield()
 }
 
 /**
@@ -128,6 +131,9 @@ function draw() {
   juggle.displayPaddle()
   juggle.responsibilites()
   juggle.displayIcons()
+
+  starfield.setup()
+  starfield.displayStarfield()
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
   // console.log(`Scene is ${scene}`); //25 913
