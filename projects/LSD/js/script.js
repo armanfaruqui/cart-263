@@ -1,6 +1,6 @@
 "use strict";
 
-let scene = "intro"; // State variable
+let scene = "falling"; // State variable
 
 // Asset variables
 let song;
@@ -76,6 +76,8 @@ function preload() {
   icon.peace = loadImage(`assets/images/brain/peace.png`)
   icon.social = loadImage(`assets/images/brain/social.png`)
   icon.home = loadImage(`assets/images/brain/home.png`)
+
+  fallingMan.ani = loadAnimation(`assets/images/falling/fall1.png`, `assets/images/falling/fall12.png`)
 }
 
 /**
@@ -91,6 +93,7 @@ function setup() {
   matrix = new Matrix(matrixData, buildings);
   juggle = new Juggle(brain, icon)
   starfield = new Starfield()
+  falling = new Falling(fallingMan)
 }
 
 /**
@@ -135,6 +138,12 @@ function draw() {
 
   starfield.setup()
   starfield.displayStarfield()
+
+  falling.moveMan()
+  falling.displayMan()
+  falling.background1()
+  falling.displayOpenedMind()
+
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
   // console.log(`Scene is ${scene}`); //25 913
