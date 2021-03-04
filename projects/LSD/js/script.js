@@ -141,8 +141,11 @@ function draw() {
 
   falling.moveMan()
   falling.displayMan()
+  falling.displayMovingRing()
   falling.background1()
   falling.displayOpenedMind()
+  falling.checkDistanceFromRing()
+
 
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
