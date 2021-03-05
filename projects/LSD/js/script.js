@@ -141,10 +141,12 @@ function draw() {
 
   falling.moveMan()
   falling.displayMan()
+  falling.changingColor()
   falling.displayMovingRing()
   falling.background1()
   falling.displayOpenedMind()
   falling.checkDistanceFromRing()
+  falling.displayCompletionBar()
 
 
   // console.log(`x${mouseX}`); //25 913
