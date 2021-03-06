@@ -161,7 +161,7 @@ class Flower {
       }
     }
   }
-
+  // Displays and controls the assets for the 'love me' and 'love me not' state of this scene
   sceneDecoration(){
     if (scene === "flower"){
       if (flowerState === "loveMe"){

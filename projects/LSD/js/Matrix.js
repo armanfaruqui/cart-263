@@ -128,7 +128,7 @@ class Matrix {
       }
     }
   }
-
+  // Scene is switched from a setTimeout() called in Living room for the sake of consistency
   switchScene(){
     if (scene === "matrix" && switchToJuggle === true){
       scene = "juggleSetup"

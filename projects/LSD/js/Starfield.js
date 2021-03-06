@@ -1,12 +1,16 @@
-// This object was made with the help of Dan Shiffman's starfield coding challenge*
+// This object was made with the help of Dan Shiffman's starfield coding challenge* It displays a starfield. The speed at which the stars move depends on the x coordinate of the mouse
 
 let starfield // Object variable
 let stars = [] // Array which holds the various star objects
 let starSpeed // Variable which influences the z value of stars which in turns effects the star's movements speed
 const noOfStars = 600 // Number of star objects to be stored in the array
+let outro = false // Boolean which checks if the outro should be displayed. Outro is displayed the second time the scene is shown
+let manOnCouch;
+let showMan = false // Boolean which checks if the man should be displayed
+let showCredits = false // Boolean which checks if the credits should be displayed
 
 class Starfield {
-  constructor(){}
+  constructor(manOnCouch){}
   // Mock setup function which calls the createStar() function and stores it in the indexes of the stars array
   setup(){
     if (scene === "starfieldSetup"){
@@ -63,6 +67,33 @@ class Starfield {
         this.updateStar(stars[i]);
         this.displayStar(stars[i]);
       }
+    }
+  }
+
+  // Switches scene from starfield to falling if its the first time the starfield scene is being shown
+  switchScene(){
+    if (scene === "starfield" && outro === false){
+      setTimeout(function(){scene = "falling"}, 4000)
+    }
+  }
+  // Called to display the man and credits upon the second time which this scene is shown
+  showManAndCredits(){
+    if (scene === "starfield" && outro === true){
+      push()
+      textSize(42)
+      textAlign(CENTER)
+      setTimeout(function(){showMan = true}, 3000) // Man can be shown in 3 seconds
+      if (showMan === true){
+        animation(manOnCouch, 10, 160)
+      }
+      setTimeout(function(){showCredits = true}, 6000) // Text can be shown in 6 seconds
+      if (showCredits === true){
+        fill(234, 79, 214)
+        text("Song: 'L$D' by A$AP Rocky", 10, -180)
+        fill(67, 35, 228)
+        text("Art by Arman", 10, -130)
+      }
+      pop()
     }
   }
 }

@@ -74,9 +74,9 @@ class Juggle {
       vy: 0, // Vertical movement speed
       ax: 0, // Horizontal accelaration
       ay: 0, // Vertical accelaration
-      maxSpeed: 5, // Max speed used to constrain movement speed
+      maxSpeed: 7, // Max speed used to constrain movement speed
       size: 90, // Size of ellipse
-      gravityForce: 0.0005, // Used to influence the vertical movement over time
+      gravityForce: 0.005, // Used to influence the vertical movement over time
     };
     return ball;
   }
@@ -213,9 +213,14 @@ class Juggle {
       mouseY < brain.topLeftY + brain.sectHeight * 2 // Checks if mouse is hovering the brain
     ) {
       brain.shatter.play(); // Plays the shatter sound effect
-      setTimeout(function () {
-        song.play();
-      }, 1000); // Continues playing the song after a second
+      if (playSong === false) {
+        songSection2.play(); // Resumes the song
+        setTimeout(function () {
+          scene = "starfieldSetup";
+          outro = true
+        }, 82000); // Switches scene back to starfieldSetup from falling in 1 minute 20 seconds. Called here for the sake of it consistently occuring at the same time 
+        playSong = true;
+      }
       scene = "starfieldSetup"; // Switches the scene
     }
   }

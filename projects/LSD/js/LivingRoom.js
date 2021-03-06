@@ -166,16 +166,16 @@ class LivingRoom {
         tab.onTongue = true;
         tab.move = false; // Stops the tab from moving
         tab.moved = true;
-        if (songPlaying !== 2) {
-          //
-          playSong(96000); // Plays the first section of the song
+        if (playSong === true) {
+          songSection1.play()
+          playSong = false
         }
         setTimeout(function () {
           scene = "livingRoom";
         }, 7000); // Switches scene from 'close up' back to 'living room' after 7 seconds
         setTimeout(function () {
           switchToJuggle = true;
-        }, 80000); // Assigns true to a boolean which switches the scene to the juggle scene after 1 min 20 seconds. This should occur during the matrix scene
+        }, 75000); // Assigns true to a boolean which switches the scene to the juggle scene after 1 min 20 seconds. This should occur during the matrix scene
       }
     }
   }

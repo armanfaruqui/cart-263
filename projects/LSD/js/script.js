@@ -1,15 +1,21 @@
 "use strict";
 
-let scene = "falling"; // State variable
+let scene = "intro"; // Checks which scene should be displayed
 
-// Asset variables
-let song;
-let songPlaying = 0;
+// Variables used to store the song
+let songSection1;
+let songSection2;
+
+let playSong = true; // Variable used to run the code which plays the song once
 
 function preload() {
-  song = loadSound(`assets/sounds/songLSD.mp3`);
+  // Song assets
+  songSection1 = loadSound(`assets/sounds/songSection1.mp3`);
+  songSection2 = loadSound(`assets/sounds/songSection2.mp3`);
 
-  youtubeScreen = loadImage(`assets/images/youtube1.png`);
+  youtubeScreen = loadImage(`assets/images/youtube1.png`); // Intro screenshot
+
+  // Living Room Assets
   lrAssets.manOnCouch = loadAnimation(
     `assets/images/home/man1.png`,
     `assets/images/home/man10.png`
@@ -38,8 +44,9 @@ function preload() {
   lrAssets.tableReal = loadImage(`assets/images/home/tableReal.png`);
   lrAssets.icecream = loadImage(`assets/images/home/icecream.gif`);
 
-  zipImage = loadImage(`assets/images/zipper/zip.png`);
+  zipImage = loadImage(`assets/images/zipper/zip.png`); // Image of zip
 
+  // Flower scene assets
   flower.petal0 = loadImage(`assets/images/flower/petal0.png`);
   flower.petal1 = loadImage(`assets/images/flower/petal45.png`);
   flower.petal2 = loadImage(`assets/images/flower/petal90.png`);
@@ -59,9 +66,11 @@ function preload() {
   loveAsset.knife = loadImage(`assets/images/flower/knife.png`)
   loveAsset.brokenHeart = loadImage(`assets/images/flower/brokenHeart.png`)
 
+  // Matrix scene assets
   matrixData = loadJSON(`assets/data/matrix.json`);
   buildings = loadImage('assets/images/buildings.gif')
 
+  // Juggling scene assets
   brain.sect1 = loadImage(`assets/images/brain/sect1.png`)
   brain.sect2 = loadImage(`assets/images/brain/sect2.png`)
   brain.sect3 = loadImage(`assets/images/brain/sect3.png`)
@@ -77,12 +86,20 @@ function preload() {
   icon.social = loadImage(`assets/images/brain/social.png`)
   icon.home = loadImage(`assets/images/brain/home.png`)
 
+  // Falling scene assets
   fallingMan.ani = loadAnimation(`assets/images/falling/fall1.png`, `assets/images/falling/fall12.png`)
+  sea.rock = loadImage(`assets/images/falling/seaRock.png`)
+  sea.fish1 = loadImage(`assets/images/falling/fish1.png`)
+  sea.fish2 = loadImage(`assets/images/falling/fish2.png`)
+  sea.fish3 = loadImage(`assets/images/falling/fish3.png`)
+
+  manOnCouch = loadAnimation(
+    `assets/images/home/man1.png`,
+    `assets/images/home/man10.png`
+  ); // Duplicate man on couch loaded for starfield. Calling the entire lrAssets object in new Starfield was causing immense lag
 }
 
-/**
-Description of setup
-*/
+// Initializes objects for each scene
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -92,18 +109,17 @@ function setup() {
   flowerScene = new Flower(flower, loveAsset)
   matrix = new Matrix(matrixData, buildings);
   juggle = new Juggle(brain, icon)
-  starfield = new Starfield()
-  falling = new Falling(fallingMan)
+  starfield = new Starfield(lrAssets)
+  falling = new Falling(fallingMan, sea)
 }
 
-/**
-Description of draw()
-*/
+// Calls the functions within each scene
 function draw() {
-  background(0);
+  displayBackground();
 
-  youtubeIntro.display();
+  youtubeIntro.display(); // Intro
 
+  // Living room + close up
   livingRoom.display();
   livingRoom.switchScene();
   livingRoom.moveAcidTab();
@@ -111,10 +127,12 @@ function draw() {
   livingRoom.changeFurniture();
   livingRoom.simulateCameraTilt();
 
+  // Zipper scene
   zipper.zipperTeeth();
   zipper.displayZip();
   zipper.openZip();
 
+  // Flower Scene
   flowerScene.setupPetals()
   flowerScene.displayFlower()
   flowerScene.checkDistanceFromPetal()
@@ -124,11 +142,13 @@ function draw() {
   flowerScene.sceneDecoration()
   flowerScene.switchScene()
 
+  // Matrix scene
   matrix.setup()
   matrix.displayBuildings()
   matrix.movingWords()
   matrix.switchScene()
 
+  // Juggling scene
   juggle.setupBalls()
   juggle.displayBrain()
   juggle.displayPaddle()
@@ -136,9 +156,12 @@ function draw() {
   juggle.displayIcons()
   juggle.displayHammer()
 
+  // Starfield scene
   starfield.setup()
   starfield.displayStarfield()
+  starfield.switchScene()
 
+  // Falling scene
   falling.moveMan()
   falling.displayMan()
   falling.changingColor()
@@ -147,36 +170,36 @@ function draw() {
   falling.displayOpenedMind()
   falling.checkDistanceFromRing()
   falling.displayCompletionBar()
+  falling.seaState()
+  falling.sensoryOverloadSetup()
+  falling.sensoryOverload()
 
+  starfield.showManAndCredits()
 
   // console.log(`x${mouseX}`); //25 913
   // console.log(`y${mouseY}`); //78 574
   // console.log(`Scene is ${scene}`); //25 913
-  // console.log(`y${camera.position.y}`); //78 574
 }
-
+// Used to call the functions which reuire the mouse to be pressed
 function mousePressed() {
   youtubeIntro.startSimulation()
   zipper.grabZip();
   juggle.smashBrain()
-
-  console.log(balls)
 }
-
+// Used to call the function which reuire the mouse to be released
 function mouseReleased(){
   flowerScene.pickPetals()
 }
 
-// Plays a section of a song when called
-function playSong(millisecondsToPause) {
-  if (!song.isPlaying()) {
-    song.play();
-    songPlaying = 1;
+// Called to display the relevant background
+function displayBackground(){
+  if (scene === "falling" && showSea === false){
+    background(0, 10) // Black background with opacity
   }
-  if (songPlaying === 1) {
-    setTimeout(function () {
-      song.stop();
-    }, millisecondsToPause); // Since this function is called within draw, this stops it from looping
-    songPlaying = 2;
+  else if (showSea === true){
+    background(194, 254, 255, 20) // Light blue background with opactity
+  }
+  else{
+    background(0)
   }
 }
