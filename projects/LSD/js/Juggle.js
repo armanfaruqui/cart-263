@@ -188,7 +188,7 @@ class Juggle {
   // Displays a hammer on the mouse 2 seconds after the full brain is revealed
   displayHammer() {
     if (scene === "juggle") {
-      if (droppedCount >= 18) {
+      if (droppedCount >= 18 && !songSection1.isPlaying()) {
         setTimeout(function () {
           displayHammer = true;
         }, 2000); // Displays the hammer 2 seconds after the full brain has been displayed
@@ -218,7 +218,7 @@ class Juggle {
         setTimeout(function () {
           scene = "starfieldSetup";
           outro = true
-        }, 82000); // Switches scene back to starfieldSetup from falling in 1 minute 20 seconds. Called here for the sake of it consistently occuring at the same time 
+        }, 82000); // Switches scene back to starfieldSetup from falling in 1 minute 20 seconds. Called here for the sake of it consistently occuring at the same time
         playSong = true;
       }
       scene = "starfieldSetup"; // Switches the scene
