@@ -81,6 +81,7 @@ class Starfield {
     if (scene === "starfield" && outro === true){
       push()
       textSize(42)
+      textFont('DotGothic16')
       textAlign(CENTER)
       setTimeout(function(){showMan = true}, 3000) // Man can be shown in 3 seconds
       if (showMan === true){

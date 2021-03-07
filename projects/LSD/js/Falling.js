@@ -33,7 +33,7 @@ let ring = {
 let fallingState = 0; // State variable used to order the sequence of events which take place
 let displayRing = false; // // Boolean which controls whether the ring should be on screen
 let timeInRing = 0; // Variable which is incremented when the user is in the ring
-let timeNeeded = 100; // Variable which represents the value timeInRing needs to reach
+let timeNeeded = 150; // Variable which represents the value timeInRing needs to reach
 
 // Object which hold's the asset variables for the sea state and properties to position fish
 let sea = {

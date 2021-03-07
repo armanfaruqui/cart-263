@@ -101,7 +101,7 @@ function preload() {
 
 // Initializes objects for each scene
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1368, 802);
 
   youtubeIntro = new YoutubeIntro(youtubeScreen)
   livingRoom = new LivingRoom(lrAssets);

@@ -98,6 +98,7 @@ class Matrix {
     push();
     fill(0, 255, 90);
     textSize(32);
+    textFont('DotGothic16')
     text(word.string, word.x, word.y);
     pop();
   }

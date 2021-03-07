@@ -11,6 +11,8 @@ class YoutubeIntro {
   // Displays the youtube screen. Zooms into the video when true is assigned to start simulation
   display(){
     if (scene === "intro") {
+      console.log(width)
+      console.log(height)
       image(youtubeScreen, 0, 0, windowWidth, windowHeight);
       if (startSimulation === true) {
         if (camera.zoom < 1.8) {
