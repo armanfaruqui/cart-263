@@ -1,11 +1,41 @@
 body {
+  margin: auto;
+  user-select: none;
+  background-color: #ffff66;
+  display: flex;
+}
+
+#haiku {
+  margin: auto;
   font-family: Helvetica, sans-serif;
   font-size: 2rem;
   font-weight: bold;
   width: 50vw;
-  margin: auto;
   padding-top: 20vh;
-  user-select: none;
   text-align: center;
-  background-color: #ffff66;
+}
+
+#images {
+  display: grid;
+  grid-template-columns: 50vh, 50vh;
+  grid-template-rows: 50vh, 50vh;
+  position: absolute;
+}
+
+#flower1 {
+  width: 300px;
+  height: 290px;
+  opacity: 0;
+}
+
+#flower2 {
+  width: 300px;
+  height: 290px;
+  opacity: 0;
+}
+
+#bush {
+  width: 300px;
+  height: 290px;
+  opacity: 0;
 }

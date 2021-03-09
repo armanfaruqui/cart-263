@@ -23,6 +23,11 @@ let line1 = document.getElementById(`line-1`);
 let line2 = document.getElementById(`line-2`);
 let line3 = document.getElementById(`line-3`);
 
+// images
+let bush = document.getElementById(`bush`);
+let flower1 = document.getElementById(`flower1`);
+let flower2 = document.getElementById(`flower2`);
+
 // Set up the starting lines
 setupLines();
 // Listen for clicks on each element and respond by changing them
@@ -42,8 +47,11 @@ Adds event listeners for changing each line of the poem
 */
 function addListeners() {
   line1.addEventListener(`click`, changeLine);
+  line1.addEventListener(`click`, showImage1);
   line2.addEventListener(`click`, changeLine);
+  line2.addEventListener(`click`, showImage2);
   line3.addEventListener(`click`, changeLine);
+  line3.addEventListener(`click`, showImage3);
 }
 
 /**
@@ -52,6 +60,18 @@ Triggers a fade out when a line is clicked
 function changeLine(event) {
   fadeOut(event.target, 1);
   console.log(event.target)
+}
+
+function showImage1(event){
+  fadeIn(bush, 0)
+}
+
+function showImage2(event){
+  fadeIn(flower1, 0)
+}
+
+function showImage3(event){
+  fadeIn(flower2, 0)
 }
 
 /**
