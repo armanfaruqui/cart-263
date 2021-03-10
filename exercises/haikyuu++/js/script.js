@@ -47,10 +47,25 @@ Adds event listeners for changing each line of the poem
 */
 function addListeners() {
   line1.addEventListener(`click`, changeLine);
+  document.addEventListener(`keydown`, function(event){
+    if (event.keyCode === 49){
+      changeLineByKey(line1)
+     }
+   });
   line1.addEventListener(`click`, showImage1);
   line2.addEventListener(`click`, changeLine);
+  document.addEventListener(`keydown`, function(event){
+    if (event.keyCode === 50){
+      changeLineByKey(line2)
+     }
+   });
   line2.addEventListener(`click`, showImage2);
   line3.addEventListener(`click`, changeLine);
+  document.addEventListener(`keydown`, function(event){
+    if (event.keyCode === 51){
+      changeLineByKey(line3)
+     }
+   });
   line3.addEventListener(`click`, showImage3);
 }
 
@@ -59,7 +74,10 @@ Triggers a fade out when a line is clicked
 */
 function changeLine(event) {
   fadeOut(event.target, 1);
-  console.log(event.target)
+}
+// Second change line function with a different parameter to allow for keypresses to call it
+function changeLineByKey(line) {
+  fadeOut(line, 1);
 }
 
 function showImage1(event){
