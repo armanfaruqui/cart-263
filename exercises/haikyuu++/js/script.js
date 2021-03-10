@@ -33,6 +33,7 @@ setupLines();
 // Listen for clicks on each element and respond by changing them
 addListeners();
 
+fontColor();
 /**
 Puts a randomly chosen haiku line in each line of the poem in HTML
 */
@@ -74,6 +75,7 @@ Triggers a fade out when a line is clicked
 */
 function changeLine(event) {
   fadeOut(event.target, 1);
+  fontColor()
 }
 // Second change line function with a different parameter to allow for keypresses to call it
 function changeLineByKey(line) {
@@ -159,4 +161,17 @@ A helper function that returns a random element from the provided array
 */
 function random(array) {
   return array[Math.floor(Math.random() * array.length)];
+}
+
+function fontColor(){
+  if (line3.innerText === haikuLines.fiveSyllables[1] || line3.innerText === haikuLines.fiveSyllables[3] || line3.innerText === haikuLines.fiveSyllables[4]){
+    line1.style[`color`] = `#750000`;
+    line2.style[`color`] = `#750000`;
+    line3.style[`color`] = `#750000`;
+  }
+  else {
+    line1.style[`color`] = `#160b5e`;
+    line2.style[`color`] = `#33239e`;
+    line3.style[`color`] = `#33239e`;
+  }
 }
