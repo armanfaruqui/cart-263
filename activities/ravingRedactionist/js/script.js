@@ -39,7 +39,7 @@ function secretInfo() { // Displays another <p> of text
   console.log(redactedCounter);
   if (redactedCounter > 300 && secretInfoShown === false) {
     $(`#secret-document`).append(
-      "<p> This document actually is just made up of placeholder text. Better luck next time Mr Putin </p>"
+      "<p> This document actually is just made up of placeholder text to distract y'all. Better luck next time Mr Putin </p>"
     );
     secretInfoShown = true;
   }
