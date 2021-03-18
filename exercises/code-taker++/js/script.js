@@ -1,8 +1,8 @@
 /**
 Da Vinci!
 */
-
 "use strict";
+
 
 $(`#solved`).dialog({
   autoOpen: false,
@@ -23,12 +23,14 @@ $(`#answer`).droppable({
     ui.draggable.removeClass(`found`);
     if ($(this).text() === `Theremin`) {
       $(`#solved`).dialog(`open`);
+      winSound();
     }
   }
 });
 
 
 $(`#reset`).on(`click`, function(event){
+  bark()
   $(`#answer`).empty(); // Clears the answer text box
   highlightableText();
   $(`.secret`).draggable(`enable`);
@@ -42,4 +44,14 @@ function highlightableText(){
       draggable: `enable`
     });
   });
+}
+
+function bark(){
+  let bark = new Audio('assets/sounds/bark.wav');
+  bark.play()
+}
+
+function winSound(){
+  let ting = new Audio('assets/sounds/ting.wav');
+  ting.play()
 }
