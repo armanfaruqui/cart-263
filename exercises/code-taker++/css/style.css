@@ -29,6 +29,11 @@ body {
   border: 3px dashed black;
 }
 
+#reset {
+  position: relative;
+  left: 48.5%;
+  top: 20px;
+}
 .found {
   color: red;
 }
