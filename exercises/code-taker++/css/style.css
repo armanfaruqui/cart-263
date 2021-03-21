@@ -1,8 +1,14 @@
 body {
   margin: auto;
+  background-image: url(../assets/images/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #poem {
+ position: relative;
+ right: 300px;
+ top: 120px;
  text-align: center;
  padding-top: 30px;
  padding-bottom: 24px;
@@ -23,7 +29,9 @@ body {
 }
 
 #answer {
-  margin: auto;
+  position: relative;
+  top: 75px;
+  left: 290px;
   height: 48px;
   width: 200px;
   border: 3px dashed black;
@@ -31,8 +39,8 @@ body {
 
 #reset {
   position: relative;
-  left: 48.5%;
-  top: 20px;
+  left: 510px;
+  top: 36px;
 }
 .found {
   color: red;

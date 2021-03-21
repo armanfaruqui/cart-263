@@ -23,7 +23,12 @@ $(`#answer`).droppable({
     ui.draggable.removeClass(`found`);
     if ($(this).text() === `Theremin`) {
       $(`#solved`).dialog(`open`);
-      winSound();
+      winSound(); // PLay sound when the correct word is entered
+    }
+    else if ($(this).text() === `hermiT`){
+      $(`#poem`).animate({
+        "top": "800px" // Words fall off page when secret word is entered
+      }, 2000)
     }
   }
 });
