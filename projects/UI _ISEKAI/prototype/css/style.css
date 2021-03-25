@@ -1,6 +1,33 @@
-/*********************************************
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-Here is a description of any special CSS used.
-By default that's nothing.
+#page {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  top: 50%;
+  justify-content: center;
+  align-items: center;
+}
 
-**********************************************/
+#apps {
+padding: 50px;
+}
+
+#quote{
+  position: fixed;
+  right: 500px;
+  top: 600px;
+}
+
+.icons {
+  flex-grow: 1;
+  margin: 10px;
+}
+
+.icons:hover {
+    -webkit-transform: scale(1.2);
+}
