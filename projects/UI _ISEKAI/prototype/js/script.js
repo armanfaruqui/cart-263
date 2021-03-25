@@ -60,4 +60,5 @@ function keyPressed(){
  } else if (keyIsDown(83)) {
    nav.down();
  }
+ if (keyCode === U)
 }
