@@ -28,6 +28,10 @@ padding: 50px;
   margin: 10px;
 }
 
-.icons:hover {
+.icons:hover, .iconshovered {
     -webkit-transform: scale(1.2);
+}
+
+#email {
+  opacity: 1;
 }

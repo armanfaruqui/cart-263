@@ -2,7 +2,6 @@
 let canvas;
 let nav;
 
-
 function preload(){
   player.stand = loadAnimation("assets/images/rpgSprite/main-walk001.png");
   player.walkDown = loadAnimation(
@@ -41,24 +40,18 @@ function setup(){
 }
 
 function draw(){
-  background(66, 245, 221)
-  fill(255,0 ,0)
-  ellipse(nav.x, nav.y, 100)
+  background(66, 245, 221);
+  fill(255,0 ,0);
+  ellipse(nav.x, nav.y, 100);
   nav.update();
-  console.log(`x ${mouseX}`)
-  console.log(`y ${mouseY}`)
+  nav.checkIfNearIcon();
+  nav.interactWithIcon();
 }
 
 function keyPressed(){
-  if (keyIsDown(65)) {
-   nav.left();
- } else if (keyIsDown(68)) {
-   nav.right();
+ if (keyCode === 82){
+   console.log(`x ${mouseX}`);
+   console.log(`y ${mouseY}`);
+   nav.interactWithIcon();
  }
-   if (keyIsDown(87)) {
-   nav.up();
- } else if (keyIsDown(83)) {
-   nav.down();
- }
- if (keyCode === U)
 }
