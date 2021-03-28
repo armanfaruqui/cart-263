@@ -15,7 +15,7 @@ let iconPos = { // Position variables for the icon
   x3: 824,
   x4: 1113,
   y: 404,
-  dist: 85
+  dist: 130
 }
 
 let emailHovered = false;
