@@ -18,6 +18,7 @@ class Boot extends Phaser.Scene {
     this.load.image(`thumbs-up`, `assets/images/thumbs-up.png`);
     this.load.image(`house1`, `assets/images/house1.png`);
     this.load.image(`house2`, `assets/images/house2.png`);
+    this.load.audio(`ting`, `assets/sounds/ting.wav`);
     // Switch to the play scene on complete
     this.load.on(`complete`, () => {
       this.scene.start(`play`);
