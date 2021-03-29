@@ -40,6 +40,8 @@ class Play extends Phaser.Scene {
       dragX: 50,
       dragY: 50
     });
+
+
     // Position all the members of the group randomly within a rectangle the same
     // dimensions and position as the world's bounds (e.g. the canvas)
     Phaser.Actions.RandomRectangle(this.happiness.getChildren(), this.physics.world.bounds);
@@ -53,6 +55,12 @@ class Play extends Phaser.Scene {
     this.physics.add.collider(this.happiness, this.happiness);
 
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    // Displays houses and calls an event when they are overlapped
+    this.house1 = this.physics.add.sprite(200, 400, `house1`);
+    this.house2 = this.physics.add.sprite(600, 200, `house2`);
+    this.physics.add.overlap(this.avatar, this.house1, this.makehouse1Transparent, null, this);
+    this.physics.add.overlap(this.avatar, this.house2, this.makehouse2Transparent, null, this);
   }
 
   /**
@@ -95,5 +103,15 @@ class Play extends Phaser.Scene {
     else {
       this.avatar.setAcceleration(0);
     }
+  }
+
+  makehouse1Transparent(avatar, house1){
+    this.house1.alpha = 0.5
+    this.house2.alpha = 1
+  }
+
+  makehouse2Transparent(avatar, house2){
+    this.house2.alpha = 0.5
+    this.house1.alpha = 1
   }
 }
