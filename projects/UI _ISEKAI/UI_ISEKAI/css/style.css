@@ -4,9 +4,21 @@
   box-sizing: border-box;
 }
 
+#canvas {
+  position: relative;
+  top: 34px;
+  margin: 0;
+  padding: 0;
+}
+
+#toolbar {
+  position: absolute;
+  top: 0px;
+}
+
 #page {
   display: flex;
-  height: 100vh;
+  height: 768px;
   position: relative;
   top: 50%;
   justify-content: center;

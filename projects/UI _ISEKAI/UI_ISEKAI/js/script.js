@@ -29,20 +29,22 @@ function preload(){
 }
 
 function windowResize(){
-  resizeCanvas(windowWidth, windowHeight)
+  resizeCanvas(1368, 802)
 }
 
 function setup(){
-  canvas = createCanvas(windowWidth, windowHeight)
+  canvas = createCanvas(1368, 768)
   canvas.position(0, 0);
   canvas.style(`z-index`, `-1`) // P5 canvas used as the background
+  canvas.parent("#canvas"); // Assigns the canvas to the div #canvas
+
   nav = new MenuNav(player);
 }
 
 function draw(){
   background(66, 245, 221);
-  fill(255,0 ,0);
-  ellipse(nav.x, nav.y, 100);
+
+
   nav.update();
   nav.checkIfNearIcon();
   nav.interactWithIcon();
