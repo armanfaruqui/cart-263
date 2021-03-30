@@ -41,6 +41,17 @@ class Play extends Phaser.Scene {
       dragY: 50
     });
 
+    //Creates an animation from the 2 frames of the dog
+    this.anims.create({
+           key: 'doggo',
+           frames: [
+               { key: 'dog1' },
+               { key: 'dog2' }
+           ],
+           frameRate: 8,
+           repeat: -1
+       });
+
 
     // Position all the members of the group randomly within a rectangle the same
     // dimensions and position as the world's bounds (e.g. the canvas)
@@ -74,6 +85,10 @@ class Play extends Phaser.Scene {
     ting.play(); // Plays a sound
     this.house1.alpha = 1
     this.house2.alpha = 1 // Resets house's opacity
+    let dogX = Math.floor((Math.random() * 800) + 1);
+    let dogY = Math.floor((Math.random() * 600) + 1);
+    this.dog = this.physics.add.sprite(dogX, dogY, 'dog1').play('doggo'); // Spawns dog
+    this.physics.add.overlap(this.avatar, this.dog, this.bark, null, this); // Sets up overlap listener
   }
 
   /**
@@ -117,5 +132,10 @@ class Play extends Phaser.Scene {
   makehouse2Transparent(avatar, house2){
     this.house2.alpha = 0.5
     this.house1.alpha = 1
+  }
+
+  bark(avatar, dog){
+    this.bark = this.sound.add(`bark`);
+    this.bark.play(); // Plays the bark
   }
 }
