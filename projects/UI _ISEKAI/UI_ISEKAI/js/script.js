@@ -1,8 +1,10 @@
 "use strict";
 let canvas;
-let nav;
+let page = "home"
+let scene = "rpg"
 
 function preload(){
+  rpgBackground = loadImage("assets/images/RPG Background/background.gif")
   player.stand = loadAnimation("assets/images/rpgSprite/main-walk001.png");
   player.walkDown = loadAnimation(
     "assets/images/rpgSprite/main-walk001.png",
@@ -38,22 +40,25 @@ function setup(){
   canvas.style(`z-index`, `-1`) // P5 canvas used as the background
   canvas.parent("#canvas"); // Assigns the canvas to the div #canvas
 
-  nav = new MenuNav(player);
+  rpg = new Menu_RPG(player, rpgBackground);
 }
 
 function draw(){
   background(66, 245, 221);
+  rpg.display();
+  rpg.boundaries();
+  rpg.update();
+  rpg.checkIfNearIcon();
+  rpg.interactWithIcon();
+}
 
-
-  nav.update();
-  nav.checkIfNearIcon();
-  nav.interactWithIcon();
+function mousePressed(){
+  console.log(rpg.sprite.position.x)
+  console.log(rpg.sprite.position.y)
 }
 
 function keyPressed(){
  if (keyCode === 82){
-   console.log(`x ${mouseX}`);
-   console.log(`y ${mouseY}`);
    nav.interactWithIcon();
  }
 }
