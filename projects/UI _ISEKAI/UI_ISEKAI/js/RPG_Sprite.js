@@ -1,7 +1,4 @@
-let rpg; // Object variable
-let rpgBackground
-
-let player = {
+let user = {
   stand: undefined,
   walkDown: undefined,
   standLeft: undefined,
@@ -12,73 +9,42 @@ let player = {
   walkUp: undefined,
 };
 
-let iconPos = { // Position variables for the icon
-  x1: 250,
-  x2: 647,
-  x3: 1017,
-  x4: 448,
-  x5: 863,
-  y1: 289,
-  y2: 508,
-  dist: 130
-}
-
-let emailHovered = false;
-let foodHovered = false;
-let gardenHovered = false;
-let socialHovered = false;
-let newsHovered = false;
-
-class Menu_RPG {
-  constructor(player, rpgBackground) {
-
+class RPG_Sprite {
+  constructor(user){
     this.sprite = createSprite(650, 490, 42, 42); // Initializes the sprite
-    this.sprite.addAnimation("stand", player.stand); // Adds animationa to a "key" which can be called later
-    this.sprite.addAnimation("walkDown", player.walkDown);
-    this.sprite.addAnimation("standLeft", player.standLeft);
-    this.sprite.addAnimation("walkLeft", player.walkLeft);
-    this.sprite.addAnimation("standRight", player.standRight);
-    this.sprite.addAnimation("walkRight", player.walkRight);
-    this.sprite.addAnimation("standUp", player.standUp);
-    this.sprite.addAnimation("walkUp", player.walkUp);
+    this.sprite.addAnimation("stand", user.stand); // Adds animationa to a "key" which can be called later
+    this.sprite.addAnimation("walkDown", user.walkDown);
+    this.sprite.addAnimation("standLeft", user.standLeft);
+    this.sprite.addAnimation("walkLeft", user.walkLeft);
+    this.sprite.addAnimation("standRight", user.standRight);
+    this.sprite.addAnimation("walkRight", user.walkRight);
+    this.sprite.addAnimation("standUp", user.standUp);
+    this.sprite.addAnimation("walkUp", user.walkUp);
   }
-  display(){
-    push()
-    image(rpgBackground, 0, 0)
-    pop()
-  }
-  // Sets walls/boundaries for the user's sprite
-  boundaries(){
-  if (rpg.sprite.position.x < 115) rpg.sprite.position.x = 115;
-  if (rpg.sprite.position.y < 120) rpg.sprite.position.y = 120;
-  if (rpg.sprite.position.x > 1155) rpg.sprite.position.x = 1155;
-  if (rpg.sprite.position.y > 625) rpg.sprite.position.y = 625;
-  }
+
   // Individual methods for movement for when they become more complicated
   update() {
-    if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
+    if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87) && this.sprite.velocity.y === 0) {
       // For movement to the left
       this.sprite.changeAnimation("walkLeft"); // Relevant animation triggered
       this.sprite.velocity.x = -5; // Moves the sprite
       this.direction = "left"; // Stores the direction for use in different functions
-    } else if (keyIsDown(83) && !keyIsDown(65) && !keyIsDown(68) && !keyIsDown(87)) {
+    } else if (keyIsDown(83) && !keyIsDown(65) && !keyIsDown(68) && !keyIsDown(87) && this.sprite.velocity.x === 0) {
       // For movement to the right
       this.sprite.changeAnimation("walkDown"); // Same process repeated for movement in the other 3 directions
       this.sprite.velocity.y = 5;
       this.direction = "down";
-    } else if (keyIsDown(68) && !keyIsDown(83) && !keyIsDown(65) && !keyIsDown(87)
-    ) {
+    } else if (keyIsDown(68) && !keyIsDown(83) && !keyIsDown(65) && !keyIsDown(87) && this.sprite.velocity.y === 0) {
       this.sprite.changeAnimation("walkRight");
       this.sprite.velocity.x = 5;
       this.direction = "right";
-    } else if (keyIsDown(87) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(65)
-    ) {
+    } else if (keyIsDown(87) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(65)&& this.sprite.velocity.x === 0) {
       this.sprite.changeAnimation("walkUp");
       this.sprite.velocity.y = -5;
       this.direction = "up";
     } else {
       this.sprite.velocity.x = 0;
-      this.sprite.velocity.y = 0; // Player is stationary if nothing is pressed
+      this.sprite.velocity.y = 0; // user is stationary if nothing is pressed
       if (this.direction === "down") {
         this.sprite.changeAnimation("stand");
       } else if (this.direction === "up") {
@@ -159,4 +125,9 @@ class Menu_RPG {
     }
   }
 
+  interactWithSign() {
+    if (sign.sprite.overlap(this.sprite) && keyCode === SHIFT) {
+      console.log("this works")
+    }
+  }
 }

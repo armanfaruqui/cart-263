@@ -5,33 +5,33 @@ let scene = "rpg"
 
 function preload(){
   rpgBackground = loadImage("assets/images/RPG Background/background.gif")
-  player.stand = loadAnimation("assets/images/rpgSprite/main-walk001.png");
-  player.walkDown = loadAnimation(
+  sign = loadImage("assets/images/RPG Background/sign.png")
+  user.stand = loadAnimation("assets/images/rpgSprite/main-walk001.png");
+  user.walkDown = loadAnimation(
     "assets/images/rpgSprite/main-walk001.png",
     "assets/images/rpgSprite/main-walk004.png"
   );
-  player.standLeft = loadAnimation("assets/images/rpgSprite/main-walk-left001.png");
-  player.walkLeft = loadAnimation(
+  user.standLeft = loadAnimation("assets/images/rpgSprite/main-walk-left001.png");
+  user.walkLeft = loadAnimation(
     "assets/images/rpgSprite/main-walk-left001.png",
     "assets/images/rpgSprite/main-walk-left003.png"
   );
-  player.standRight = loadAnimation(
+  user.standRight = loadAnimation(
     "assets/images/rpgSprite/main-walk-right001.png"
   );
-  player.walkRight = loadAnimation(
+  user.walkRight = loadAnimation(
     "assets/images/rpgSprite/main-walk-right001.png",
     "assets/images/rpgSprite/main-walk-right003.png"
   );
-  player.standUp = loadAnimation("assets/images/rpgSprite/main-walk-up001.png");
-  player.walkUp = loadAnimation(
+  user.standUp = loadAnimation("assets/images/rpgSprite/main-walk-up001.png");
+  user.walkUp = loadAnimation(
     "assets/images/rpgSprite/main-walk-up001.png",
     "assets/images/rpgSprite/main-walk-up004.png"
   );
-
 }
 
 function windowResize(){
-  resizeCanvas(1368, 802)
+  resizeCanvas(width, height)
 }
 
 function setup(){
@@ -40,7 +40,8 @@ function setup(){
   canvas.style(`z-index`, `-1`) // P5 canvas used as the background
   canvas.parent("#canvas"); // Assigns the canvas to the div #canvas
 
-  rpg = new Menu_RPG(player, rpgBackground);
+  rpg = new RPG_Home(rpgBackground, sign);
+  ui = new UserInterface();
 }
 
 function draw(){
@@ -50,6 +51,8 @@ function draw(){
   rpg.update();
   rpg.checkIfNearIcon();
   rpg.interactWithIcon();
+  rpg.interactWithSign();
+  ui.focused()
 }
 
 function mousePressed(){
@@ -58,9 +61,6 @@ function mousePressed(){
 }
 
 function keyPressed(){
- if (keyCode === 82){
-   nav.interactWithIcon();
- }
  if (keyCode === 81){
    console.log(mouseX)
    console.log(mouseY)
