@@ -13,11 +13,13 @@ let player = {
 };
 
 let iconPos = { // Position variables for the icon
-  x1: 263,
-  x2: 547,
-  x3: 824,
-  x4: 1113,
-  y: 404,
+  x1: 250,
+  x2: 647,
+  x3: 1017,
+  x4: 448,
+  x5: 863,
+  y1: 289,
+  y2: 508,
   dist: 130
 }
 
@@ -25,11 +27,12 @@ let emailHovered = false;
 let foodHovered = false;
 let gardenHovered = false;
 let socialHovered = false;
+let newsHovered = false;
 
 class Menu_RPG {
   constructor(player, rpgBackground) {
 
-    this.sprite = createSprite(650, 200, 42, 42); // Initializes the sprite
+    this.sprite = createSprite(650, 490, 42, 42); // Initializes the sprite
     this.sprite.addAnimation("stand", player.stand); // Adds animationa to a "key" which can be called later
     this.sprite.addAnimation("walkDown", player.walkDown);
     this.sprite.addAnimation("standLeft", player.standLeft);
@@ -90,11 +93,12 @@ class Menu_RPG {
   }
   // Checks if the navigator is close enough to select an icon.
   checkIfNearIcon(){
-    let d1 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x1, iconPos.y)
-    let d2 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x2, iconPos.y)
-    let d3 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x3, iconPos.y)
-    let d4 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x4, iconPos.y)
-    console.log(d1)
+    let d1 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x1, iconPos.y1)
+    let d2 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x2, iconPos.y1)
+    let d3 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x3, iconPos.y1)
+    let d4 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x4, iconPos.y2)
+    let d5 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x5, iconPos.y2)
+
     if (d1 < iconPos.dist){
       $(`#email`).addClass("iconshovered");
       emailHovered = true
@@ -104,12 +108,12 @@ class Menu_RPG {
       emailHovered = false
     }
     if (d2 < iconPos.dist){
-      $(`#food`).addClass("iconshovered");
-      foodHovered = true
+      $(`#news`).addClass("iconshovered");
+      newsHovered = true
     }
     else{
-      $(`#food`).removeClass("iconshovered");
-      foodHovered = false
+      $(`#news`).removeClass("iconshovered");
+      newsHovered = false
     }
     if (d3 < iconPos.dist){
       $(`#garden`).addClass("iconshovered");
@@ -120,6 +124,14 @@ class Menu_RPG {
       gardenHovered = false
     }
     if (d4 < iconPos.dist){
+      $(`#food`).addClass("iconshovered");
+      foodHovered = true
+    }
+    else{
+      $(`#food`).removeClass("iconshovered");
+      foodHovered = false
+    }
+    if (d5 < iconPos.dist){
       $(`#social`).addClass("iconshovered");
       socialHovered = true
     }
@@ -141,6 +153,9 @@ class Menu_RPG {
     }
     if (socialHovered === true && keyCode === 16){
       $(`#social`).trigger("click")
+    }
+    if (newsHovered === true && keyCode === 16){
+      $(`#news`).trigger("click")
     }
   }
 

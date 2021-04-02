@@ -61,4 +61,8 @@ function keyPressed(){
  if (keyCode === 82){
    nav.interactWithIcon();
  }
+ if (keyCode === 81){
+   console.log(mouseX)
+   console.log(mouseY)
+ }
 }
