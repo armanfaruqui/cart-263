@@ -1,3 +1,5 @@
+let shrinkage = 0;
+
 class Flower {
   constructor(x, y, size, stemLength, petalColor){
     this.x = x;
@@ -23,7 +25,7 @@ class Flower {
     this.alive = true
   }
   shrink(){
-    let shrinkage = random(0, 0.1)
+    shrinkage = random(0, 0.02)
     this.size = this.size - shrinkage
     this.petalThickness = this.petalThickness - shrinkage/10
 
@@ -35,7 +37,7 @@ class Flower {
   display(){
     push()
     strokeWeight(this.stemThickness)
-    stroke(this.stemColor.r, this.stemColor.g, this.stemColor.b)
+    stroke(54, 120, 41)
     line(this.x, this.y, this.x, this.y + this.stemLength)
     strokeWeight(this.petalThickness)
     fill(this.centerColor.r, this.centerColor.g, this.centerColor.b)
@@ -45,7 +47,7 @@ class Flower {
   }
 
   pollinate(){
-    let growth = random(0, 0.5)
+    let growth = random(0, 0.2)
     this.size = this.size + growth
     this.petalThickness = this.petalThickness + growth / 10
 

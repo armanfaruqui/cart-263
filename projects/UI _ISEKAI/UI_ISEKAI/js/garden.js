@@ -9,13 +9,23 @@ let garden = {
     r: 120,
     g: 180,
     b: 120
-  }
+  },
+  grass: undefined,
+  tintGrass: false
 }
 
 let shells = 100 // Form of currency
 
+function preload(){
+  garden.grass = loadImage(`assets/images/garden/grass.png`)
+}
+
+changeGrass();
+
 function setup(){
-  createCanvas(600, 600);
+  createCanvas(800, 600);
+
+  ui = new UserInterface();
 
   for (let i = 0; i < garden.numFlowers; i++){
     createFlower()
@@ -31,6 +41,9 @@ function setup(){
 function draw(){
   background(garden.grassColor.r, garden.grassColor.g, garden.grassColor.b);
 
+  displayGrass();
+
+  ui.focused()
   shellCounter();
 
   for (let i = 0; i < garden.flowers.length; i++){
@@ -60,7 +73,7 @@ function draw(){
 
 function createFlower(){
   let x = random(0, width)
-  let y = random(0, height)
+  let y = random(150 , height)
   let size = random(50, 80)
   let stemLength = random(50, 100)
   let petalColor = {
@@ -73,7 +86,7 @@ function createFlower(){
 }
 
 function createBee(){
-  let bee = new Bee(random(0, width), random(0, height))
+  let bee = new Bee(random(0, width), random(150, height))
   garden.bees.push(bee)
 }
 
@@ -91,6 +104,28 @@ function addMoreElements(){
       shells -= 15
     }
   });
+}
+function displayGrass(){
+  push()
+  if (garden.tintGrass === true){
+    tint(colorPicker.value)
+  }
+  image(garden.grass, 0, -100)
+  pop()
+}
+function changeGrass(){
+  $(`#changeGrass`).on("click", function(event){
+    let colorPicker = document.createElement("input")
+    $(colorPicker).attr({
+      type: "color",
+      id: "colorPicker",
+      name:"favcolor",
+      value:"#ff0000"
+    })
+    $(`.buttons`).append(colorPicker)
+    garden.tintGrass = true
+    $(`#changeGrass`).off();
+  })
 }
 
 function shellCounter(){

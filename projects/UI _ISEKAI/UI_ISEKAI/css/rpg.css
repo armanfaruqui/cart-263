@@ -56,3 +56,7 @@ padding: 50px;
   right: 10px;
   top: 200px;
 }
+
+.shiftRight {
+  transform: translateX(30px);
+}

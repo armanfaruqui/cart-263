@@ -10,7 +10,8 @@ let iconPos = { // Position variables for the application icons. 5 x values for 
   x5: 863,
   y1: 289,
   y2: 508,
-  dist: 130
+  dist: 130, // Distance between user sprite and icon for interactions between the 2 to take place
+  moveTime: 1000 // Time in milliseconds for icon animation
 }
 
 // Booleans used to check if the user is hovering the application icons with their mouse or sprite
@@ -44,4 +45,16 @@ class RPG_Home extends RPG_Sprite {
   if (this.sprite.position.y > sign.sprite.position.y) sign.sprite.depth = 0 // Sign should be displayed below the user sprite if they are infront of it
   if (this.sprite.position.y < sign.sprite.position.y) sign.sprite.depth = 2 // Sign should be displayed below the user sprite if they are behind it
   }
+
+  runningAwayIcons(icon, posX, posY){
+    if (focused === true){ // Checks if focused mode is enabled
+      let d = dist(this.sprite.position.x, this.sprite.position.y, posX, posY) // Checks distance between user sprite and icon
+      if (d < iconPos.dist + 5){
+        if (this.sprite.position.x < posX && !$(`#${icon}`).hasClass("shiftRight")){
+          $(`#${icon}`).addClass("shiftRight")
+        }
+      }
+    }
+  }
+
 }

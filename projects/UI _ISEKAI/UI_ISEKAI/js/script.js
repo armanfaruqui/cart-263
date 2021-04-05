@@ -52,12 +52,15 @@ function draw(){
   rpg.checkIfNearIcon();
   rpg.interactWithIcon();
   rpg.interactWithSign();
+  rpg.runningAwayIcons(garden, iconPos.x3, iconPos.y1);
   ui.focused()
 }
 
 function mousePressed(){
   console.log(rpg.sprite.position.x)
   console.log(rpg.sprite.position.y)
+  let email = $(`#email`)
+  console.log(email.position)
 }
 
 function keyPressed(){

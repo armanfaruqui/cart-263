@@ -8,6 +8,7 @@
   <title>Garden</title>
 
   <!-- CSS stylesheet(s) -->
+  <link rel="stylesheet" type="text/css" href="css/global.css" />
   <link rel="stylesheet" type="text/css" href="css/garden.css" />
 
   <!-- Library script(s) -->
@@ -16,18 +17,23 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
+  <body>
+    <img id="toolbar" src ="assets/images/global/toolbarGarden.png">
+    <img class="focused" src ="assets/images/global/focus.png">
+
+    <div class="buttons">
+      <button id="addFlower" type="button"> Add flower (20 shells)</button>
+      <button id="addBee" type="button">Add bee (15 shells)</button>
+      <button id="changeGrass" type="button">Change Grass Color </button>
+    </div>
+    <p id="shells"> </p>
+  </body>
+
   <!-- My script(s) -->
+  <script src="js/UserInterface.js"></script>
   <script src="js/Flower.js"></script>
   <script src="js/Bee.js"></script>
   <script src="js/garden.js"></script>
 </head>
-
-<body>
-  <div class="buttons">
-    <button id="addFlower" type="button"> Add flower (20 shells)</button>
-    <button id="addBee" type="button">Add bee (15 shells)</button>
-  </div>
-  <p id="shells"> </p>
-</body>
 
 </html>

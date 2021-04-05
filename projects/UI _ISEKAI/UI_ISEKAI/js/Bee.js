@@ -2,13 +2,13 @@ class Bee {
   constructor(x, y){
     this.x = x
     this.y = y
-    this.size = 40
-    this.minSize = 10
-    this.maxSize = 40
+    this.size = 20
+    this.minSize = 5
+    this.maxSize = 20
     this.vx = 0
     this.vy = 0
     this.speed = 5
-    this.shrinkRate = 0.05
+    this.shrinkRate = 0.005
     this.growRate = 0.05
     this.jitteriness = 0.1
     this.alive = true
