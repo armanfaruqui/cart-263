@@ -1,5 +1,3 @@
-let shrinkage = 0;
-
 class Flower {
   constructor(x, y, size, stemLength, petalColor){
     this.x = x;
@@ -10,12 +8,6 @@ class Flower {
     this.stemThickness = 10
     this.petalThickness = 10
     this.maxPetalThickness = 10
-
-    this.stemColor = {
-      r: 50,
-      g: 150,
-      b: 50
-    }
     this.petalColor = petalColor
     this.centerColor = {
       r: 50,
@@ -25,7 +17,7 @@ class Flower {
     this.alive = true
   }
   shrink(){
-    shrinkage = random(0, 0.02)
+    let shrinkage = random(0, 0.02)
     this.size = this.size - shrinkage
     this.petalThickness = this.petalThickness - shrinkage/10
 
