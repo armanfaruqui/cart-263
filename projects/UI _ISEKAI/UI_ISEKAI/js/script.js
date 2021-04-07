@@ -52,7 +52,7 @@ function draw(){
   rpg.checkIfNearIcon();
   rpg.interactWithIcon();
   rpg.interactWithSign();
-  rpg.runningAwayIcons(garden, iconPos.x3, iconPos.y1);
+  rpg.runningAwayGarden("garden", iconPos.x3, iconPos.y1);
   ui.focused()
 }
 

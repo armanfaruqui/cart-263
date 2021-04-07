@@ -1,5 +1,5 @@
 class Flower {
-  constructor(x, y, size, stemLength, petalColor){
+  constructor(x, y, size, stemLength, petalColor, blossom){
     this.x = x;
     this.y = y;
     this.size = size;
@@ -16,11 +16,11 @@ class Flower {
     }
     this.alive = true
   }
+  
   shrink(){
     let shrinkage = random(0, 0.02)
     this.size = this.size - shrinkage
     this.petalThickness = this.petalThickness - shrinkage/10
-
     if (this.size <= 0 || this.petalThickness <= 0){
       this.alive = false
     }
@@ -45,6 +45,11 @@ class Flower {
 
     this.size = constrain(this.size, 0, this.maxSize)
     this.petalThickness = constrain(this.petalThickness, 0, this.maxPetalThickness)
+  }
+
+  blossomFlower(){
+    push()
+    pop()
   }
 
 }

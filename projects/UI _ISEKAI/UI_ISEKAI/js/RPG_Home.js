@@ -14,6 +14,13 @@ let iconPos = { // Position variables for the application icons. 5 x values for 
   moveTime: 1000 // Time in milliseconds for icon animation
 }
 
+let shifted = {
+  right: false,
+  left: false,
+  up: false,
+  down: false
+}
+
 // Booleans used to check if the user is hovering the application icons with their mouse or sprite
 let emailHovered = false;
 let foodHovered = false;
@@ -46,14 +53,50 @@ class RPG_Home extends RPG_Sprite {
   if (this.sprite.position.y < sign.sprite.position.y) sign.sprite.depth = 2 // Sign should be displayed below the user sprite if they are behind it
   }
 
-  runningAwayIcons(icon, posX, posY){
+  runningAwayGarden(icon, posX, posY){
     if (focused === true){ // Checks if focused mode is enabled
       let d = dist(this.sprite.position.x, this.sprite.position.y, posX, posY) // Checks distance between user sprite and icon
-      if (d < iconPos.dist + 5){
-        if (this.sprite.position.x < posX && !$(`#${icon}`).hasClass("shiftRight")){
-          $(`#${icon}`).addClass("shiftRight")
+      if (d < iconPos.dist - 20){
+        if (this.sprite.position.x < posX && shifted.right === false){
+          $(`#${icon}`).animate({
+            right: "75px"
+          }, 1000)
+          shifted.right = true
+          shifted.left = false
+        }
+        else if (this.sprite.position.x < posX && shifted.left === false){
+          $(`#${icon}`).animate({
+            right: "405"
+          }, 1000)
+          shifted.left = true
+          shifted.right = false
+        }
+        else if (this.sprite.position.y > posY && shifted.down === false){
+          $(`#${icon}`).animate({
+            top: "-20px"
+          }, 1000)
+          shifted.down = true
+          shifted.up = false
+        }
+        else if (this.sprite.position.y < posY && shifted.up === false){
+          $(`#${icon}`).animate({
+            top: "310px"
+          }, 1000)
+          shifted.up = true
+          shifted.down = false
         }
       }
+    }
+    else {
+      $(`#${icon}`).animate({
+        top: "145px",
+        right: "240px"
+      }, 1000)
+      shifted.up = false
+      shifted.down = false
+      shifted.left = false
+      shifted.right = false
+
     }
   }
 

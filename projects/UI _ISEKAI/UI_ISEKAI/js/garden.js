@@ -40,6 +40,12 @@ let shelter = {
   afroHut: undefined,
 };
 
+let blossom = {
+  blooming: undefined,
+  bloomed: undefined
+}
+
+
 let shells = 100; // Form of currency
 
 function preload() {
@@ -64,6 +70,10 @@ function preload() {
   shelter.teepee = loadImage(`assets/images/garden/teepee.png`);
   shelter.namek = loadImage(`assets/images/garden/namekHouse.png`);
   shelter.afroHut = loadImage(`assets/images/garden/africanHut.png`);
+
+  blossom.blooming = loadAnimation("assets/images/garden/blossom-unscreen-109.png", "assets/images/garden/blossom-unscreen-142.png");
+  blossom.bloomed = loadAnimation("assets/images/garden/bloomed/blossom-unscreen-143.png", "assets/images/garden/bloomed/blossom-unscreen-149.png" )
+
 }
 
 changeGrass();

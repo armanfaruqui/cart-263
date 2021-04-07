@@ -20,7 +20,7 @@ padding: 50px;
 .icons {
   flex-grow: 1;
   margin: 10px;
-  position: relative;
+  position: absolute;
 }
 
 .icons:hover, .iconshovered {
@@ -28,27 +28,28 @@ padding: 50px;
 }
 
 #email {
-  bottom: 110px;
-  left: 27px;
+  top: 145px;
+  left: 138px;
 }
 
 #food {
-  top: 105px;
+  bottom: 150px;
+  left: 340px;
 }
 
 #garden {
-  bottom: 110px;
-  left: 335px;
+  top: 145px;
+  right: 240px;
 }
 
 #news {
-  bottom: 110px;
-  right: 495px;
+  top: 145px;
+  left: 535px;
 }
 
 #social {
-  top: 105px;
-  right: 50px;
+  bottom: 150px;
+  right: 390px;
 }
 
 #clock{
