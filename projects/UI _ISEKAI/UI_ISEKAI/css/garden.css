@@ -11,15 +11,55 @@ body {
 
   /* This centers our sketch vertically. */
   align-items: center;
+
+  background-image: url("../assets/images/garden/space.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .buttons {
  position: absolute;
- left: 1050px;
+ left: 58px;
+ top: 128px;
+ filter: saturate(70%);
 }
 
-#shells{
+#addFlower:hover, #addBee:hover, #changeGrass:hover, #changeSky:hover, #changeShelter:hover, #addMusic:hover {
+  filter: saturate(120%);
+  cursor: pointer;
+}
+
+#karma{
   position: absolute;
   right: 1100px;
   bottom: 700px;
+}
+
+.manifestFlower {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  left: 225px;
+  top: 152px;
+}
+
+.changeSky {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  left: 225px;
+  top: 314px;
+}
+
+.hidden{
+  display: none;
+}
+
+.shown {
+  opacity: 1;
+}
+
+#small {
+  font-size: 12px;
 }
