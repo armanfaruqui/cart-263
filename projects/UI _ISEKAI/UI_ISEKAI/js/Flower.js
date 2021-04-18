@@ -5,20 +5,15 @@ class Flower {
     this.size = size;
     this.maxSize = size;
     this.stemLength = stemLength;
-    this.stemThickness = 10;
+    this.stemThickness = 7;
     this.petalThickness = 10;
     this.maxPetalThickness = 10;
     this.petalColor = petalColor;
-    this.centerColor = {
-      r: 50,
-      g: 0,
-      b: 0,
-    };
     this.alive = true;
   }
 
   shrink() {
-    let shrinkage = random(0, 0.02);
+    let shrinkage = random(0, 0.01);
     this.size = this.size - shrinkage;
     this.petalThickness = this.petalThickness - shrinkage / 10;
     if (this.size <= 0 || this.petalThickness <= 0) {
@@ -26,20 +21,67 @@ class Flower {
     }
   }
 
-  display() {
+  displayOrchid() {
     push();
     strokeWeight(this.stemThickness);
     stroke(54, 120, 41);
     line(this.x, this.y, this.x, this.y + this.stemLength);
     strokeWeight(this.petalThickness);
-    fill(this.centerColor.r, this.centerColor.g, this.centerColor.b);
+    fill(50, 0, 0);
     stroke(this.petalColor.r, this.petalColor.g, this.petalColor.b);
     ellipse(this.x, this.y, this.size);
     pop();
   }
 
+  displayDaisy(){
+    push();
+    // Stem
+    strokeWeight(this.stemThickness);
+    stroke(54, 120, 41);
+    line(this.x, this.y, this.x, this.y + this.stemLength);
+    // Petals
+    noStroke();
+    fill(230)
+    rectMode(CENTER)
+    rect(this.x, this.y, this.size*1.7, this.size*1.7)
+    fill(255)
+    for (let theta=0; theta<TWO_PI; theta+=PI/3){
+      let petalX = this.size*cos(theta) + this.x;
+      let petalY = this.size*sin(theta) + this.y;
+      ellipse(petalX, petalY, this.size);
+    }
+    // Center
+    fill(232, 193, 63);
+    ellipse(this.x, this.y, this.size);
+    pop();
+  }
+
+  displayHibiscus(){
+    push();
+    strokeWeight(this.stemThickness);
+    stroke(54, 120, 41);
+    line(this.x, this.y, this.x, this.y + this.stemLength);
+    stroke(100);
+    strokeWeight(0.5);
+    fill(this.petalColor.r, this.petalColor.g, this.petalColor.b);
+    ellipse(this.x, this.y + this.size/2, this.size);
+    ellipse(this.x, this.y - this.size/2, this.size);
+    ellipse(this.x + this.size/2, this.y, this.size);
+    ellipse(this.x - this.size/2, this.y, this.size);
+    ellipse(this.x, this.y, this.size);
+    // Stigma
+    rectMode(CENTER)
+    rect(this.x, this.y - this.size/10, this.size/ 12, this.size/ 2)
+    fill(232, 193, 63);
+    ellipse(this.x + this.size/8, this.y - this.size/3, this.size/ 9)
+    ellipse(this.x + this.size/8, this.y - this.size/6, this.size/ 9)
+    ellipse(this.x - this.size/8, this.y -  this.size/3, this.size/ 9)
+    ellipse(this.x - this.size/8, this.y - this.size/6, this.size/ 9)
+    pop();
+  }
+
   pollinate() {
-    let growth = random(0, 0.2);
+    let growth = random(0, 0.35);
     this.size = this.size + growth;
     this.petalThickness = this.petalThickness + growth / 10;
 
@@ -49,10 +91,5 @@ class Flower {
       0,
       this.maxPetalThickness
     );
-  }
-
-  blossomFlower() {
-    push();
-    pop();
   }
 }
