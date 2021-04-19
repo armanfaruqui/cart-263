@@ -32,8 +32,14 @@ body {
 
 #karma{
   position: absolute;
-  right: 1100px;
-  bottom: 700px;
+  left: 36px;
+  top: 54px;
+  font-size: 36px;
+  font-family: monospace;
+  padding: 5px;
+  border-style: solid;
+  border: gold, 2px;
+  color: gold;
 }
 
 .manifestFlower {
