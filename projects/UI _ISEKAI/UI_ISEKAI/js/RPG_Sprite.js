@@ -74,12 +74,12 @@ class RPG_Sprite {
       emailHovered = false
     }
     if (d2 < iconPos.dist){
-      $(`#news`).addClass("iconshovered");
-      newsHovered = true
+      $(`#messages`).addClass("iconshovered");
+      messagesHovered = true
     }
     else{
-      $(`#news`).removeClass("iconshovered");
-      newsHovered = false
+      $(`#messages`).removeClass("iconshovered");
+      messagesHovered = false
     }
     if (d3 < iconPos.dist){
       $(`#garden`).addClass("iconshovered");
@@ -120,8 +120,8 @@ class RPG_Sprite {
     if (socialHovered === true && keyCode === 16){
       $(`#social`).trigger("click")
     }
-    if (newsHovered === true && keyCode === 16){
-      $(`#news`).trigger("click")
+    if (messagesHovered === true && keyCode === 16){
+      $(`#messages`).trigger("click")
     }
   }
 

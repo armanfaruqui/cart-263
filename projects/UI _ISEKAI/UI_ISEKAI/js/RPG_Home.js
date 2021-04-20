@@ -26,7 +26,7 @@ let emailHovered = false;
 let foodHovered = false;
 let gardenHovered = false;
 let socialHovered = false;
-let newsHovered = false;
+let messagesHovered = false;
 
 class RPG_Home extends RPG_Sprite {
   constructor(rpgBackground, sign) {

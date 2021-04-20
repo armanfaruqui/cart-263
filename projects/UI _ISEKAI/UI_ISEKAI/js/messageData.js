@@ -1,4 +1,4 @@
-var chatz = [{
+let aki = [{
         "path": "intro",
         "messages": [{
                 "text": "It has been a while. Peace and greetings to you",
@@ -19,43 +19,28 @@ var chatz = [{
                 "path": "block1",
                 "text": "Meh",
                 "type": "button",
-                "write": false,
                 "pathTrue": "block1-correct",
-                "pathFalse": "block1-wrong"
+                "pathFalse": "block1-correct"
             }
         ]
     }, {
         "path": "block1-correct",
         "messages": [{
-                "text": "You got it, good job",
+                "text": "I hope that your work has not been stressing you out too much. Do remember to take breaks and spend time connecting with nature :)",
                 "author": "Aki"
             }
         ],
         "choices": [{
                 "path": "block2",
-                "text": "Continue",
-                "write": false
+                "text": "I appreciate it. How have you been",
             }
         ]
     }, {
-        "path": "block1-wrong",
-        "messages": [{
-                "text": "Wrong Answer!",
-                "author": "ConvoJs"
-            }
-        ],
-        "choices": [{
-                "path": "intro",
-                "text": "Try Again",
-                "write": false
-            }
-        ]
-    },{
         "path": "block2",
         "messages": [
             {
-                "text": "Now, what is 2 + 3?",
-                "author": "ConvoJs"
+                "text": "It has been alright. Still had to suffer a few panic attacks this week, but the 4 7 8 breathing technique I learned about has been super helpful in coping with them. How do you like to cope with feelings of stress and uneasiness?",
+                "author": "Aki"
             }
         ],
         "choices": [
@@ -68,34 +53,20 @@ var chatz = [{
                 "path": "block2",
                 "text": "Meh",
                 "type": "button",
-                "expected": "5",
                 "pathTrue": "block2-correct",
-                "pathFalse": "block2-wrong"
+                "pathFalse": "block2-correct"
             }
         ]
     }, {
         "path": "block2-correct",
         "messages": [{
-                "text": "Fantastic! ",
-                "author": "ConvoJs"
+                "text": "Good to hear. I have a few tasks to attend to on Tendr. Don't forget to respond to the emails from. Also, you should definetly start taking care of your virtual garden. I've been having so much fun with mine",
+                "author": "Aki"
             }
         ],
         "choices": [{
                 "path": "block__",
-                "text": "That's all for now!",
-                "write": false
-            }
-        ]
-    }, {
-        "path": "block2-wrong",
-        "messages": [{
-                "text": "Wrong Answer!",
-                "author": "ConvoJs"
-            }
-        ],
-        "choices": [{
-                "path": "intro",
-                "text": "Try Again",
+                "text": "Talk to you later. Peace and blessings.",
                 "write": false
             }
         ]

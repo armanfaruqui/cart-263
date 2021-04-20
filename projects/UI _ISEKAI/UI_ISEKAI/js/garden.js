@@ -53,13 +53,7 @@ let shelter = {
 };
 
 // Object which carries the various litter images
-let garbage = {
-  bag: undefined,
-  bottle1: undefined,
-  bottle2: undefined,
-  tissue: undefined,
-  plasticBag: undefined
-}
+let garbage = [];
 
 let karma = 1000; // Form of currency
 
@@ -85,11 +79,11 @@ function preload() {
   shelter.namekian = loadImage(`assets/images/garden/namekHouse.png`);
   shelter.alkebulan = loadImage(`assets/images/garden/africanHut.png`);
 
-  garbage.bag = loadImage(`assets/images/garden/africanHut.png`);
-  garbage.plasticBag = loadImage(`assets/images/garden/plasticBag.png`);
-  garbage.bottle1 = loadImage(`assets/images/garden/bottle.png`);
-  garbage.bottle2 = loadImage(`assets/images/garden/bottle2.png`);
-  garbage.tissue = loadImage(`assets/images/garden/tissue.png`);
+  garbage[0] = loadImage(`assets/images/garden/wrapper.png`);
+  garbage[1] = loadImage(`assets/images/garden/bags.png`);
+  garbage[2] = loadImage(`assets/images/garden/plasticBag.png`);
+  garbage[3] = loadImage(`assets/images/garden/bottle.png`);
+  garbage[4] = loadImage(`assets/images/garden/tissue.png`);
 }
 
 function setup() {
@@ -120,12 +114,14 @@ function draw() {
 
   displayFlowers();
   displayBees();
-  litter.checkForLitter();
+
+  checkForLitter();
+  displayLitter();
 }
 
 
 function mousePressed() {
-
+  litter.cleanUp();
 }
 
 // Displays the relevant flower's and bees
@@ -550,4 +546,23 @@ function hideOptions() {
   $(".manifestFlower").addClass("hidden");
   $(".changeSky").addClass("hidden");
   $(".changeShelter").addClass("hidden");
+}
+
+function checkForLitter(){
+  let chance = random();
+  if (chance > 0.9995){
+    let x = random(0, width)
+    let y = random(-500, -300)
+    let y2 = random(150, height)
+    let img = random(garbage)
+    litter = new Litter(x, y, y2, img, garden)
+    garden.litter.push(litter)
+  }
+}
+
+function displayLitter(){
+  for (let i = 0; i < garden.litter.length; i++){
+    let litter = garden.litter[i];
+    litter.fallingLitter();
+  }
 }

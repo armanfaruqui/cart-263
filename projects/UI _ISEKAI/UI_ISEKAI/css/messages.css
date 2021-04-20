@@ -1,0 +1,28 @@
+#aki{
+  position: relative;
+  display:inline-block;
+  left: 50px;
+  border: 3px solid ghostwhite;
+  border-radius: 10%;
+  padding: 20px;
+}
+#akiIcon {
+  border-radius: 50%;
+}
+
+h1, h2{
+  color: ghostwhite;
+  text-align: center;
+}
+
+h1:hover, h2:hover{
+  color: aquamarine;
+}
+
+#aki:hover {
+  border: 3px solid aquamarine;
+}
+
+.hide{
+  display: none;
+}
