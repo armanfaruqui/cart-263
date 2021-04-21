@@ -1,3 +1,5 @@
+// Copy pasted from https://github.com/chrismuiruriz/ConvoJs to allow the conversation script to run
+
 $(function ($) {
 
     $.fn.convo = function (options) {

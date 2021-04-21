@@ -1,7 +1,8 @@
+// Main js file used mainly to store the code for the landing page.
+
 "use strict";
-let canvas;
-let page = "home"
-let scene = "rpg"
+
+let canvas; // Variable used to store the createCanvas command
 
 function preload(){
   rpgBackground = loadImage("assets/images/RPG Background/background.gif")
@@ -30,10 +31,6 @@ function preload(){
   );
 }
 
-function windowResize(){
-  resizeCanvas(width, height)
-}
-
 function setup(){
   canvas = createCanvas(1368, 768)
   canvas.position(0, 0);
@@ -54,18 +51,4 @@ function draw(){
   rpg.interactWithSign();
   rpg.runningAwayGarden("garden", iconPos.x3, iconPos.y1);
   ui.focused()
-}
-
-function mousePressed(){
-  console.log(rpg.sprite.position.x)
-  console.log(rpg.sprite.position.y)
-  let email = $(`#email`)
-  console.log(email.position)
-}
-
-function keyPressed(){
- if (keyCode === 81){
-   console.log(mouseX)
-   console.log(mouseY)
- }
 }

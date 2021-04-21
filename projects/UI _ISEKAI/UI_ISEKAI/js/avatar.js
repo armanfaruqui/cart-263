@@ -19,11 +19,15 @@ let blonde;
 let brunette;
 let bald;
 
+// Variables which hold the
 let headImage;
 let hairImage;
 let browImage;
 let eyesImage;
+let noseImage;
+let mouthImage;
 
+// For loops used to preload multiple images since they have similair file names
 function preload() {
   for (let i = 0; i < 15; i++) {
     // Black and brown hairstyles
@@ -73,6 +77,8 @@ function preload() {
     headWithHair.push(loadImage(`assets/images/head/head4_${i}_2.png`));
     headWithHair.push(loadImage(`assets/images/head/head4_${i}_3.png`)); // Heads with hair
   }
+  noseImage = loadImage(`assets/images/head/nose.png`) // Nose
+  mouthImage = loadImage(`assets/images/head/mouth.png`) // Mouth
 }
 
 function setup() {
@@ -87,6 +93,8 @@ function draw() {
 function mousePressed(){
   clear();
   createRandomAvatar(width/2, height/2);
+  console.log(blonde)
+  console.log(brunetteOrBlonde)
 }
 
 function createRandomAvatar(x, y) {
@@ -106,10 +114,12 @@ function createRandomAvatar(x, y) {
   if (brunetteOrBlonde < 0.39 && addHair === true) {
     hairImage = random(hairBlack);
     brunette = true; // Avi's is a brunette
+    blonde = false;
   }
-  if (brunetteOrBlonde > 0.39 && brunetteOrBlonde < 0.78 && addHair === true) {
+  else if (brunetteOrBlonde > 0.39 && brunetteOrBlonde < 0.78 && addHair === true) {
     hairImage = random(hairBrown);
     brunette = true; // Avi's is a brunette
+    blonde = false;
   } else if (
     brunetteOrBlonde > 0.78 &&
     brunetteOrBlonde < 0.95 &&
@@ -117,6 +127,7 @@ function createRandomAvatar(x, y) {
   ) {
     hairImage = random(hairBlonde);
     blonde = true; // Avi is blonde
+    brunette = false;
   }
   let haveBrows = random(); // Random number between 1 and 0 to decide if avatar should have eyebrows
   if (haveBrows < 0.93) {
@@ -131,11 +142,13 @@ function createRandomAvatar(x, y) {
   // DISPLAYING PHASE
   imageMode(CENTER);
   image(headImage, x, y) // Displays head
-  if (haveBrows === true){
-    image(browImage, x, y - 20) // Displays brows
+  if (haveBrows < 0.93){
+    image(browImage, x, y - 40) // Displays brows
   }
   image(eyesImage, x, y - 15) // Displays eyes
   if (brunetteOrBlonde < 0.95){
     image(hairImage, x, y + 100); // Displays hair
   }
+  image(noseImage, x, y + 20) // Displays nose
+  image(mouthImage, x, y + 60) // Displays mouth
 }

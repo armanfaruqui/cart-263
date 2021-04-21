@@ -1,17 +1,26 @@
-$("#aki").on("click", function(){
-  $(".contacts").addClass("hide")
-  $("akiH2").addClass("hide")
-  akiChat();
+// In charge of the functioning of the messages page
 
-})
+"use-strict"
+
+startAkiChat();
+
+function startAkiChat(){
+  $("#aki").on("click", function(){
+    $(".contacts").addClass("hide")
+    $("akiH2").addClass("hide")
+    akiChat();
+  })
+}
+
+// Copy pasted from https://github.com/chrismuiruriz/ConvoJs to start the messag conversation interaction
 function akiChat(){
   $(document).ready(function () {
 
-       //include the js
+
        $(".bubble__wrapper").convo({
            headerTopColor: "#f00",
            pageColor: "linear-gradient(to right, #83a4d4, #b6fbff)",
-           data: aki,
+           data: aki, // Defines the variable used in messageData.js
            inputCharLimit: 50
        });
 
@@ -23,4 +32,13 @@ function akiChat(){
            }
        });
    });
+}
+
+function endChat(){
+  let attr = $(".cui_option slide-up").attr("data-path")
+  if (attr === "block__"){
+    $(".cui_option").one("click", function(){
+      console.log("cheese")
+    })
+  }
 }

@@ -4,25 +4,30 @@
 
 // Object which carries general information about the simulation
 let garden = {
+  // Arrays which store different elements
   orchids: [],
   daisys: [],
   hibiscus: [],
   bees: [],
   litter: [],
+  // Counters which keep track of the number of each different element
   numOrchids: 0,
   numDaisys: 0,
   numHibiscus: 0,
   numBees: 3,
-  maxBees: 18,
   numLitter: 0,
+
+  maxBees: 18, // Used to limit the number of bees that can be called
   grassColor: {
     r: 120,
     g: 180,
     b: 120,
   },
+  // Image variables
   grass: undefined,
   sky: undefined,
   shelter: undefined,
+  // Booleans used to check if a change has been applied
   displayShelter: false,
   tintGrass: false,
 };
@@ -119,7 +124,7 @@ function draw() {
   displayLitter();
 }
 
-
+// Called upon each mouse click
 function mousePressed() {
   litter.cleanUp();
 }
@@ -547,19 +552,20 @@ function hideOptions() {
   $(".changeSky").addClass("hidden");
   $(".changeShelter").addClass("hidden");
 }
-
+// Initializes each litter object and pushes them into an array
 function checkForLitter(){
-  let chance = random();
-  if (chance > 0.9995){
+  let chance = random(); // Generates random number between 0 and 1
+  if (chance > 0.9995){ // Low chance of the number being between 0.99956 and 1 so garbage falls relatively rarely
+    // Assigns starting properties used as parameters
     let x = random(0, width)
     let y = random(-500, -300)
     let y2 = random(150, height)
-    let img = random(garbage)
+    let img = random(garbage) // Assigns random image from garbage array
     litter = new Litter(x, y, y2, img, garden)
-    garden.litter.push(litter)
+    garden.litter.push(litter) // Pushes object into the array
   }
 }
-
+// Calls the function which displays and moves the litter for each element in the litter array
 function displayLitter(){
   for (let i = 0; i < garden.litter.length; i++){
     let litter = garden.litter[i];

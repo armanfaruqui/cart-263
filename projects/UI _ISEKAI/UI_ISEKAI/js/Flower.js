@@ -1,3 +1,5 @@
+// This object carries the code for the functioning of the 3 types of flowers available in the garden simulator
+
 class Flower {
   constructor(x, y, size, stemLength, petalColor, blossom) {
     this.x = x;
@@ -9,30 +11,33 @@ class Flower {
     this.petalThickness = 10;
     this.maxPetalThickness = 10;
     this.petalColor = petalColor;
-    this.alive = true;
+    this.alive = true; // Checks if flower is 'alive' (Its not when its size shrinks to 0)
   }
-
+  // Reduces the size of the flower over time. Flower is no longer alive once their size reaches 0
   shrink() {
-    let shrinkage = random(0, 0.01);
-    this.size = this.size - shrinkage;
+    let shrinkage = random(0, 0.01); // Small shrinkage amount so the flowers don't die in seconds
+    this.size = this.size - shrinkage; // Reduces size of flower
     this.petalThickness = this.petalThickness - shrinkage / 10;
     if (this.size <= 0 || this.petalThickness <= 0) {
       this.alive = false;
     }
   }
-
+  // Displays the orchid flower
   displayOrchid() {
     push();
+    // Stem
     strokeWeight(this.stemThickness);
     stroke(54, 120, 41);
     line(this.x, this.y, this.x, this.y + this.stemLength);
+    // Petals
     strokeWeight(this.petalThickness);
     fill(50, 0, 0);
+    // Center
     stroke(this.petalColor.r, this.petalColor.g, this.petalColor.b);
     ellipse(this.x, this.y, this.size);
     pop();
   }
-
+  // Displays the daisy flower
   displayDaisy(){
     push();
     // Stem
@@ -45,7 +50,7 @@ class Flower {
     rectMode(CENTER)
     rect(this.x, this.y, this.size*1.7, this.size*1.7)
     fill(255)
-    for (let theta=0; theta<TWO_PI; theta+=PI/3){
+    for (let theta=0; theta<TWO_PI; theta+=PI/3){ // Draws a ring of ellipses
       let petalX = this.size*cos(theta) + this.x;
       let petalY = this.size*sin(theta) + this.y;
       ellipse(petalX, petalY, this.size);
@@ -55,12 +60,14 @@ class Flower {
     ellipse(this.x, this.y, this.size);
     pop();
   }
-
+  // Displays the hibiscus flower
   displayHibiscus(){
     push();
+    // Stem
     strokeWeight(this.stemThickness);
     stroke(54, 120, 41);
     line(this.x, this.y, this.x, this.y + this.stemLength);
+    // Petals
     stroke(100);
     strokeWeight(0.5);
     fill(this.petalColor.r, this.petalColor.g, this.petalColor.b);
@@ -79,13 +86,13 @@ class Flower {
     ellipse(this.x - this.size/8, this.y - this.size/6, this.size/ 9)
     pop();
   }
-
+  // Increases the size of the flower. Called with the bees since the growth comes from them overlapping the flowers
   pollinate() {
     let growth = random(0, 0.35);
     this.size = this.size + growth;
     this.petalThickness = this.petalThickness + growth / 10;
 
-    this.size = constrain(this.size, 0, this.maxSize);
+    this.size = constrain(this.size, 0, this.maxSize); // Ensures flowers don't grow past max size
     this.petalThickness = constrain(
       this.petalThickness,
       0,
