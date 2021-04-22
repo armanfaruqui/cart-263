@@ -43,7 +43,6 @@ let sky = {
   saturn: undefined,
   void: undefined,
 };
-
 // Object which carries the various shelter images
 let shelter = {
   shack: undefined,
@@ -56,6 +55,15 @@ let shelter = {
   namekian: undefined,
   alkebulan: undefined,
 };
+// Object with holds the various songs
+let music = {
+  bambam: undefined,
+  wangshu: undefined,
+  avery: undefined,
+  subha: undefined,
+  peru: undefined,
+  babushka: undefined
+}
 
 // Object which carries the various litter images
 let garbage = [];
@@ -63,11 +71,15 @@ let garbage = [];
 let karma = 1000; // Form of currency
 
 let saveData = {
+  karma: undefined,
   orchids: [],
   daisys: [],
   hibiscus: [],
   bees: [],
-  litter: []
+  litter: [],
+  sky: undefined,
+  shelter: undefined,
+  grassColor: undefined
 }
 
 function preload() {
@@ -97,6 +109,13 @@ function preload() {
   garbage[2] = loadImage(`assets/images/garden/plasticBag.png`);
   garbage[3] = loadImage(`assets/images/garden/bottle.png`);
   garbage[4] = loadImage(`assets/images/garden/tissue.png`);
+
+  music.bambam = loadSound(`assets/sounds/music/bambam.mp3`);
+  music.wangshu = loadSound(`assets/sounds/music/wangshu.mp3`);
+  music.avery = loadSound(`assets/sounds/music/avery.mp3`);
+  music.subha = loadSound(`assets/sounds/music/subha.mp3`);
+  music.peru = loadSound(`assets/sounds/music/peru.mp3`);
+  music.babushka = loadSound(`assets/sounds/music/babushka.mp3`);
 }
 
 function setup() {
@@ -115,6 +134,7 @@ function setup() {
 }
 
 saveGardenData();
+playMusic();
 
 function draw() {
   background(0);
@@ -141,19 +161,30 @@ function mousePressed() {
 
 // Displays the relevant flower's and bees
 function initializeGarden(){
-  for (let i = 0; i < saveData.numOrchids; i++) {
+  let data = JSON.parse(localStorage.getItem(`garden data`));
+  // if (data !== null){
+  //   saveData = data
+  //     garden.orchids = saveData.orchids
+  //     garden.daisys = saveData.daisys
+  //     garden.hibiscus = saveData.hibiscus
+  //     garden.bees = saveData.bees
+  //     garden.litter = saveData.litter
+  //     garden.sky = saveData.sky
+  //     garden.shelter = saveData.shelter
+  // }
+  for (let i = 0; i < garden.numOrchids; i++) {
     createOrchid();
   }
 
-  for (let i = 0; i < saveData.numDaisys; i++) {
+  for (let i = 0; i < garden.numDaisys; i++) {
     createDaisy();
   }
 
-  for (let i = 0; i < saveData.numHibiscus; i++) {
+  for (let i = 0; i < garden.numHibiscus; i++) {
     createHibiscus();
   }
 
-  for (let i = 0; i < saveData.numBees; i++) {
+  for (let i = 0; i < garden.numBees; i++) {
     createBee();
   }
 }
@@ -500,7 +531,69 @@ function changeGrass() {
     $(`#changeGrass`).off(); // Disables the click event listener once the color picker is displayed
   });
 }
-
+// Plays the relevant song when its selected
+function playMusic(){
+  $("#bambam").on("click", function(){ // Checks for clicks on radio buttons
+    if (karma >= 600){ // Checks if user has sufficient karma
+      stopMusic(); // Stops any other song from playing
+      music.bambam.loop(); // Loops the selected song
+      $(".music").addClass("hidden"); // Hides the song options
+      $(".music").removeClass("shown");
+    }
+  });
+  // Same function repeated for all other radio buttons
+  $("#subha").on("click", function(){
+    if (karma >= 600){
+      stopMusic();
+      music.subha.loop();
+      $(".music").addClass("hidden");
+      $(".music").removeClass("shown");
+    }
+  });
+  $("#wangshu").on("click", function(){
+    if (karma >= 600){
+      stopMusic();
+      music.wangshu.loop();
+      $(".music").addClass("hidden");
+      $(".music").removeClass("shown");
+    }
+  });
+  $("#peru").on("click", function(){
+    if (karma >= 600){
+      stopMusic();
+      music.peru.loop();
+      $(".music").addClass("hidden");
+      $(".music").removeClass("shown");
+    }
+  });
+  $("#babushka").on("click", function(){
+    if (karma >= 600){
+      stopMusic();
+      music.babushka.loop();
+      $(".music").addClass("hidden");
+      $(".music").removeClass("shown");
+    }
+  });
+  $("#avery").on("click", function(){
+    if (karma >= 600){
+      stopMusic();
+      music.avery.loop();
+      $(".music").addClass("hidden");
+      $(".music").removeClass("shown");
+    }
+  });
+}
+// Called in play music to prevent multiple songs playing from the same time
+function stopMusic(){
+  if (music.bambam.isPlaying() || music.subha.isPlaying() || music.babushka.isPlaying() || music.wangshu.isPlaying() || music.peru.isPlaying() || music.avery.isPlaying()){
+    music.bambam.stop()
+    music.avery.stop()
+    music.subha.stop()
+    music.babushka.stop()
+    music.peru.stop()
+    music.wangshu.stop()
+  }
+}
 // Keeps count of how much karma you have
 function karmaCounter() {
   $(`#karma`).text(`${karma} Karma`);
@@ -520,6 +613,8 @@ function options() {
       $(".changeSky").removeClass("shown");
       $(".changeShelter").addClass("hidden"); // Hides the shelter options if they are open
       $(".changeShelter").removeClass("shown");
+      $(".music").addClass("hidden");  // Hides music options if they are open
+      $(".music").removeClass("shown");
     });
   }
   // Same function repeated for the other div buttons
@@ -537,6 +632,8 @@ function options() {
       $(".manifestFlower").removeClass("shown");
       $(".changeShelter").addClass("hidden"); // Hides the shelter options if they are open
       $(".changeShelter").removeClass("shown");
+      $(".music").addClass("hidden");  // Hides music options if they are open
+      $(".music").removeClass("shown");
     });
   }
   // code for 'build a shelter' button
@@ -553,6 +650,26 @@ function options() {
       $(".manifestFlower").removeClass("shown");
       $(".changeSky").addClass("hidden"); // Hides the sky options if they are open
       $(".changeSky").removeClass("shown");
+      $(".music").addClass("hidden"); // Hides music options if they are open
+      $(".music").removeClass("shown");
+    });
+  }
+  // code for music button
+  if ($(".music").hasClass("shown")) {
+    $(`#addMusic`).on("click", function (event) {
+      $(".music").addClass("hidden");
+      $(".music").removeClass("shown");
+    });
+  } else {
+    $(`#addMusic`).on("click", function (event) {
+      $(".music").removeClass("hidden");
+      $(".music").addClass("shown");
+      $(".manifestFlower").addClass("hidden"); // Hides the flower options if they are open
+      $(".manifestFlower").removeClass("shown");
+      $(".changeSky").addClass("hidden"); // Hides the sky options if they are open
+      $(".changeSky").removeClass("shown");
+      $(".changeShelter").addClass("hidden"); // Hides shelter options if they are open
+      $(".changeShelter").removeClass("shown");
     });
   }
 }
@@ -561,6 +678,7 @@ function hideOptions() {
   $(".manifestFlower").addClass("hidden");
   $(".changeSky").addClass("hidden");
   $(".changeShelter").addClass("hidden");
+  $(".music").addClass("hidden");
 }
 // Initializes each litter object and pushes them into an array
 function checkForLitter(){
@@ -590,6 +708,9 @@ function saveGardenData(){
     saveData.hibiscus = garden.hibiscus
     saveData.bees = garden.bees
     saveData.litter = garden.litter
+    saveData.sky = garden.sky
+    saveData.shelter = garden.shelter
+    saveData.grassColor = colorPicker
     localStorage.setItem(`garden data`, JSON.stringify(saveData))
   })
 }

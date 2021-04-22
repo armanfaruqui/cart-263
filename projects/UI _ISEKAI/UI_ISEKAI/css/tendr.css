@@ -1,0 +1,24 @@
+#page {
+  display: flex;
+  height: 768px;
+  position: relative;
+  top: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.ui {
+  padding: 50px;
+  flex-grow: 1;
+  margin: 10px;
+  position: absolute;
+}
+
+#startButton {
+  padding-left: 50%;
+  mouseOver: pointer;
+}
+
+.hide {
+  display: none;
+}

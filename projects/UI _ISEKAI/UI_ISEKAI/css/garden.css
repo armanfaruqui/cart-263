@@ -95,3 +95,9 @@ body {
   background-color: indigo;
   cursor: pointer;
 }
+
+#songs {
+  position: absolute;
+  left: 225px;
+  bottom: 240px;
+}
