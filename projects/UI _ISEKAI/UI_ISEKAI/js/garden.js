@@ -62,6 +62,14 @@ let garbage = [];
 
 let karma = 1000; // Form of currency
 
+let saveData = {
+  orchids: [],
+  daisys: [],
+  hibiscus: [],
+  bees: [],
+  litter: []
+}
+
 function preload() {
   garden.grass = loadImage(`assets/images/garden/grass.png`);
 
@@ -106,6 +114,8 @@ function setup() {
   callBee();
 }
 
+saveGardenData();
+
 function draw() {
   background(0);
 
@@ -131,19 +141,19 @@ function mousePressed() {
 
 // Displays the relevant flower's and bees
 function initializeGarden(){
-  for (let i = 0; i < garden.numOrchids; i++) {
+  for (let i = 0; i < saveData.numOrchids; i++) {
     createOrchid();
   }
 
-  for (let i = 0; i < garden.numDaisys; i++) {
+  for (let i = 0; i < saveData.numDaisys; i++) {
     createDaisy();
   }
 
-  for (let i = 0; i < garden.numHibiscus; i++) {
+  for (let i = 0; i < saveData.numHibiscus; i++) {
     createHibiscus();
   }
 
-  for (let i = 0; i < garden.numBees; i++) {
+  for (let i = 0; i < saveData.numBees; i++) {
     createBee();
   }
 }
@@ -571,4 +581,15 @@ function displayLitter(){
     let litter = garden.litter[i];
     litter.fallingLitter();
   }
+}
+
+function saveGardenData(){
+  $("#save").on("click", function(){
+    saveData.orchids = garden.orchids
+    saveData.daisys = garden.daisys
+    saveData.hibiscus = garden.hibiscus
+    saveData.bees = garden.bees
+    saveData.litter = garden.litter
+    localStorage.setItem(`garden data`, JSON.stringify(saveData))
+  })
 }

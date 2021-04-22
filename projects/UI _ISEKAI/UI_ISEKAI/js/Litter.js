@@ -8,7 +8,7 @@ class Litter {
     this.y = y; // Starting y pos
     this.y2 = y2; // Landing y pos
     this.litter = img; // Holds the image variable
-    this.fallSpeed = 3; // Controls the speed at which the litter falls
+    this.fallSpeed = 4; // Controls the speed at which the litter falls
   }
   // Displays the litter and moves it from the sky to its landing position
   fallingLitter(){

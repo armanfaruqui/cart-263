@@ -77,3 +77,21 @@ body {
 #small {
   font-size: 12px;
 }
+
+#save{
+  position: absolute;
+  background-color: rgb(37, 0, 71);
+  color: gold;
+  font-size: 36px;
+  font-family: monospace;
+  padding: 5px;
+  border-style: solid;
+  border: gold, 2px;
+  right: 25px;
+  top: 54px;
+}
+
+#save:hover{
+  background-color: indigo;
+  cursor: pointer;
+}
