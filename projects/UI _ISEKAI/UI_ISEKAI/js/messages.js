@@ -2,9 +2,17 @@
 
 "use-strict"
 
+function setup(){
+  let ui = new UserInterface();
+}
+
 
 startAkiChat();
 startMusaChat();
+
+function draw(){
+  ui.focused()
+}
 
 //(Condensing these functions into one with a parameter returns an error)
 // Click event listener to begin chat with Aki

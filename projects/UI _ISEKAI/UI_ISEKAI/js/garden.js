@@ -25,7 +25,7 @@ let garden = {
   },
   // Image variables
   grass: undefined,
-  sky: undefined,
+  sky: `regular`,
   shelter: undefined,
   // Booleans used to check if a change has been applied
   displayShelter: false,
@@ -76,7 +76,6 @@ let saveData = {
   daisys: [],
   hibiscus: [],
   bees: [],
-  litter: [],
   sky: undefined,
   shelter: undefined,
   grassColor: undefined
@@ -124,7 +123,7 @@ function setup() {
 
   createCanvas(800, 600);
 
-  garden.sky = sky.regular; // Assigns the default sky background
+  garden.sky = "regular"; // Assigns the default sky background
   ui = new UserInterface();
   litter = new Litter(garbage)
 
@@ -135,7 +134,7 @@ function setup() {
 
 saveGardenData();
 playMusic();
-
+// =============================================================================
 function draw() {
   background(0);
 
@@ -153,7 +152,7 @@ function draw() {
   checkForLitter();
   displayLitter();
 }
-
+// =============================================================================
 // Called upon each mouse click
 function mousePressed() {
   litter.cleanUp();
@@ -162,16 +161,53 @@ function mousePressed() {
 // Displays the relevant flower's and bees
 function initializeGarden(){
   let data = JSON.parse(localStorage.getItem(`garden data`));
-  // if (data !== null){
-  //   saveData = data
-  //     garden.orchids = saveData.orchids
-  //     garden.daisys = saveData.daisys
-  //     garden.hibiscus = saveData.hibiscus
-  //     garden.bees = saveData.bees
-  //     garden.litter = saveData.litter
-  //     garden.sky = saveData.sky
-  //     garden.shelter = saveData.shelter
-  // }
+  console.log(data)
+  if (data !== null){
+    console.log(data);
+    for (let i = 0; i < data.bees.length; i++) {
+      let bee = new Bee();
+      setProperties(bee, data.bees[i]);
+      garden.bees.push(bee);
+    }
+
+    for (let i = 0; i < data.orchids.length; i++) {
+      let orchid = new Flower();
+      setProperties(orchid, data.orchids[i]);
+      garden.orchids.push(orchid);
+    }
+
+    for (let i = 0; i < data.daisys.length; i++) {
+      let daisys = new Flower();
+      setProperties(daisys, data.daisys[i]);
+      garden.daisys.push(daisys);
+    }
+
+    for (let i = 0; i < data.hibiscus.length; i++) {
+      let hibiscus = new Flower();
+      setProperties(hibiscus, data.hibiscus[i]);
+      garden.hibiscus.push(hibiscus);
+    }
+    garden.sky = data.sky
+    garden.shelter = data.shelter
+    garden.displayShelter = true
+    karma = data.karma
+  }
+  else {
+    initializeNewGarden();
+  }
+}
+
+// Called to set the properties of objects within the saved data object
+function setProperties(object, objectData) {
+  let keys = Object.keys(objectData);
+  for (let k = 0; k < keys.length; k++) {
+    let key = keys[k];
+    object[key] = objectData[key];
+  }
+
+}
+
+function initializeNewGarden() {
   for (let i = 0; i < garden.numOrchids; i++) {
     createOrchid();
   }
@@ -188,6 +224,7 @@ function initializeGarden(){
     createBee();
   }
 }
+
 // Displays the grass and allows the color of it to be tinted
 function displayGrass() {
   push();
@@ -336,18 +373,18 @@ function callBee() {
 }
 // Displays the background sky
 function displaySky() {
-  image(garden.sky, 0, 0);
+  image(sky[garden.sky], 0, 0);
 
   // Checks for clicks on all the radio button options for the sky
   $(`#usual`).on("click", function (event) {
-    garden.sky = sky.regular; // Assigns the selected sky to variable used to display the sky
+    garden.sky = `regular`; // Assigns the selected sky to variable used to display the sky
     $(".changeSky").addClass("hidden"); // Hides the options when one of them are selected
     $(".changeSky").removeClass("shown");
   });
   // Same function repeated for all the other sky options
   $(`#rose`).on("click", function (event) {
     if (karma >= 200) { // Checks if the user has enough karma to unlock them. (Karma is not subtracted)
-      garden.sky = sky.pink;
+      garden.sky = `pink`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -357,7 +394,7 @@ function displaySky() {
 
   $(`#grape`).on("click", function (event) {
     if (karma >= 400) {
-      garden.sky = sky.purple;
+      garden.sky = `purple`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -367,7 +404,7 @@ function displaySky() {
 
   $(`#scarlet`).on("click", function (event) {
     if (karma >= 1200) {
-      garden.sky = sky.red;
+      garden.sky = `red`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -377,7 +414,7 @@ function displaySky() {
 
   $(`#salmon`).on("click", function (event) {
     if (karma >= 1200) {
-      garden.sky = sky.orange;
+      garden.sky = `orange`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -387,7 +424,7 @@ function displaySky() {
 
   $(`#shine`).on("click", function (event) {
     if (karma >= 2000) {
-      garden.sky = sky.shine;
+      garden.sky = `shine`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -397,7 +434,7 @@ function displaySky() {
 
   $(`#beyond`).on("click", function (event) {
     if (karma >= 2000) {
-      garden.sky = sky.saturn;
+      garden.sky = `saturn`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -407,7 +444,7 @@ function displaySky() {
 
   $(`#mars`).on("click", function (event) {
     if (karma >= 2000) {
-      garden.sky = sky.void;
+      garden.sky = `void`;
       $(".changeSky").addClass("hidden");
       $(".changeSky").removeClass("shown");
     } else {
@@ -419,7 +456,7 @@ function displaySky() {
 function displayShelter() {
   $(`#shack`).on("click", function (event) { // Checks for clicks on the radio button option
     if (karma >= 200) { // Checks if the user has enough karma to unlock it (karma is not meant to be subtracted)
-      garden.shelter = shelter.shack; // Assigns the image variable to the one used to display the shelter
+      garden.shelter = `shack`; // Assigns the image variable to the one used to display the shelter
       $(".changeShelter").addClass("hidden"); // Hides the shelter options when one is selected
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true; // Assigns the variable which checks if there should be a shelter to true
@@ -430,7 +467,7 @@ function displayShelter() {
   // Same function repeated for the other options
   $(`#chapel`).on("click", function (event) {
     if (karma >= 300) {
-      garden.shelter = shelter.chapel;
+      garden.shelter = `chapel`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -440,7 +477,7 @@ function displayShelter() {
   });
   $(`#mudhut`).on("click", function (event) {
     if (karma >= 300) {
-      garden.shelter = shelter.mudhut;
+      garden.shelter = `mudhut`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -450,7 +487,7 @@ function displayShelter() {
   });
   $(`#mushroom`).on("click", function (event) {
     if (karma >= 700) {
-      garden.shelter = shelter.mushroom;
+      garden.shelter = `mushroom`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -460,7 +497,7 @@ function displayShelter() {
   });
   $(`#antartic`).on("click", function (event) {
     if (karma >= 700) {
-      garden.shelter = shelter.antartic;
+      garden.shelter = `antartic`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -470,7 +507,7 @@ function displayShelter() {
   });
   $(`#foliage`).on("click", function (event) {
     if (karma >= 1100) {
-      garden.shelter = shelter.foliage;
+      garden.shelter = `foliage`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -480,7 +517,7 @@ function displayShelter() {
   });
   $(`#namekian`).on("click", function (event) {
     if (karma >= 1100) {
-      garden.shelter = shelter.namekian;
+      garden.shelter = `namekian`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -490,7 +527,7 @@ function displayShelter() {
   });
   $(`#tupik`).on("click", function (event) {
     if (karma >= 1600) {
-      garden.shelter = shelter.tupik;
+      garden.shelter = `tupik`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -500,7 +537,7 @@ function displayShelter() {
   });
   $(`#alkebulan`).on("click", function (event) {
     if (karma >= 1600) {
-      garden.shelter = shelter.alkebulan;
+      garden.shelter = `alkebulan`;
       $(".changeShelter").addClass("hidden");
       $(".changeShelter").removeClass("shown");
       garden.displayShelter = true;
@@ -512,7 +549,7 @@ function displayShelter() {
   if (garden.displayShelter === true) {
     push();
     imageMode(CENTER);
-    image(garden.shelter, 600, 140);
+    image(shelter[garden.shelter], 600, 140);
     pop();
   }
 }
@@ -703,14 +740,14 @@ function displayLitter(){
 
 function saveGardenData(){
   $("#save").on("click", function(){
+    saveData.karma = karma
+    console.log(karma)
     saveData.orchids = garden.orchids
     saveData.daisys = garden.daisys
     saveData.hibiscus = garden.hibiscus
     saveData.bees = garden.bees
-    saveData.litter = garden.litter
     saveData.sky = garden.sky
     saveData.shelter = garden.shelter
-    saveData.grassColor = colorPicker
     localStorage.setItem(`garden data`, JSON.stringify(saveData))
   })
 }

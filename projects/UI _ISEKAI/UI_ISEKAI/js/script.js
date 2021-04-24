@@ -51,4 +51,5 @@ function draw(){
   rpg.interactWithSign();
   rpg.runningAwayGarden("garden", iconPos.x3, iconPos.y1);
   ui.focused()
+  ui.music()
 }

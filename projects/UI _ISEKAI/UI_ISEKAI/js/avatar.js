@@ -18,18 +18,23 @@ let blonde;
 let brunette;
 let bald;
 
-// Variables which hold the
+let haveBrows; // Checks if avi should have eyebrows
+let brunetteOrBlonde; // Checks if avi should have black/brown or blonde hair
+let haveGlasses // Checks if avi should have glasses
+
+// Variables which hold the relevant images
 let headImage;
 let hairImage;
 let browImage;
 let eyesImage;
 let noseImage;
 let mouthImage;
+let glasses
 
 class Avatar {
   constructor(){}
 
-  createRandomAvatar(x, y) {
+  createRandomAvatar() {
     // ASSIGNING PHASE
     let whichHead = random(); // Random number between 1 and 0 to decide which array the head is pulled from
     if (whichHead < 0.85) {
@@ -41,7 +46,7 @@ class Avatar {
       headImage = random(headWithHair);
       bald = true; // Avi is bald
     }
-    let brunetteOrBlonde = random(); // Random number between 1 and 0 to decide which array the hair is pulled from
+    brunetteOrBlonde = random(); // Random number between 1 and 0 to decide which array the hair is pulled from
     if (brunetteOrBlonde < 0.39 && addHair === true) {
       hairImage = random(hairBlack);
       brunette = true; // Avi's is a brunette
@@ -60,7 +65,7 @@ class Avatar {
       blonde = true; // Avi is blonde
       brunette = false;
     }
-    let haveBrows = random(); // Random number between 1 and 0 to decide if avatar should have eyebrows
+    haveBrows = random(); // Random number between 1 and 0 to decide if avatar should have eyebrows
     if (haveBrows < 0.93) {
       if (blonde === true) {
         browImage = random(browBlonde);
@@ -69,8 +74,9 @@ class Avatar {
       }
     }
     eyesImage = random(eyes);
-
-    // DISPLAYING PHASE
+  }
+  // Responsible for the displaying face of the avatar
+  displayAvatar(x, y){
     imageMode(CENTER);
     image(headImage, x, y) // Displays head
     if (haveBrows < 0.93){
@@ -82,5 +88,9 @@ class Avatar {
     }
     image(noseImage, x, y + 20) // Displays nose
     image(mouthImage, x, y + 60) // Displays mouth
+    haveGlasses = random();
+    if (haveGlasses < 0.04){
+      image(glasses, x, y)
+    }
   }
 }

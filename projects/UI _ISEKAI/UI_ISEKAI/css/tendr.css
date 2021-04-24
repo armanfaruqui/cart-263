@@ -7,16 +7,20 @@
   align-items: center;
 }
 
-.ui {
-  padding: 50px;
-  flex-grow: 1;
-  margin: 10px;
+#startButton {
   position: absolute;
+  top: 490px;
 }
 
-#startButton {
-  padding-left: 50%;
-  mouseOver: pointer;
+#startButton:hover{
+  cursor: pointer;
+  filter:drop-shadow(8px 8px 10px gray);
+}
+
+#logo {
+  position: absolute;
+  left: 20px;
+  top: 20px;
 }
 
 .hide {
