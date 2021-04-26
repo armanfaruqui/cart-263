@@ -1,0 +1,93 @@
+#scroll {
+  position: absolute;
+  transform: scale(0.8);
+  align-items: center;
+  justify-content: center;
+}
+
+#page {
+  display: flex;
+  height: 768px;
+  position: relative;
+  top: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.topButtons, .bottomButtons{
+  z-index: 3;
+}
+
+#home, #people, #schedule, #files, #search{
+  position: relative;
+  padding: 10px;
+  top: -240px;
+  background-color: blanchedalmond;
+  border: 1px saddlebrown solid;
+  font-family: 'New Tegomin', serif;
+  font-size: 20px;
+}
+
+
+#delete, #reply, #forward {
+  position: absolute;
+  padding: 10px;
+  top: 605px;
+  background-color: blanchedalmond;
+  border: 1px saddlebrown solid;
+  font-family: 'New Tegomin', serif;
+  font-size: 20px;
+}
+
+#delete:hover, #reply:hover, #forward:hover, #home:hover, #people:hover, #schedule:hover, #files:hover, #search:hover {
+  filter:drop-shadow(1px 8px 8px saddlebrown);
+  cursor: pointer;
+}
+
+#delete {
+  left: 550px;
+}
+
+#reply {
+  left: 640px;
+}
+
+#forward {
+  left: 721px;
+}
+
+.hidden{
+  display: none;
+}
+
+.shown {
+  opacity: 1;
+}
+
+#reminder {
+  position: absolute;
+  left: 180px;
+  top: 300px;
+}
+
+#next {
+  position: absolute;
+  right: 210px;
+  top: 348px;
+}
+
+#reminder:hover, #next:hover{
+  cursor: pointer;
+  filter:drop-shadow(1px 8px 8px darkgrey);
+}
+
+.emails {
+  justify-content: center;
+  align-items: center;
+}
+
+#planeTicket, #tax, #ipcc, #canyon, #hospital {
+  position: absolute;
+  transform: scale(0.5);
+  top: -15px;
+}

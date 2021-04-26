@@ -81,7 +81,7 @@ function preload() {
     headWithHair.push(loadImage(`assets/images/head/head4_${i}_2.png`));
     headWithHair.push(loadImage(`assets/images/head/head4_${i}_3.png`)); // Heads with hair
   }
-  noseImage = loadImage(`assets/images/head/nose.png`); 
+  noseImage = loadImage(`assets/images/head/nose.png`);
   mouthImage = loadImage(`assets/images/head/mouth.png`);
   glasses = loadImage(`assets/images/head/glasses.png`)
 
@@ -110,6 +110,7 @@ function draw() {
   background(255);
 
   ui.focused();
+  ui.music();
 
   changingAvatars();
   displayCard();

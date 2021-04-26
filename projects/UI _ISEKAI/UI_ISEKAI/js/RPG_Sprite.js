@@ -66,12 +66,12 @@ class RPG_Sprite {
     let d5 = dist(this.sprite.position.x, this.sprite.position.y, iconPos.x5, iconPos.y2)
 
     if (d1 < iconPos.dist){
-      $(`#email`).addClass("iconshovered");
-      emailHovered = true
+      $(`#li`).addClass("iconshovered");
+      liHovered = true
     }
     else{
-      $(`#email`).removeClass("iconshovered");
-      emailHovered = false
+      $(`#li`).removeClass("iconshovered");
+      liHovered = false
     }
     if (d2 < iconPos.dist){
       $(`#messages`).addClass("iconshovered");
@@ -108,8 +108,8 @@ class RPG_Sprite {
   }
 
   interactWithIcon(){
-    if (emailHovered === true && keyCode === 16){
-      $(`#email`).trigger("click")
+    if (liHovered === true && keyCode === 16){
+      $(`#li`).trigger("click")
     }
     if (foodHovered === true && keyCode === 16){
       $(`#food`).trigger("click")

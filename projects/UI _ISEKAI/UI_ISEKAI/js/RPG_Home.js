@@ -22,7 +22,7 @@ let shifted = {
 }
 
 // Booleans used to check if the user is hovering the application icons with their mouse or sprite
-let emailHovered = false;
+let liHovered = false;
 let foodHovered = false;
 let gardenHovered = false;
 let socialHovered = false;
