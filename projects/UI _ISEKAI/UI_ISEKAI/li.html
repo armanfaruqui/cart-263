@@ -15,11 +15,9 @@
 
     <!-- Library script(s) go here -->
     <script src="js/libraries/p5.min.js"></script>
-    <script src="js/libraries/p5.play.js" type="text/javascript"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
   </head>
 
   <body>
@@ -34,8 +32,8 @@
   <div id="canvas">
   <div id="page">
     <nav>
-      <img id="reminder" src="assets/images/li/reminder.png">
-      <img id="next" src="assets/images/li/arrow.png">
+      <img id="reminder" class="nav" src="assets/images/li/reminder.png">
+      <img id="next" class="nav" src="assets/images/li/arrow.png">
     </nav>
     <img id="scroll" src="assets/images/li/scroll.png">
     <div class ="topButtons">
@@ -43,13 +41,31 @@
       <button id="people"> People </button>
       <button id="schedule"> Schedule </button>
       <button id="files"> Files </button>
-      <button id="home"> Search </button>
+      <button id="searchButton"> Search </button>
     </div>
+      <img id="aki" class="contacts" src ="assets/images/li/people/aki.png">
+      <img id="ipcc2" class="contacts" src ="assets/images/li/people/ipcc.png">
+      <img id="musa" class="contacts" src ="assets/images/li/people/musa.png">
+      <img id="narni" class="contacts" src ="assets/images/li/people/narni.png">
+      <img id="peopleTitle" class="contacts" src ="assets/images/li/people/people.png">
+      <img id="airline" class="contacts" src ="assets/images/li/people/airline.png">
+      <img id="scheduleImg" src ="assets/images/li/Schedule.png">
+      <img id="complete" class="emails" src ="assets/images/li/complete.png">
       <img id="hospital" class="emails" src ="assets/images/li/hospital.png">
       <img id="tax" class="emails" src ="assets/images/li/tax.png">
       <img id="ipcc" class="emails" src ="assets/images/li/ipcc.png">
       <img id="planeTicket" class="emails" src ="assets/images/li/planeTicket.png">
       <img id="canyon" class="emails" src ="assets/images/li/canyon.png">
+      <button id="poll"> Poll </button>
+      <img id="filesHeader" class="files" src ="assets/images/li/filesHeader.png">
+      <a href="https://www.strawpoll.me/44308387" target="_blank">
+        <p id="link" class="files"> Link to vote for article 510 </p>
+      </a>
+      <input id="search" type="text" placeholder="Search Li..">
+
+      <label id="reminderHeader"class="reminder" for="time">Choose a time for a reminder:</label>
+      <input class="reminder" type="time" id="time" name="time"  min="01:00" max="24:00" required>
+
     <div class ="bottomButtons">
       <button id="delete"> Delete </button>
       <button id="reply"> Reply </button>

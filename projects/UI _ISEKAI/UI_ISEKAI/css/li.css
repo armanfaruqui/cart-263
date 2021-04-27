@@ -1,3 +1,7 @@
+@font-face {
+  src: url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+}
+
 #scroll {
   position: absolute;
   transform: scale(0.8);
@@ -18,7 +22,7 @@
   z-index: 3;
 }
 
-#home, #people, #schedule, #files, #search{
+#home, #people, #schedule, #files, #searchButton{
   position: relative;
   padding: 10px;
   top: -240px;
@@ -39,7 +43,7 @@
   font-size: 20px;
 }
 
-#delete:hover, #reply:hover, #forward:hover, #home:hover, #people:hover, #schedule:hover, #files:hover, #search:hover {
+#delete:hover, #reply:hover, #forward:hover, #home:hover, #people:hover, #schedule:hover, #files:hover, #searchButton:hover {
   filter:drop-shadow(1px 8px 8px saddlebrown);
   cursor: pointer;
 }
@@ -86,8 +90,90 @@
   align-items: center;
 }
 
-#planeTicket, #tax, #ipcc, #canyon, #hospital {
+ #complete, #planeTicket, #tax, #ipcc, #canyon, #hospital, #scheduleImg{
   position: absolute;
   transform: scale(0.5);
   top: -15px;
+}
+
+#airline, #aki, #ipcc2, #musa, #narni, #peopleTitle {
+  position: absolute;
+  transform: scale(0.5);
+}
+
+#airline:hover, #aki:hover, #ipcc2:hover, #musa:hover, #narni:hover, #peopleTitle:hover {
+  filter:drop-shadow(1px 8px 8px saddlebrown);
+}
+
+#peopleTitle{
+  top: 165px;
+}
+
+#aki{
+  top: 190px;
+}
+
+#airline {
+  top: 470px;
+}
+
+#ipcc2 {
+  top: 330px;
+}
+
+#musa {
+  top: 257px;
+}
+
+#narni {
+  top: 400px;
+}
+
+#poll {
+  position: absolute;
+  top: 570px;
+  left: 495px;
+  width: 40px;
+  background-color: blanchedalmond;
+}
+
+#filesHeader {
+  position: absolute;
+  transform: scale(0.5);
+  top: 170px;
+}
+
+#link {
+  position: absolute;
+  top: 250px;
+  left: 480px;
+  font-size: 20px;
+  font-family: 'New Tegomin', serif;
+}
+
+#search {
+  position: absolute;
+  top: 200px;
+  left: 480px;
+  padding: 10px;
+  background-color: blanchedalmond;
+  border: 1px saddlebrown solid;
+  font-family: 'New Tegomin', serif;
+}
+
+.reminder{
+  position: absolute;
+  z-index: 5;
+  font-family: 'New Tegomin', serif;
+  background-color: rgba(209, 196, 161, 0.5);
+}
+
+#reminderHeader{
+  top: 240px;
+  left: 170px;
+}
+
+#time {
+  top: 265px;
+  left: 240px;
 }
