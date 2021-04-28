@@ -5,7 +5,10 @@ let dragon
 let cherryblossom1
 let cherryblossom2
 
+let song; // Variable for the playable song
+
 function preload(){
+  song = loadSound(`assets/sounds/song.mp3`)
   dragon = loadImage(`assets/images/Li/inkart1.png`)
   cherryblossom1 = loadImage(`assets/images/Li/inkart2.png`)
   cherryblossom2 = loadImage(`assets/images/Li/inkart3.png`)
@@ -17,7 +20,9 @@ function setup(){
   canvas.style(`z-index`, `-1`); // P5 canvas used as the background
   canvas.parent("#canvas"); // Assigns the canvas to the div #canvas
 
-  ui = new UserInterface();
+  ui = new UserInterface(song);
+  ui.initialize();
+
   fill(255, 220, 223);
   noStroke();
 

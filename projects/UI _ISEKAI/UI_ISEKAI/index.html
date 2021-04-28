@@ -17,10 +17,10 @@
     <script src="js/libraries/p5.sound.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
   </head>
 
   <body>
+    <!-- Global UI Elements -->
     <img id="toolbar" src ="assets/images/global/toolbar.png">
     <img class="focused" src ="assets/images/global/focus.png">
     <img class="music" src ="assets/images/global/music.png">
@@ -30,6 +30,7 @@
     <div id="canvas">
     <div id="page">
     <div id="apps">
+      <!-- Various appication icons which appear as houses -->
       <a href="li.html">
         <img id="li" class ="icons" src="assets/images/RPG Background/topLeft.png" alt="li">
       </a>
@@ -45,6 +46,21 @@
       <a href="messages.html">
         <img id="messages" class ="icons" src="assets/images/RPG Background/middle.png" alt="messages">
       </a>
+      <div id="dialogSign" class="thought" title="Thought of the Day">
+        <p class="thought">
+          “There is nothing virtuous or noble about being "tolerant" of people whose attitudes and behaviors you approve of. If you don't defend the freedom of even those individuals whose attitudes and behaviors you find disgusting, narrow-minded and offensive, then you are not tolerant. To "tolerate" doesn't mean you like it or approve of it; it means only that you ALLOW it to EXIST--i.e., you refrain from violently interfering. The people who look to "government" to FORCE people to be "nice" are not tolerant.”
+          ― Larken Rose
+        </p>
+      </div>
+      <div id="introDialog"  title="Peace and greetings new user! Welcome to Earth-123">
+        <p id="introText">
+           Looks like you came from Earth-454. Isn't that the one where Europeans after their industrial revolution took over the planet and systematically forced their way of life upon the rest the world? Atleast you guys have waffle fries! <br><br>
+           First thing you should do here is resize your window until your windowWidth is 1360px and windowHeight is 802px, or atleast close to those values. You can use your browsers console to get the right values. Apologies for the inconvenience. Our universe's technology is not as professional and corporate as your's.
+           <br> <br>
+           Anyways, enjoy the experience! You can control your blue menu navigator budy with WASD and left shift. See that green and purple icon on the bottom right of your screen? That button toggles 'focused mode'. Since your's is currently on, you're currently not able to receive most notifications. Try turning it off and see what happens! So in the words of the great Jonathan Lyndale Kirk....
+        </p>
+      </div>
+      <p id="notification" class="hidden"> You have unread messages from Aki and Musa --> </p>
     </div>
   </div>
   </div>

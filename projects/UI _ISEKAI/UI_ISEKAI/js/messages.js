@@ -2,16 +2,23 @@
 
 "use-strict"
 
-function setup(){
-  let ui = new UserInterface();
+let song; // Variable for the playable song
+
+function preload(){
+  song = loadSound(`assets/sounds/song.mp3`)
 }
 
+function setup(){
+  let ui = new UserInterface(song);
+  ui.initialize();
+}
 
 startAkiChat();
 startMusaChat();
 
 function draw(){
-  ui.focused()
+  ui.focused();
+  ui.music();
 }
 
 //(Condensing these functions into one with a parameter returns an error)

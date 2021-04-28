@@ -106,10 +106,10 @@ class RPG_Sprite {
       socialHovered = false
     }
   }
-
+  // Pressing shift when hovering the menu icons with a sprite allows you to access them
   interactWithIcon(){
-    if (liHovered === true && keyCode === 16){
-      $(`#li`).trigger("click")
+    if (liHovered === true && keyCode === 16){ // LEFT SHIFT
+      $(`#li`).trigger("click") // Runs the function within the click event listerner for the selected element
     }
     if (foodHovered === true && keyCode === 16){
       $(`#food`).trigger("click")
@@ -127,7 +127,10 @@ class RPG_Sprite {
 
   interactWithSign() {
     if (sign.sprite.overlap(this.sprite) && keyCode === SHIFT) {
-      console.log("this works")
+      $("#dialogSign").dialog("open")
+    }
+    else {
+        $("#dialogSign").dialog("close")
     }
   }
 }

@@ -61,3 +61,14 @@ padding: 50px;
 .shiftRight {
   transform: translateX(30px);
 }
+
+#notification{
+  font-size: 24px;
+  color: black;
+  font-family: sans-serif;
+  padding: 10px;
+  background-color: lightpink;
+  position: absolute;
+  left: 0px;
+  top: 160px;
+}

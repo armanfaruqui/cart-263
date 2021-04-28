@@ -1,6 +1,7 @@
 let rpg; // Object variable
 let rpgBackground // Image var for the background in the canvas
 let sign // Var for the sprite of the sign
+let introDialogShown = false // Boolean which checks if intro dialog box has been displayed to the user
 
 let iconPos = { // Position variables for the application icons. 5 x values for the 5 columns and 2 y values for the 2 rows
   x1: 250,
@@ -31,9 +32,9 @@ let messagesHovered = false;
 class RPG_Home extends RPG_Sprite {
   constructor(rpgBackground, sign) {
     super(user);
-    sign.sprite = createSprite(840, 250)
+    sign.sprite = createSprite(840, 250) // Creates sprite of sign
     sign.sprite.addAnimation("sign", sign)
-    sign.sprite.setCollider("rectangle", 0, 0, 20, 10)
+    sign.sprite.setCollider("rectangle", 0, 0, 20, 10) // Makes the sign collideable
   }
   display(){
     push()
@@ -96,8 +97,40 @@ class RPG_Home extends RPG_Sprite {
       shifted.down = false
       shifted.left = false
       shifted.right = false
-
     }
   }
+  // Initializes both the dialog boxes
+  initializeDialogueBoxes(){
+    // Dialog box from interacting with the sign
+    $( "#dialogSign" ).dialog({
+      autoOpen: false,
+      minWidth: 600
+    });
+    // Intro dialog box
+    if (introDialogShown === false){ // Shows if the user has not seen it
+    $( "#introDialog" ).dialog({
+      minWidth: 900,
+      modal: true,
+      buttons: {
+        "Lesss gooooo": function(){
+          $(this).dialog("close");
+          introDialogShown = true
+          localStorage.setItem(`intro data`, JSON.stringify(introDialogShown)) // Stores the fact that introDialogShown is true
+        }
+      }
+    });
+    }
+  }
+  // Called in setup to check whether the user has already seen the intro message. If they have, it prevents it from being displayed
+  checkIfIntroDialogShouldDisplay(){
+       introDialogShown = JSON.parse(localStorage.getItem(`intro data`));
+       if (introDialogShown === null){
+         introDialogShown = false
+       }
+       if (introDialogShown === true){
+         $("#introText").addClass("hidden")
+       }
+  }
+
 
 }

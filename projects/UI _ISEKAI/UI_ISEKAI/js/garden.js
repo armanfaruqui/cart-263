@@ -68,7 +68,7 @@ let music = {
 // Object which carries the various litter images
 let garbage = [];
 
-let karma = 1000; // Form of currency
+let karma = 3000; // Form of currency
 
 let saveData = {
   karma: undefined,
@@ -83,7 +83,6 @@ let saveData = {
 
 function preload() {
   garden.grass = loadImage(`assets/images/garden/grass.png`);
-
   sky.regular = loadImage(`assets/images/garden/bgReg.png`);
   sky.pink = loadImage(`assets/images/garden/bgPink.png`);
   sky.red = loadImage(`assets/images/garden/bgRed.png`);
@@ -161,9 +160,7 @@ function mousePressed() {
 // Displays the relevant flower's and bees
 function initializeGarden(){
   let data = JSON.parse(localStorage.getItem(`garden data`));
-  console.log(data)
   if (data !== null){
-    console.log(data);
     for (let i = 0; i < data.bees.length; i++) {
       let bee = new Bee();
       setProperties(bee, data.bees[i]);

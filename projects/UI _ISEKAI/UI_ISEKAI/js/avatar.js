@@ -74,6 +74,7 @@ class Avatar {
       }
     }
     eyesImage = random(eyes);
+    haveGlasses = random();
   }
   // Responsible for the displaying face of the avatar
   displayAvatar(x, y){
@@ -88,7 +89,6 @@ class Avatar {
     }
     image(noseImage, x, y + 20) // Displays nose
     image(mouthImage, x, y + 60) // Displays mouth
-    haveGlasses = random();
     if (haveGlasses < 0.04){
       image(glasses, x, y)
     }

@@ -3,8 +3,11 @@
 "use strict";
 
 let canvas; // Variable used to store the createCanvas command
+let song; // Variable for the playable song
 
 function preload(){
+  song = loadSound(`assets/sounds/song.mp3`)
+
   rpgBackground = loadImage("assets/images/RPG Background/background.gif")
   sign = loadImage("assets/images/RPG Background/sign.png")
   user.stand = loadAnimation("assets/images/rpgSprite/main-walk001.png");
@@ -38,7 +41,11 @@ function setup(){
   canvas.parent("#canvas"); // Assigns the canvas to the div #canvas
 
   rpg = new RPG_Home(rpgBackground, sign);
-  ui = new UserInterface();
+  ui = new UserInterface(song);
+  ui.initialize();
+
+  rpg.checkIfIntroDialogShouldDisplay()
+  rpg.initializeDialogueBoxes();
 }
 
 function draw(){

@@ -7,6 +7,7 @@ let state = "intro"; // State variable to facilatate an intro
 let names = undefined; // Variable to hold the JSON file for names
 let quests = undefined; // Variable to hold the JSON file for quests
 let distances = []; // Array which will carry a list of possible distances
+let song; // Variable for the playable song
 // Object which carries the variables for the profile cards
 let card = {
   name: undefined,
@@ -33,6 +34,7 @@ let card = {
 
 // For loops used to preload multiple images since they have similair file names
 function preload() {
+  song = loadSound(`assets/sounds/song.mp3`)
   for (let i = 0; i < 15; i++) {
     // Black and brown hairstyles
     hairBlack.push(loadImage(`assets/images/hair/hair${i}_1.png`));
@@ -99,9 +101,9 @@ function setup() {
   canvas.style(`z-index`, `-1`); // P5 canvas used as the background
   canvas.parent("#canvas"); // Assigns the canvas to the div #canvas
 
-  ui = new UserInterface();
+  ui = new UserInterface(song);
   avi = new Avatar();
-
+  ui.initialize();
   startButton();
   createDistances();
 }
@@ -201,7 +203,7 @@ function swipe() {
       card.swipeAmount = map(mouseX, 0, width, -300, 300);
       push();
       imageMode(CENTER);
-      card.yesOpacity = map(card.swipeAmount, 0, card.swipeLeftAmount, 0, 255); // Maps the opacity of the yes image to the amount that has been swiped. Its opacity is full when it has been swiped right enough
+      card.yesOpacity = map(card.swipeAmount, 0, card.swipeRightAmount, 0, 255); // Maps the opacity of the yes image to the amount that has been swiped. Its opacity is full when it has been swiped right enough
       tint(255, card.yesOpacity); // Changes the yes image's opacity
       image(card.yes, width / 2 + card.swipeAmount, height / 2); // Displays the yes image
       card.noOpacity = map(card.swipeAmount, card.swipeLeftAmount, 0, 255, 0); // Maps the opacity of the yes image to the amount that has been swiped. Its opacity is full when it has been swiped left enough
