@@ -20,7 +20,7 @@ let bald;
 
 let haveBrows; // Checks if avi should have eyebrows
 let brunetteOrBlonde; // Checks if avi should have black/brown or blonde hair
-let haveGlasses // Checks if avi should have glasses
+let haveGlasses; // Checks if avi should have glasses
 
 // Variables which hold the relevant images
 let headImage;
@@ -29,10 +29,10 @@ let browImage;
 let eyesImage;
 let noseImage;
 let mouthImage;
-let glasses
+let glasses;
 
 class Avatar {
-  constructor(){}
+  constructor() {}
 
   createRandomAvatar() {
     // ASSIGNING PHASE
@@ -51,8 +51,11 @@ class Avatar {
       hairImage = random(hairBlack);
       brunette = true; // Avi's is a brunette
       blonde = false;
-    }
-    else if (brunetteOrBlonde > 0.39 && brunetteOrBlonde < 0.78 && addHair === true) {
+    } else if (
+      brunetteOrBlonde > 0.39 &&
+      brunetteOrBlonde < 0.78 &&
+      addHair === true
+    ) {
       hairImage = random(hairBrown);
       brunette = true; // Avi's is a brunette
       blonde = false;
@@ -77,20 +80,20 @@ class Avatar {
     haveGlasses = random();
   }
   // Responsible for the displaying face of the avatar
-  displayAvatar(x, y){
+  displayAvatar(x, y) {
     imageMode(CENTER);
-    image(headImage, x, y) // Displays head
-    if (haveBrows < 0.93){
-      image(browImage, x, y - 40) // Displays brows
+    image(headImage, x, y); // Displays head
+    if (haveBrows < 0.93) {
+      image(browImage, x, y - 40); // Displays brows
     }
-    image(eyesImage, x, y - 15) // Displays eyes
-    if (brunetteOrBlonde < 0.95){
+    image(eyesImage, x, y - 15); // Displays eyes
+    if (brunetteOrBlonde < 0.95) {
       image(hairImage, x, y + 100); // Displays hair
     }
-    image(noseImage, x, y + 20) // Displays nose
-    image(mouthImage, x, y + 60) // Displays mouth
-    if (haveGlasses < 0.04){
-      image(glasses, x, y)
+    image(noseImage, x, y + 20); // Displays nose
+    image(mouthImage, x, y + 60); // Displays mouth
+    if (haveGlasses < 0.04) {
+      image(glasses, x, y);
     }
   }
 }

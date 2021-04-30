@@ -1,127 +1,135 @@
 <!DOCTYPE html>
 <html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden</title>
 
-  <title>Garden</title>
+    <!-- CSS stylesheet(s) -->
+    <link rel="stylesheet" type="text/css" href="css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/garden.css" />
+    <link rel="stylesheet" href="css/jqueryTheme.css" />
 
-  <!-- CSS stylesheet(s) -->
-  <link rel="stylesheet" type="text/css" href="css/global.css" />
-  <link rel="stylesheet" type="text/css" href="css/garden.css" />
-  <link rel="stylesheet" href="css/jqueryTheme.css" />
+    <!-- Library script(s) -->
+    <script src="js/libraries/p5.min.js"></script>
+    <script src="js/libraries/p5.sound.min.js"></script>
+    <script src="js/libraries/p5.play.js" type="text/javascript"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Library script(s) -->
-  <script src="js/libraries/p5.min.js"></script>
-  <script src="js/libraries/p5.sound.min.js"></script>
-  <script src="js/libraries/p5.play.js" type="text/javascript"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <body>
+      <!-- Global UI Elements -->
+      <img id="toolbar" src="assets/images/global/toolbarGarden.png" />
+      <img class="focused" src="assets/images/global/focus.png" />
+      <a href="index.html">
+        <img class="home2" src="assets/images/global/home2.png" />
+        <img class="home" src="assets/images/global/home.png" />
+      </a>
+      <!-- Content within the webpage -->
+      <div class="buttons">
+        <img src="assets/images/garden/addFlower.png" id="addFlower" />
+        <br />
+        <img src="assets/images/garden/addBee.png" id="addBee" />
+        <br />
+        <img src="assets/images/garden/changeSky.png" id="changeSky" />
+        <br />
+        <img src="assets/images/garden/addShelter.png" id="changeShelter" />
+        <br />
+        <img src="assets/images/garden/addMusic.png" id="addMusic" />
+        <br />
+        <img src="assets/images/garden/changeGrass.png" id="changeGrass" />
+        <br />
+      </div>
+      <div class="manifestFlower">
+        <fieldset id="selectFlower" type="checkboxradio">
+          <label for="orchid">Orchid <span id="small">(-10)</span></label>
+          <input type="radio" name="orchid" id="orchid" />
+          <label for="daisy">Daisy <span id="small">(-10)</span></label>
+          <input type="radio" name="daisy" id="daisy" />
+          <label for="hibiscus">Hibiscus <span id="small">(-10)</span></label>
+          <input type="radio" name="hibiscus" id="hibiscus" />
+        </fieldset>
+      </div>
+      <div class="changeSky">
+        <fieldset id="changeSky" type="checkboxradio">
+          <label for="usual">Usual</label>
+          <input type="radio" name="usual" id="usual" />
+          <label for="rose">Rosé <span id="small">(400)</span></label>
+          <input type="radio" name="rose" id="rose" />
+          <label for="grape">Grape <span id="small">(400)</span></label>
+          <input type="radio" name="grape" id="grape" />
+          <label for="scarlet">Scarlet <span id="small">(1200)</span></label>
+          <input type="radio" name="scarlet" id="scarlet" />
+          <br />
+          <label for="salmon">Salmon <span id="small">(1200)</span></label>
+          <input type="radio" name="salmon" id="salmon" />
+          <label for="shine">Shine <span id="small">(2000)</span></label>
+          <input type="radio" name="shine" id="shine" />
+          <label for="beyond">Beyond <span id="small">(2000)</span></label>
+          <input type="radio" name="beyond" id="beyond" />
+          <label for="mars">Mars<span id="small"> (2000)</span></label>
+          <input type="radio" name="mars" id="mars" />
+        </fieldset>
+      </div>
+      <div class="changeShelter">
+        <fieldset id="changeShelter" type="checkboxradio">
+          <label for="shack">Shack <span id="small">(200)</span></label>
+          <input type="radio" name="shack" id="shack" />
+          <label for="chapel">Chapel <span id="small">(300)</span></label>
+          <input type="radio" name="chapel" id="chapel" />
+          <label for="mudhut">Mudhut <span id="small">(300)</span></label>
+          <input type="radio" name="mudhut" id="mudhut" />
+          <label for="mushroom">Mushroom <span id="small">(700)</span></label>
+          <input type="radio" name="mushroom" id="mushroom" />
+          <label for="antartic">Antartic <span id="small">(700)</span></label>
+          <input type="radio" name="antartic" id="antartic" />
+          <br />
+          <label for="foliage">Foliage <span id="small">(1100)</span></label>
+          <input type="radio" name="foliage" id="foliage" />
+          <label for="namekian">Namekian <span id="small">(1100)</span></label>
+          <input type="radio" name="namekian" id="namekian" />
+          <label for="tupik">Tupik<span id="small"> (1600)</span></label>
+          <input type="radio" name="tupik" id="tupik" />
+          <label for="alkebulan"
+            >Alkebulan<span id="small"> (1600)</span></label
+          >
+          <input type="radio" name="alkebulan" id="alkebulan" />
+        </fieldset>
+      </div>
+      <div class="musicGarden">
+        <fieldset id="songs" type="checkboxradio">
+          <label for="bambam">Bambam <span id="small">(600)</span></label>
+          <input type="radio" name="bambam" id="bambam" />
+          <label for="wangshu">Wangshu <span id="small">(600)</span></label>
+          <input type="radio" name="wangshu" id="wangshu" />
+          <label for="avery">Avery <span id="small">(600)</span></label>
+          <input type="radio" name="avery" id="avery" />
+          <label for="subha">Subha <span id="small">(600)</span></label>
+          <input type="radio" name="subha" id="subha" />
+          <label for="babushka">Babushka <span id="small">(600)</span></label>
+          <input type="radio" name="babushka" id="babushka" />
+          <label for="peru">Peru <span id="small">(600)</span></label>
+          <input type="radio" name="peru" id="peru" />
+        </fieldset>
+      </div>
+      <p id="karma"></p>
+      <p id="save">Save Garden</p>
+    </body>
 
-  <body>
-    <!-- Global UI Elements -->
-    <img id="toolbar" src ="assets/images/global/toolbarGarden.png">
-    <img class="focused" src ="assets/images/global/focus.png">
-    <a href="index.html">
-      <img class="home2" src ="assets/images/global/home2.png">
-      <img class="home" src ="assets/images/global/home.png">
-    </a>
-    <!-- Content within the webpage -->
-    <div class="buttons">
-      <img src="assets/images/garden/addFlower.png" id="addFlower">
-      <br>
-      <img src="assets/images/garden/addBee.png" id="addBee">
-      <br>
-      <img src="assets/images/garden/changeSky.png" id="changeSky">
-      <br>
-      <img src="assets/images/garden/addShelter.png" id="changeShelter">
-      <br>
-      <img src="assets/images/garden/addMusic.png" id="addMusic">
-      <br>
-      <img src="assets/images/garden/changeGrass.png" id="changeGrass">
-      <br>
-    </div>
-    <div class ="manifestFlower">
-      <fieldset id="selectFlower" type="checkboxradio">
-       <label for="orchid">Orchid <span id="small">(-10)</span></label>
-       <input type="radio" name="orchid" id="orchid">
-       <label for="daisy">Daisy <span id="small">(-10)</span></label>
-       <input type="radio" name="daisy" id="daisy">
-       <label for="hibiscus">Hibiscus <span id="small">(-10)</span></label>
-       <input type="radio" name="hibiscus" id="hibiscus">
-     </fieldset>
-    </div>
-    <div class ="changeSky">
-      <fieldset id="changeSky" type="checkboxradio">
-       <label for="usual">Usual</label>
-       <input type="radio" name="usual" id="usual">
-       <label for="rose">Rosé <span id="small">(400)</span></label>
-       <input type="radio" name="rose" id="rose">
-       <label for="grape">Grape <span id="small">(400)</span></label>
-       <input type="radio" name="grape" id="grape">
-       <label for="scarlet">Scarlet <span id="small">(1200)</span></label>
-       <input type="radio" name="scarlet" id="scarlet">
-       <br>
-       <label for="salmon">Salmon <span id="small">(1200)</span></label>
-       <input type="radio" name="salmon" id="salmon">
-       <label for="shine">Shine <span id="small">(2000)</span></label>
-       <input type="radio" name="shine" id="shine">
-       <label for="beyond">Beyond <span id="small">(2000)</span></label>
-       <input type="radio" name="beyond" id="beyond">
-       <label for="mars">Mars<span id="small"> (2000)</span></label>
-       <input type="radio" name="mars" id="mars">
-     </fieldset>
-    </div>
-    <div class ="changeShelter">
-      <fieldset id="changeShelter" type="checkboxradio">
-       <label for="shack">Shack <span id="small">(200)</span></label>
-       <input type="radio" name="shack" id="shack">
-       <label for="chapel">Chapel <span id="small">(300)</span></label>
-       <input type="radio" name="chapel" id="chapel">
-       <label for="mudhut">Mudhut <span id="small">(300)</span></label>
-       <input type="radio" name="mudhut" id="mudhut">
-       <label for="mushroom">Mushroom <span id="small">(700)</span></label>
-       <input type="radio" name="mushroom" id="mushroom">
-       <label for="antartic">Antartic <span id="small">(700)</span></label>
-       <input type="radio" name="antartic" id="antartic">
-       <br>
-       <label for="foliage">Foliage <span id="small">(1100)</span></label>
-       <input type="radio" name="foliage" id="foliage">
-       <label for="namekian">Namekian <span id="small">(1100)</span></label>
-       <input type="radio" name="namekian" id="namekian">
-       <label for="tupik">Tupik<span id="small"> (1600)</span></label>
-       <input type="radio" name="tupik" id="tupik">
-       <label for="alkebulan">Alkebulan<span id="small"> (1600)</span></label>
-       <input type="radio" name="alkebulan" id="alkebulan">
-     </fieldset>
-   </div>
-     <div class ="music">
-       <fieldset id="songs" type="checkboxradio">
-        <label for="bambam">Bambam <span id="small">(600)</span></label>
-        <input type="radio" name="bambam" id="bambam">
-        <label for="wangshu">Wangshu <span id="small">(600)</span></label>
-        <input type="radio" name="wangshu" id="wangshu">
-        <label for="avery">Avery <span id="small">(600)</span></label>
-        <input type="radio" name="avery" id="avery">
-        <label for="subha">Subha <span id="small">(600)</span></label>
-        <input type="radio" name="subha" id="subha">
-        <label for="babushka">Babushka <span id="small">(600)</span></label>
-        <input type="radio" name="babushka" id="babushka">
-        <label for="peru">Peru <span id="small">(600)</span></label>
-        <input type="radio" name="peru" id="peru">
-      </fieldset>
-    </div>
-    <p id="karma"> </p>
-    <p id="save"> Save Garden </p>
-  </body>
-
-  <!-- My script(s) -->
-  <script src="js/UserInterface.js"></script>
-  <script src="js/Flower.js"></script>
-  <script src="js/Bee.js"></script>
-  <script src="js/Litter.js"></script>
-  <script src="js/garden.js"></script>
-</head>
-
+    <!-- My script(s) -->
+    <script src="js/UserInterface.js"></script>
+    <script src="js/Flower.js"></script>
+    <script src="js/Bee.js"></script>
+    <script src="js/Litter.js"></script>
+    <script src="js/garden.js"></script>
+  </head>
 </html>

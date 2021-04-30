@@ -38,7 +38,7 @@ class Flower {
     pop();
   }
   // Displays the daisy flower
-  displayDaisy(){
+  displayDaisy() {
     push();
     // Stem
     strokeWeight(this.stemThickness);
@@ -46,13 +46,14 @@ class Flower {
     line(this.x, this.y, this.x, this.y + this.stemLength);
     // Petals
     noStroke();
-    fill(230)
-    rectMode(CENTER)
-    rect(this.x, this.y, this.size*1.7, this.size*1.7)
-    fill(255)
-    for (let theta=0; theta<TWO_PI; theta+=PI/3){ // Draws a ring of ellipses
-      let petalX = this.size*cos(theta) + this.x;
-      let petalY = this.size*sin(theta) + this.y;
+    fill(230);
+    rectMode(CENTER);
+    rect(this.x, this.y, this.size * 1.7, this.size * 1.7);
+    fill(255);
+    for (let theta = 0; theta < TWO_PI; theta += PI / 3) {
+      // Draws a ring of ellipses
+      let petalX = this.size * cos(theta) + this.x;
+      let petalY = this.size * sin(theta) + this.y;
       ellipse(petalX, petalY, this.size);
     }
     // Center
@@ -61,7 +62,7 @@ class Flower {
     pop();
   }
   // Displays the hibiscus flower
-  displayHibiscus(){
+  displayHibiscus() {
     push();
     // Stem
     strokeWeight(this.stemThickness);
@@ -71,19 +72,19 @@ class Flower {
     stroke(100);
     strokeWeight(0.5);
     fill(this.petalColor.r, this.petalColor.g, this.petalColor.b);
-    ellipse(this.x, this.y + this.size/2, this.size);
-    ellipse(this.x, this.y - this.size/2, this.size);
-    ellipse(this.x + this.size/2, this.y, this.size);
-    ellipse(this.x - this.size/2, this.y, this.size);
+    ellipse(this.x, this.y + this.size / 2, this.size);
+    ellipse(this.x, this.y - this.size / 2, this.size);
+    ellipse(this.x + this.size / 2, this.y, this.size);
+    ellipse(this.x - this.size / 2, this.y, this.size);
     ellipse(this.x, this.y, this.size);
     // Stigma
-    rectMode(CENTER)
-    rect(this.x, this.y - this.size/10, this.size/ 12, this.size/ 2)
+    rectMode(CENTER);
+    rect(this.x, this.y - this.size / 10, this.size / 12, this.size / 2);
     fill(232, 193, 63);
-    ellipse(this.x + this.size/8, this.y - this.size/3, this.size/ 9)
-    ellipse(this.x + this.size/8, this.y - this.size/6, this.size/ 9)
-    ellipse(this.x - this.size/8, this.y -  this.size/3, this.size/ 9)
-    ellipse(this.x - this.size/8, this.y - this.size/6, this.size/ 9)
+    ellipse(this.x + this.size / 8, this.y - this.size / 3, this.size / 9);
+    ellipse(this.x + this.size / 8, this.y - this.size / 6, this.size / 9);
+    ellipse(this.x - this.size / 8, this.y - this.size / 3, this.size / 9);
+    ellipse(this.x - this.size / 8, this.y - this.size / 6, this.size / 9);
     pop();
   }
   // Increases the size of the flower. Called with the bees since the growth comes from them overlapping the flowers

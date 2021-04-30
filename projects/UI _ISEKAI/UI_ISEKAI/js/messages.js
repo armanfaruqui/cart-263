@@ -1,14 +1,14 @@
 // In charge of the functioning of the messages page
 
-"use-strict"
+"use-strict";
 
 let song; // Variable for the playable song
 
-function preload(){
-  song = loadSound(`assets/sounds/song.mp3`)
+function preload() {
+  song = loadSound(`assets/sounds/song.mp3`);
 }
 
-function setup(){
+function setup() {
   let ui = new UserInterface(song);
   ui.initialize();
 }
@@ -16,77 +16,73 @@ function setup(){
 startAkiChat();
 startMusaChat();
 
-function draw(){
+function draw() {
   ui.focused();
   ui.music();
 }
 
 //(Condensing these functions into one with a parameter returns an error)
 // Click event listener to begin chat with Aki
-function startAkiChat(){
-  $("#aki").on("click", function(){
-    $(".contacts").addClass("hide")
-    $("akiH2").addClass("hide")
+function startAkiChat() {
+  $("#aki").on("click", function () {
+    $(".contacts").addClass("hide");
+    $("akiH2").addClass("hide");
     akiChat();
-  })
+  });
 }
 // Click event listener to begin chat with Musa
-function startMusaChat(){
-  $("#musa").on("click", function(){
-    $(".contacts").addClass("hide")
-    $("musaH2").addClass("hide")
+function startMusaChat() {
+  $("#musa").on("click", function () {
+    $(".contacts").addClass("hide");
+    $("musaH2").addClass("hide");
     musaChat();
-  })
+  });
 }
 
 // Copy pasted from https://github.com/chrismuiruriz/ConvoJs to start the messag conversation interaction
-function akiChat(){
+function akiChat() {
   $(document).ready(function () {
+    $(".bubble__wrapper").convo({
+      headerTopColor: "#f00",
+      pageColor: "linear-gradient(to right, #83a4d4, #b6fbff)",
+      data: aki, // Defines the variable used in messageData.js
+      inputCharLimit: 50,
+    });
 
-
-       $(".bubble__wrapper").convo({
-           headerTopColor: "#f00",
-           pageColor: "linear-gradient(to right, #83a4d4, #b6fbff)",
-           data: aki, // Defines the variable used in messageData.js
-           inputCharLimit: 50
-       });
-
-       //we need this for contentEditable placeholder
-       $("[contenteditable]").focusout(function () {
-           var element = $(this);
-           if (!element.text().trim().length) {
-               element.empty();
-           }
-       });
-   });
+    //we need this for contentEditable placeholder
+    $("[contenteditable]").focusout(function () {
+      var element = $(this);
+      if (!element.text().trim().length) {
+        element.empty();
+      }
+    });
+  });
 }
 
-function musaChat(){
+function musaChat() {
   $(document).ready(function () {
+    $(".bubble__wrapper").convo({
+      headerTopColor: "#f00",
+      pageColor: "linear-gradient(to right, #83a4d4, #b6fbff)",
+      data: musa, // Defines the variable used in messageData.js
+      inputCharLimit: 50,
+    });
 
-
-       $(".bubble__wrapper").convo({
-           headerTopColor: "#f00",
-           pageColor: "linear-gradient(to right, #83a4d4, #b6fbff)",
-           data: musa, // Defines the variable used in messageData.js
-           inputCharLimit: 50
-       });
-
-       //we need this for contentEditable placeholder
-       $("[contenteditable]").focusout(function () {
-           var element = $(this);
-           if (!element.text().trim().length) {
-               element.empty();
-           }
-       });
-   });
+    //we need this for contentEditable placeholder
+    $("[contenteditable]").focusout(function () {
+      var element = $(this);
+      if (!element.text().trim().length) {
+        element.empty();
+      }
+    });
+  });
 }
 
-function endChat(){
-  let attr = $(".cui_option slide-up").attr("data-path")
-  if (attr === "block__"){
-    $(".cui_option").one("click", function(){
-      console.log("cheese")
-    })
+function endChat() {
+  let attr = $(".cui_option slide-up").attr("data-path");
+  if (attr === "block__") {
+    $(".cui_option").one("click", function () {
+      console.log("cheese");
+    });
   }
 }

@@ -34,7 +34,7 @@ let card = {
 
 // For loops used to preload multiple images since they have similair file names
 function preload() {
-  song = loadSound(`assets/sounds/song.mp3`)
+  song = loadSound(`assets/sounds/song.mp3`);
   for (let i = 0; i < 15; i++) {
     // Black and brown hairstyles
     hairBlack.push(loadImage(`assets/images/hair/hair${i}_1.png`));
@@ -85,14 +85,13 @@ function preload() {
   }
   noseImage = loadImage(`assets/images/head/nose.png`);
   mouthImage = loadImage(`assets/images/head/mouth.png`);
-  glasses = loadImage(`assets/images/head/glasses.png`)
+  glasses = loadImage(`assets/images/head/glasses.png`);
 
   names = loadJSON(`assets/data/names.json`);
   quests = loadJSON(`assets/data/quests.json`);
   card.yes = loadImage(`assets/images/tendr/yes.png`);
   card.no = loadImage(`assets/images/tendr/no.png`);
   card.font = loadFont(`assets/fonts/tendr.ttf`);
-
 }
 
 function setup() {

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      width="device-width,"
+      initial-scale="1.0,"
+      maximum-scale="1.0,"
+      user-scalable="0"
+    />
 
     <title>UI_ISEKAI</title>
 
@@ -15,62 +21,137 @@
     <script src="js/libraries/p5.min.js"></script>
     <script src="js/libraries/p5.play.js" type="text/javascript"></script>
     <script src="js/libraries/p5.sound.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
     <!-- Global UI Elements -->
-    <img id="toolbar" src ="assets/images/global/toolbar.png">
-    <img class="focused" src ="assets/images/global/focus.png">
-    <img class="music" src ="assets/images/global/music.png">
-    <img class="home2" src ="assets/images/global/home2.png">
-    <img class="home" src ="assets/images/global/home.png">
+    <img id="toolbar" src="assets/images/global/toolbar.png" />
+    <img class="focused" src="assets/images/global/focus.png" />
+    <img class="music" src="assets/images/global/music.png" />
+    <img class="home2" src="assets/images/global/home2.png" />
+    <img class="home" src="assets/images/global/home.png" />
 
     <div id="canvas">
-    <div id="page">
-    <div id="apps">
-      <!-- Various appication icons which appear as houses -->
-      <a href="li.html">
-        <img id="li" class ="icons" src="assets/images/RPG Background/topLeft.png" alt="li">
-      </a>
-      <a href="food.html">
-        <img id="food" class ="icons" src="assets/images/RPG Background/foodIcon.png" alt="food">
-      </a>
-      <a href="garden.html">
-        <img id="garden" class ="icons" src="assets/images/RPG Background/gardenIcon.png" alt="garden">
-      </a>
-      <a href="tendr.html">
-        <img id="social" class ="icons" src="assets/images/RPG Background/bottomRight.png" alt="social">
-      </a>
-      <a href="messages.html">
-        <img id="messages" class ="icons" src="assets/images/RPG Background/middle.png" alt="messages">
-      </a>
-      <div id="dialogSign" class="thought" title="Thought of the Day">
-        <p class="thought">
-          “There is nothing virtuous or noble about being "tolerant" of people whose attitudes and behaviors you approve of. If you don't defend the freedom of even those individuals whose attitudes and behaviors you find disgusting, narrow-minded and offensive, then you are not tolerant. To "tolerate" doesn't mean you like it or approve of it; it means only that you ALLOW it to EXIST--i.e., you refrain from violently interfering. The people who look to "government" to FORCE people to be "nice" are not tolerant.”
-          ― Larken Rose
-        </p>
+      <div id="page">
+        <div id="apps">
+          <!-- Various appication icons which appear as houses -->
+          <a href="li.html">
+            <img
+              id="li"
+              class="icons"
+              src="assets/images/RPG Background/topLeft.png"
+              alt="li"
+            />
+          </a>
+          <a href="food.html">
+            <img
+              id="food"
+              class="icons"
+              src="assets/images/RPG Background/foodIcon.png"
+              alt="food"
+            />
+          </a>
+          <a href="garden.html">
+            <img
+              id="garden"
+              class="icons"
+              src="assets/images/RPG Background/gardenIcon.png"
+              alt="garden"
+            />
+          </a>
+          <a href="tendr.html">
+            <img
+              id="social"
+              class="icons"
+              src="assets/images/RPG Background/bottomRight.png"
+              alt="social"
+            />
+          </a>
+          <a href="messages.html">
+            <img
+              id="messages"
+              class="icons"
+              src="assets/images/RPG Background/middle.png"
+              alt="messages"
+            />
+          </a>
+          <div id="dialogSign" class="thought" title="Thought of the Day">
+            <p class="thought">
+              “There is nothing virtuous or noble about being "tolerant" of
+              people whose attitudes and behaviors you approve of. If you don't
+              defend the freedom of even those individuals whose attitudes and
+              behaviors you find disgusting, narrow-minded and offensive, then
+              you are not tolerant. To "tolerate" doesn't mean you like it or
+              approve of it; it means only that you ALLOW it to EXIST--i.e., you
+              refrain from violently interfering. The people who look to
+              "government" to FORCE people to be "nice" are not tolerant.” ―
+              Larken Rose
+            </p>
+          </div>
+          <div
+            id="introDialog"
+            title="Peace and greetings new user! Welcome to Earth-123"
+          >
+            <p id="introText">
+              Looks like you came from Earth-454. Isn't that the one where
+              Europeans after their industrial revolution took over the planet
+              and systematically forced their way of life upon the rest the
+              world? Atleast you guys have waffle fries! <br /><br />
+              First thing you should do here is resize your window until your
+              windowWidth is 1360px and windowHeight is 802px, or atleast close
+              to those values. You can use your browsers console to get the
+              right values. Apologies for the inconvenience. Our universe's
+              technology is not as professional and corporate as your's.
+              <br />
+              <br />
+              Anyways, enjoy the experience! You can control your blue menu
+              navigator budy with WASD and left shift. See that green and purple
+              icon on the bottom right of your screen? That button toggles
+              'focused mode'. Since your's is currently on, you're currently not
+              able to receive most notifications. Try turning it off and see
+              what happens! So in the words of the great Jonathan Lyndale
+              Kirk....
+            </p>
+          </div>
+          <p id="notification" class="hidden">
+            You have unread messages from Aki and Musa -->
+          </p>
+        </div>
       </div>
-      <div id="introDialog"  title="Peace and greetings new user! Welcome to Earth-123">
-        <p id="introText">
-           Looks like you came from Earth-454. Isn't that the one where Europeans after their industrial revolution took over the planet and systematically forced their way of life upon the rest the world? Atleast you guys have waffle fries! <br><br>
-           First thing you should do here is resize your window until your windowWidth is 1360px and windowHeight is 802px, or atleast close to those values. You can use your browsers console to get the right values. Apologies for the inconvenience. Our universe's technology is not as professional and corporate as your's.
-           <br> <br>
-           Anyways, enjoy the experience! You can control your blue menu navigator budy with WASD and left shift. See that green and purple icon on the bottom right of your screen? That button toggles 'focused mode'. Since your's is currently on, you're currently not able to receive most notifications. Try turning it off and see what happens! So in the words of the great Jonathan Lyndale Kirk....
-        </p>
-      </div>
-      <p id="notification" class="hidden"> You have unread messages from Aki and Musa --> </p>
     </div>
-  </div>
-  </div>
 
     <!-- My script(s) -->
-    <!--Dayspedia.com widget--><iframe id="clock" width='125' height='442' style='padding:0!important;margin:0!important;border:none!important;background:none!important;background:transparent!important' marginheight='0' marginwidth='0' frameborder='0' scrolling='no' comment='/*defined*/' src='https://dayspedia.com/widgets/digit/?v=1&iframe=eyJ3LTEyIjp0cnVlLCJ3LTExIjp0cnVlLCJ3LTEzIjp0cnVlLCJ3LTE0Ijp0cnVlLCJ3LTE1Ijp0cnVlLCJ3LTExMCI6ZmFsc2UsInctd2lkdGgtMCI6ZmFsc2UsInctd2lkdGgtMSI6ZmFsc2UsInctd2lkdGgtMiI6dHJ1ZSwidy0xNiI6IjE2cHggMTZweCAyNHB4Iiwidy0xOSI6IjY0Iiwidy0xNyI6IjE2Iiwidy0yMSI6dHJ1ZSwiYmdpbWFnZSI6MiwiYmdpbWFnZVNldCI6dHJ1ZSwidy0yMWMwIjoiIzY3MGUwZSIsInctMCI6dHJ1ZSwidy0zIjpmYWxzZSwidy0zYzAiOiIjMzQzNDM0Iiwidy0zYjAiOiIxIiwidy02IjoiIzM0MzQzNCIsInctMjAiOmZhbHNlLCJ3LTQiOiIjMDAwMDAwIiwidy0xOCI6dHJ1ZSwidy13aWR0aC0yYy0wIjoiODAifQ==&lang=en&cityid=53197'></iframe><!--Dayspedia.com widget ENDS-->
+    <!--Dayspedia.com widget--><iframe
+      id="clock"
+      width="125"
+      height="442"
+      style="
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        background: none !important;
+        background: transparent !important;
+      "
+      marginheight="0"
+      marginwidth="0"
+      frameborder="0"
+      scrolling="no"
+      comment="/*defined*/"
+      src="https://dayspedia.com/widgets/digit/?v=1&iframe=eyJ3LTEyIjp0cnVlLCJ3LTExIjp0cnVlLCJ3LTEzIjp0cnVlLCJ3LTE0Ijp0cnVlLCJ3LTE1Ijp0cnVlLCJ3LTExMCI6ZmFsc2UsInctd2lkdGgtMCI6ZmFsc2UsInctd2lkdGgtMSI6ZmFsc2UsInctd2lkdGgtMiI6dHJ1ZSwidy0xNiI6IjE2cHggMTZweCAyNHB4Iiwidy0xOSI6IjY0Iiwidy0xNyI6IjE2Iiwidy0yMSI6dHJ1ZSwiYmdpbWFnZSI6MiwiYmdpbWFnZVNldCI6dHJ1ZSwidy0yMWMwIjoiIzY3MGUwZSIsInctMCI6dHJ1ZSwidy0zIjpmYWxzZSwidy0zYzAiOiIjMzQzNDM0Iiwidy0zYjAiOiIxIiwidy02IjoiIzM0MzQzNCIsInctMjAiOmZhbHNlLCJ3LTQiOiIjMDAwMDAwIiwidy0xOCI6dHJ1ZSwidy13aWR0aC0yYy0wIjoiODAifQ==&lang=en&cityid=53197"
+    ></iframe><!--Dayspedia.com widget ENDS-->
     <script src="js/UserInterface.js"></script>
     <script src="js/RPG_Sprite.js"></script>
     <script src="js/RPG_Home.js"></script>
     <script src="js/script.js"></script>
   </body>
-
 </html>
